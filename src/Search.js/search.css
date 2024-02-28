@@ -1,0 +1,38 @@
+.searchLayout{
+    width: 100vw;
+    height: 100%;
+    margin: -0.6%;
+    display: grid; 
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows:1fr 2fr ;
+    grid-template-areas: 'component1 component1 component1 component1 ' 
+                         'component2 component2 component2 component2 ' 
+                         'component3 component4 component4 component4 ';  
+}
+.component1{
+    grid-area: component1;
+}
+.component2{
+    grid-area: component2;
+    background-color: rgb(205, 83, 83);
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    grid-area: 'content2';
+    padding-right: 30px;
+    background-repeat: no-repeat;
+    background-size: 15px 15px;
+    background-position: left ;
+    padding-left: 25px;
+    
+}
+.component3{
+    grid-area: component3;
+}
+.component4{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    grid-area: component4;
+}
+

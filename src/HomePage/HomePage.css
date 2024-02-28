@@ -1,0 +1,94 @@
+.layout{
+    width: 100vw;
+    height: 100%;
+    margin: -0.6%;
+    display: grid; 
+    grid-template-columns:100%;
+    grid-template-rows: 1fr 9fr ;
+    grid-template-areas: 'content1' 'content2'  ; 
+    
+}
+.navigationbar-right a:hover {
+    background-color: rgb(191, 177, 177);
+    color: rgb(7, 7, 7);
+  }
+.navigationbar-right a,span{    
+   float: left;
+   color: #111010;
+   padding: 14px 16px;
+   text-decoration: none;
+}
+.navigationbar-right a{
+    float: right;
+}
+.content2{
+    /* background-color: rgb(199, 94, 94); */
+    background-image: url("https://static.abhibus.com/busimages/img/flashcards/bg-city-v4.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content:center;
+    grid-area: 'content2';
+}
+.searchform input{
+    padding-right: 30px;
+    background-repeat: no-repeat;
+    background-size: 15px 15px;
+    background-position: left ;
+    padding-left: 25px;
+ }
+ .icon1{
+    background-image: url('https://static.thenounproject.com/png/4407495-200.png');
+ }
+ .icon2{
+    background-image: url('https://cdn-icons-png.flaticon.com/512/2838/2838912.png');
+ }
+ .appLogo{
+    background-image: url('https://static.vecteezy.com/system/resources/previews/008/166/105/non_2x/bus-icon-illustration-design-vector.jpg');
+ }
+ .content1 span{
+    padding-right: 85px;
+    background-repeat: no-repeat;
+    background-size: 80px 80px;
+    background-position: left ;
+    padding-left: 85px;
+ }
+ .content1 a{
+    padding-right: 30px;
+    background-repeat: no-repeat;
+    background-size: 25px 25px;
+    background-position: left ;
+    padding-left: 30px;
+    
+ }
+ #login{
+    background-image:url("https://icons.veryicon.com/png/o/miscellaneous/domain-icons/my-account-login.png");
+}
+ #ticketCancel{
+    background-image: url("https://cdn-icons-png.flaticon.com/512/1/1585.png");
+ }
+ #ticket{
+    background-image: url("https://cdn-icons-png.flaticon.com/512/72/72668.png");
+ }
+ .searchform input{
+    border: 1px solid rgb(154, 151, 155);
+    padding: 20px; 
+    width: 250px;
+    height: 15px;  
+ }
+.searchButton{
+    background-color: rgb(195, 68, 68);
+    font-size: larger;
+    border-radius: 10px;
+    border: 1px solid rgb(33, 32, 32);
+    padding: 14px; 
+    text-decoration: none;
+    color:black;
+ }
+
+
+
+
+

@@ -1,0 +1,40 @@
+{
+  "user": [
+    {
+      "id": "vj",
+      "name": "vijay",
+      "password": "Vijay@102",
+      "email": "vijayalakshmanan1107@gmail.com",
+      "phone": "839484994",
+      "address": "tirunelveli",
+      "gender": "Male"
+    },
+    {
+      "id": "ram",
+      "name": "ram",
+      "password": "Ram",
+      "email": "ram@gamil.com",
+      "phone": "3333333",
+      "address": "kdkkd",
+      "gender": "Male"
+    },
+    {
+      "id": "sugu",
+      "name": "Sugumaran",
+      "password": "sugu@4243",
+      "email": "sugumaranrk@gmail.com",
+      "phone": "090070703",
+      "address": "hahfdhzbkz",
+      "gender": "Male"
+    },
+    {
+      "id": "deepak",
+      "name": "deepak",
+      "password": "a123",
+      "email": "deepak@gmail.com",
+      "phone": "7598686691",
+      "address": "utygfgkjhtgfc",
+      "gender": "Male"
+    }
+  ]
+}

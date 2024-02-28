@@ -1,0 +1,117 @@
+{
+    "bus":[
+        {
+            "id":0,
+            "busname":"Tvs travel",
+            "from":"Tirunelveli",
+            "to":"Madurai",
+            "bording point":[{"12:00":"New Bus Stand","12:10":"Vannarpettai"}],
+            "droping point":[{"21:50":"Mattuthavani"}],
+            "fromTiming":"12pm",
+            "toTiming":"22pm",
+            "seat":15,
+            "hrs":"10 hrs",
+            "ac":true,
+            "price":1000
+        },
+        {
+            "id":1,
+            "busname":"Aravind travel",
+            "from":"Tirunelveli",
+            "to":"Madurai",
+            "bording point":[{"12:00":"New Bus Stand","12:10":"Vannarpettai"}],
+            "droping point":[{"21:50":"Mattuthavani"}],
+            "fromTiming":"",
+            "toTiming":"",
+            "seat":20,
+            "hrs":"3 hrs",
+            "ac":false,
+            "price":400
+        },
+        {
+            "id":2,
+            "busname":"Arjun travel",
+            "from":"Chennai",
+            "to":"Tirunelveli",
+            "bording point":[{"21:50":"kilambakkam","22:00":"Tambaram"}],
+            "droping point":[{"12:00":"New Bus Stand","12:10":"Vannarpettai"}],
+            "fromTiming":"",
+            "toTiming":"",
+            "seat":18,
+            "hrs":"9.30 hrs",
+            "ac":false,
+            "price":1200
+        },
+        {
+            "id":3,
+            "busname":"Dinesh travel",
+            "from":"Chennai",
+            "to":"Tirunelveli",
+            "bording point":[{"21:50":"kilambakkam","22:00":"Tambaram"}],
+            "droping point":[{"12:00":"New Bus Stand","12:10":"Vannarpettai"}],
+            "fromTiming":"",
+            "toTiming":"",
+            "seat":25,
+            "hrs":"12 hrs",
+            "ac":true,
+            "price":1100
+        },
+        {
+            "id":4,
+            "busname":"Ram travel",
+            "from":"Chennai",
+            "to":"Madurai",
+            "bording point":[{"21:50":"kilambakkam","22:00":"Tambaram"}],
+            "droping point":[{"21:50":"Mattuthavani"}],
+            "fromTiming":"",
+            "toTiming":"",
+            "seat":20,
+            "hrs":"10 hrs",
+            "ac":true,
+            "price":600
+        },
+        {
+            "id":5,
+            "busname":"Aravind travel",
+            "from":"Tirunelveli",
+            "to":"Madurai",
+            "bording point":[{"12:00":"New Bus Stand","12:10":"Vannarpettai"}],
+            "droping point":[{"21:50":"Mattuthavani"}],
+            "fromTiming":"",
+            "toTiming":"",
+            "seat":20,
+            "hrs":"3 hrs",
+            "ac":false,
+            "price":800
+        },
+        {
+            "id":6,
+            "busname":"Arjun travel",
+            "from":"Chennai",
+            "to":"Tirunelveli",
+            "bording point":[{"21:50":"kilambakkam","22:00":"Tambaram"}],
+            "droping point":[{"12:00":"New Bus Stand","12:10":"Vannarpettai"}],
+            "fromTiming":"",
+            "toTiming":"",
+            "seat":18,
+            "hrs":"9.30 hrs",
+            "ac":false,
+            "price":1500
+        },
+        {
+            "id":7,
+            "busname":"Dinesh travel",
+            "from":"Chennai",
+            "to":"Tirunelveli",
+            "bording point":[{"21:50":"kilambakkam","22:00":"Tambaram"}],
+            "droping point":[{"12:00":"New Bus Stand","12:10":"Vannarpettai"}],
+            "fromTiming":"",
+            "toTiming":"",
+            "seat":25,
+            "hrs":"12 hrs",
+            "ac":true,
+            "price":1100
+        }
+    ]
+
+}

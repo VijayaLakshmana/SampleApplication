@@ -1,0 +1,35 @@
+.logindetail{
+    background-color: rgb(205, 121, 121);
+    border-radius: 3%;
+    padding: 10px;
+    margin: 200px 500px;
+    text-align: center;
+}
+.login{
+  margin: 0px;
+  padding: 10px;
+  border-radius: 3%;  
+
+
+ }
+.loginbutton{
+    background-image: linear-gradient(rgb(51, 51, 182), rgb(187, 20, 229));
+    font-size: larger;
+    margin: 10px;
+    border-radius: 25px;
+    border: 2px solid rgb(154, 151, 155);
+    padding: 17px; 
+    width: 200px;
+    
+}   
+ .userNameLogin,.passwordLogin{
+    margin: 15px;
+    border-radius: 25px;
+    border: 2px solid rgb(154, 151, 155);
+    padding: 20px; 
+    width: 300px;
+    height: 15px; 
+ }
+
+
+ 
