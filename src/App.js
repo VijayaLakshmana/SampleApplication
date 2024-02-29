@@ -12,10 +12,10 @@ function App() {
     <div className="App">
     <BrowserRouter>   
     <Routes>
-      <Route path='/' element={<HomePage from={from} setFrom={setFrom} to={to} setTo={setTo} date={date} setDate={setDate}/>}></Route>
+      <Route path='/' element={<HomePage from={from} setFrom={setFrom} to={to} setTo={setTo} date={date} setDate={setDate} />}></Route>
       <Route path='/login' element={<Login/>}></Route>
       <Route path='/register' element={<SignUp/>}></Route>
-      <Route path='/search' element={<Search from={from} setFrom={setFrom} to={to} setTo={setTo} date={date} setDate={setDate}/>}></Route>
+      <Route path='/search' element={<Search from={from} setFrom={setFrom} to={to} setTo={setTo} date={date} setDate={setDate} />}></Route>
     </Routes>
     </BrowserRouter>  
     </div>

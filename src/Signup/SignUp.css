@@ -1,38 +1,38 @@
-.registrationDetail{
-    position:absolute;
-    background-color:white;
-    border-radius: 3%;
-    padding: 10px;
-    margin: 110px 400px;
-    
-   }
-   table,td{
-    border-collapse: collapse;
-    width: 100%;
-   }
-table input{
-    margin: 5px;
-    border-radius: 25px;
-    border: 2px solid rgb(154, 151, 155);
-    padding: 10px; 
-    width: 250px;
-    height: 15px; 
+.registrationDetail {
+  position: absolute;
+  background-color: white;
+  border-radius: 3%;
+  padding: 10px;
+  margin: 110px 400px;
 }
-.registrationbutton{
-    background-image: linear-gradient(rgb(51, 51, 182), rgb(187, 20, 229));
-    font-size: larger;
-    margin: 15px 225px;
-    border-radius: 25px;
-    border: 2px solid rgb(154, 151, 155);
-    padding: 20px; 
-    width: 300px;
+table,
+td {
+  border-collapse: collapse;
+  width: 100%;
 }
-.addressArea{
-    font-size: larger;
-    margin: 0%;
-    border: 1pxx solid rgb(154, 151, 155);
-    padding: 15px; 
-    width: 650px;
+table input {
+  margin: 5px;
+  border-radius: 25px;
+  border: 2px solid rgb(154, 151, 155);
+  padding: 10px;
+  width: 250px;
+  height: 15px;
+}
+.registrationbutton {
+  background-image: linear-gradient(rgb(51, 51, 182), rgb(187, 20, 229));
+  font-size: larger;
+  margin: 15px 225px;
+  border-radius: 25px;
+  border: 2px solid rgb(154, 151, 155);
+  padding: 20px;
+  width: 300px;
+}
+.addressArea {
+  font-size: larger;
+  margin: 0%;
+  border: 1pxx solid rgb(154, 151, 155);
+  padding: 15px;
+  width: 650px;
 }
 /* .signUpBackground{
     position: relative;
@@ -45,5 +45,3 @@ table input{
     height:100vh;
     width:9000px;
 } */
-
-
