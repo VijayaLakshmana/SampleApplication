@@ -1,4 +1,4 @@
-import SignUp from "./Signup/SignUp";
+import SignUp from "./SignUp/SignUp";
 import HomePage from "./HomePage/HomePage";
 import Login from "./LoginPage/Login";
 import Search from "./Search.js/Search";
@@ -8,6 +8,7 @@ function App() {
   const[from,setFrom]=useState('')
   const[to,setTo]=useState('')
   const[date,setDate]=useState('')
+
   return (
     <div className="App">
     <BrowserRouter>   

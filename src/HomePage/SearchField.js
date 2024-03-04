@@ -16,15 +16,16 @@ export default function SearchField(props) {
       alert("Give proper input details..");
     }
     usenavigate(`${link}`);
+   
   }
-
+  
   return (
     <>
       <form className="searchform" onSubmit={(e) => handleClick(e)}>
         <InputField
           type="text"
           value={props.from}
-          onChange={(e) => props.setFrom(e.target.value.toLowerCase())}
+          onChange={(e)=>props.setFrom(e.target.value.toLowerCase())}
           className="icon1"
           placeholder="From"
           name="from"
@@ -32,7 +33,7 @@ export default function SearchField(props) {
         <InputField
           type="text"
           value={props.to}
-          onChange={(e) => props.setTo(e.target.value.toLowerCase())}
+          onChange={(e)=>props.setTo(e.target.value.toLowerCase())}
           className="icon2"
           placeholder="To"
           name="to"
@@ -47,6 +48,7 @@ export default function SearchField(props) {
           name="date"
           required
         />
+        
         <button className="searchButton">search</button>
       </form>
     </>

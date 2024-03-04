@@ -17,6 +17,7 @@ export default function HomePage(props) {
             setTo={props.setTo}
             date={props.date}
             setDate={props.setDate}
+            
           />
         </div>
         <div className="content3">
