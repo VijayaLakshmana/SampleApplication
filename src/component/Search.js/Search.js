@@ -93,43 +93,64 @@ export default function Search(props) {
       : true;
   });
   const filteredSearch = filteredBuses.filter(
-    (bus) => props.from === bus.from && props.to === bus.to
-  );
-  const [selectedSeats, setSelectedSeats] = useState([]);
+    (bus) => props.from === bus.from && props.to === bus.to &&props.date
+);
+
+  const [selectedSeats, setSelectedSeats] = useState({});
   const [selectedBus, setSelectedBus] = useState(null);
   const [seatSelectionVisible, setSeatSelectionVisible] = useState(false);
-  function handleShowSeats(bus) {
+  function handleShowSeats(bus,date=null) {
     setSelectedBus(bus);
-    setSelectedSeats([]);
     setSeatSelectionVisible(!seatSelectionVisible);
+    props.setDate(date)
   }
   function isSeatSelected(seatNumber) {
-    return selectedSeats.includes(seatNumber);
+    return selectedSeats[props.date]?.includes(seatNumber);
+  }
+  function isSeatBooked(bus,date, seatNumber){
+    const selectedBusData=busDetails.find(b=>b.id===bus.id)
+    const selectedDateData=selectedBusData.dates.find(d=>d.date===date)
+    return selectedDateData && selectedDateData.bookedSeats.includes(seatNumber)
+
   }
   function handleSeatClick(seatNumber) {
-    if (isSeatSelected(seatNumber)) {
-      setSelectedSeats(selectedSeats.filter((seat) => seat !== seatNumber));
-    } else {
-      setSelectedSeats([...selectedSeats, seatNumber]);
+    const currentSelectedSeats=selectedSeats[props.date]||[]
+    if(currentSelectedSeats.includes(seatNumber)){
+      const updatedSeats=currentSelectedSeats.filter(seat=>seat!==seatNumber);
+      setSelectedSeats({...selectedSeats,[props.date]:updatedSeats})
+    }else{
+      const updatedSeats=[...currentSelectedSeats,seatNumber]
+      setSelectedSeats({...selectedSeats,[props.date]:updatedSeats})
     }
+  
   }
   function handleBookTickets() {
-    if (selectedSeats.length === 0) {
-      alert("please select at least one seat to book ticket.");
-      return;
-    }
-    const busIndex = busDetails.findIndex((bus) => bus.id === selectedBus.id);
-    if (busIndex !== -1) {
-      const updatedBus = { ...busDetails[busIndex] };
-      updatedBus.bookedSeats = [...updatedBus.bookedSeats, ...selectedSeats];
-      const updatedBusData = [...busDetails];
-      updatedBusData[busIndex] = updatedBus;
-      setBusDetails(updatedBusData);
-      alert(`slected seats:${selectedSeats}`);
-    }
-    setSelectedSeats([]);
+   
+      if(selectedBus && props.date){
+      setBusDetails(prevBusData=>{
+        return prevBusData.map(bus=>{
+          if(bus.id===selectedBus.id){
+            const newDates=bus.dates.map(dateObj=>{
+              if(dateObj.date===props.date){
+                return{...dateObj,bookedSeats:[...dateObj.bookedSeats,...selectedSeats[props.date]]}
+              }
+              return dateObj;
+            })
+            return{...bus,dates:newDates}
+          }
+          return bus
+        })
+      })
+      alert(`slected seats:${selectedSeats[props.date]}`);
+      }
+    setSelectedSeats({...selectedSeats,[props.date]:[]});
     setSeatSelectionVisible(!seatSelectionVisible);
   }
+  busDetails.forEach((bus)=>{
+    if(bus.dates.length===0||!bus.dates.find(dateObj=>dateObj.date===props.date))
+    {bus.dates.push({date:props.date,bookedSeats:[]})}
+  })
+  console.log(busDetails)
   return (
     <div className="searchLayout">
       <div className="component1">
@@ -143,6 +164,13 @@ export default function Search(props) {
           setTo={props.setTo}
           date={props.date}
           setDate={props.setDate}
+          localFrom={props.localFrom}
+          setLocalFrom={props.setLocalFrom}
+          localTo={props.localTo}
+          setLocalTo={props.setLocalTo}
+          localDate={props.localDate}
+          setLocalDate={props.setLocalDate}
+          
         />
       </div>
       <div className="component3">
@@ -299,53 +327,53 @@ export default function Search(props) {
                   <div className="price">Inr: {bus.price}</div>
                   <div className="totalSeats">
                     Total: {bus.seat}seats
-                    <div className="seatBook">
-                      <button onClick={() => handleShowSeats(bus)}>
-                        {seatSelectionVisible &&
-                        selectedBus &&
+                    {bus.dates.map(dateObj=>(
+                      (dateObj.date===props.date)?(
+                      <div key={dateObj.date}>
+                        <p>Date:{dateObj.date}</p>
+                      <button onClick={() => handleShowSeats(bus, dateObj.date)}>
+                      {seatSelectionVisible &&
                         selectedBus.id === bus.id
                           ? "Hide Seat"
                           : "Book Seat"}
                       </button>
                       {seatSelectionVisible &&
-                        selectedBus &&
-                        selectedBus.id === bus.id && (
+                        selectedBus.id === bus.id && props.date===dateObj.date &&(
                           <div>
                             <p>
                               Total Available Seats:
-                              {bus.seat - bus.bookedSeats.length}
+                              {bus.seat -dateObj.bookedSeats.length}
                             </p>
-                            <div style={{ display: "flex", flexWrap: "wrap" }}>
+                            <div className="seatContainer">
                               {[...Array(bus.seat)].map((_, index) => (
                                 <button
                                   key={index + 1}
-                                  disabled={bus.bookedSeats.includes(index + 1)}
+                                  disabled={isSeatBooked(bus,props.date,index+1)}
                                   onClick={() => handleSeatClick(index + 1)}
+                                  className="seatStyle"
                                   style={{
-                                    margin: "5px",
-                                    width: "30px",
-                                    height: "30px",
                                     backgroundColor: isSeatSelected(index + 1)
                                       ? "blue"
-                                      : bus.bookedSeats.includes(index + 1)
+                                      : dateObj.bookedSeats.includes(index + 1) 
                                       ? "red"
-                                      : "green",
-                                    color: "white",
+                                      : "green"
                                   }}
                                 >
-                                  {index + 1}
+                                  {index+1} 
                                 </button>
                               ))}
                             </div>
                             <button
                               onClick={handleBookTickets}
-                              disabled={selectedSeats.length === 0}
+                              disabled={!selectedSeats[props.date]?.length}
                             >
                               Book Tickets
                             </button>
                           </div>
                         )}
+                  
                     </div>
+                    ):null))}
                   </div>
                 </div>
               ))}

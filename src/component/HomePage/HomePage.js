@@ -17,8 +17,14 @@ export default function HomePage(props) {
             setTo={props.setTo}
             date={props.date}
             setDate={props.setDate}
-            
+            localFrom={props.localFrom}
+            setLocalFrom={props.setLocalFrom}
+            localTo={props.localTo}
+            setLocalTo={props.setLocalTo}
+            localDate={props.localDate}
+            setLocalDate={props.setLocalDate}
           />
+          
         </div>
         <div className="content3">
           

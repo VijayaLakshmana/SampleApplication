@@ -9,14 +9,16 @@ export default function SearchField(props) {
   let link;
   function handleClick(e) {
     e.preventDefault();
-    if (props.from !== props.to) {
+      props.setFrom(props.localFrom)
+      props.setTo(props.localTo)
+      props.setDate(props.localDate)
+    if (props.localFrom !== props.localTo) {
       link = "/search";
     } else {
       link = "/";
       alert("Give proper input details..");
     }
     usenavigate(`${link}`);
-   
   }
   
   return (
@@ -24,31 +26,30 @@ export default function SearchField(props) {
       <form className="searchform" onSubmit={(e) => handleClick(e)}>
         <InputField
           type="text"
-          value={props.from}
-          onChange={(e)=>props.setFrom(e.target.value.toLowerCase())}
+          value={props.localFrom}
+          onChange={(e)=>props.setLocalFrom(e.target.value.toLowerCase())}
           className="icon1"
           placeholder="From"
           name="from"
         />
         <InputField
           type="text"
-          value={props.to}
-          onChange={(e)=>props.setTo(e.target.value.toLowerCase())}
+          value={props.localTo}
+          onChange={(e)=>props.setLocalTo(e.target.value.toLowerCase())}
           className="icon2"
           placeholder="To"
           name="to"
         />
         <input
           type="date"
-          value={props.date}
-          onChange={(e) => props.setDate(e.target.value)}
+          value={props.localDate}
+          onChange={(e)=>props.setLocalDate(e.target.value)}
           min={currentDate}
           max={maxSelectableDate}
           className="icon3"
           name="date"
           required
         />
-        
         <button className="searchButton">search</button>
       </form>
     </>
