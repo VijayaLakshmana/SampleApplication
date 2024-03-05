@@ -3,9 +3,9 @@ import NavigationBar from "../HomePage/NavigationBar";
 import SearchField from "../HomePage/SearchField";
 import InputField from "../HomePage/Input";
 import "./search.css";
+import { useNavigate } from "react-router-dom";
 
 export default function Search(props) {
-  const [busDetails, setBusDetails] = useState([]);
   const [showACBus, setShowACBus] = useState(false);
   const [showNonACBus, setShowNonACBus] = useState(false);
   const [showSeaterBus, setShowSeaterBus] = useState(false);
@@ -16,10 +16,14 @@ export default function Search(props) {
   const [selectDropingTime, setSelectDropingTime] = useState("");
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
+  const [showBoardingPoint, setShowBoardingPoint] = useState([]);
+  const [showDropingPoint, setShowDropingPoint] = useState([]);
+  const usenavigate = useNavigate();
   useEffect(() => {
     fetch("http://localhost:3001/bus")
       .then((res) => res.json())
-      .then((res) => setBusDetails([...res]));
+      .then((res) => props.setBusDetails([...res]));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   function capitalizeFirstLetter(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
@@ -45,7 +49,7 @@ export default function Search(props) {
     }
   }
   console.log(selectBoardingPoint);
-  const filterBusType = busDetails.filter((bus) => {
+  const filterBusType = props.busDetails.filter((bus) => {
     const showBus =
       (showACBus && bus.AC) ||
       (showNonACBus && !bus.AC) ||
@@ -93,64 +97,94 @@ export default function Search(props) {
       : true;
   });
   const filteredSearch = filteredBuses.filter(
-    (bus) => props.from === bus.from && props.to === bus.to &&props.date
-);
+    (bus) => props.from === bus.from && props.to === bus.to && props.date
+  );
 
-  const [selectedSeats, setSelectedSeats] = useState({});
-  const [selectedBus, setSelectedBus] = useState(null);
   const [seatSelectionVisible, setSeatSelectionVisible] = useState(false);
-  function handleShowSeats(bus,date=null) {
-    setSelectedBus(bus);
+  function handleShowSeats(bus, date = null) {
+    props.setSelectedBus(bus);
     setSeatSelectionVisible(!seatSelectionVisible);
-    props.setDate(date)
+    props.setDate(date);
   }
   function isSeatSelected(seatNumber) {
-    return selectedSeats[props.date]?.includes(seatNumber);
+    return props.selectedSeats[props.date]?.includes(seatNumber);
   }
-  function isSeatBooked(bus,date, seatNumber){
-    const selectedBusData=busDetails.find(b=>b.id===bus.id)
-    const selectedDateData=selectedBusData.dates.find(d=>d.date===date)
-    return selectedDateData && selectedDateData.bookedSeats.includes(seatNumber)
-
+  function isSeatBooked(bus, date, seatNumber) {
+    const selectedBusData = props.busDetails.find((b) => b.id === bus.id);
+    const selectedDateData = selectedBusData.dates.find((d) => d.date === date);
+    return (
+      selectedDateData && selectedDateData.bookedSeats.includes(seatNumber)
+    );
   }
   function handleSeatClick(seatNumber) {
-    const currentSelectedSeats=selectedSeats[props.date]||[]
-    if(currentSelectedSeats.includes(seatNumber)){
-      const updatedSeats=currentSelectedSeats.filter(seat=>seat!==seatNumber);
-      setSelectedSeats({...selectedSeats,[props.date]:updatedSeats})
-    }else{
-      const updatedSeats=[...currentSelectedSeats,seatNumber]
-      setSelectedSeats({...selectedSeats,[props.date]:updatedSeats})
+    const currentSelectedSeats = props.selectedSeats[props.date] || [];
+    if (currentSelectedSeats.includes(seatNumber)) {
+      const updatedSeats = currentSelectedSeats.filter(
+        (seat) => seat !== seatNumber
+      );
+      props.setSelectedSeats({
+        ...props.selectedSeats,
+        [props.date]: updatedSeats,
+      });
+    } else {
+      const updatedSeats = [...currentSelectedSeats, seatNumber];
+      props.setSelectedSeats({
+        ...props.selectedSeats,
+        [props.date]: updatedSeats,
+      });
     }
-  
   }
+  let bookticket = "bookticket";
   function handleBookTickets() {
-   
-      if(selectedBus && props.date){
-      setBusDetails(prevBusData=>{
-        return prevBusData.map(bus=>{
-          if(bus.id===selectedBus.id){
-            const newDates=bus.dates.map(dateObj=>{
-              if(dateObj.date===props.date){
-                return{...dateObj,bookedSeats:[...dateObj.bookedSeats,...selectedSeats[props.date]]}
-              }
-              return dateObj;
-            })
-            return{...bus,dates:newDates}
-          }
-          return bus
-        })
-      })
-      alert(`slected seats:${selectedSeats[props.date]}`);
-      }
-    setSelectedSeats({...selectedSeats,[props.date]:[]});
+    if (showDropingPoint.length === 0) {
+      return alert("Give the Droping Point");
+    } else if (showBoardingPoint.length === 0) {
+      return alert("Give the Boarding Point");
+    }
+    //   if(props.selectedBus && props.date){
+    //   props.setBusDetails(prevBusData=>{
+    //     return prevBusData.map(bus=>{
+    //       if(bus.id===props.selectedBus.id){
+    //         const newDates=bus.dates.map(dateObj=>{
+    //           if(dateObj.date===props.date){
+    //             return{...dateObj,bookedSeats:[...dateObj.bookedSeats,...props.selectedSeats[props.date]]}
+    //           }
+    //           return dateObj;
+    //         })
+    //         return{...bus,dates:newDates}
+    //       }
+    //       return bus
+    //     })
+    //   })
+    //   alert(`slected seats:${props.selectedSeats[props.date]}`);
+    //   }
+    // props.setSelectedSeats({...props.selectedSeats,[props.date]:[]});
     setSeatSelectionVisible(!seatSelectionVisible);
+    usenavigate(`${bookticket}`);
   }
-  busDetails.forEach((bus)=>{
-    if(bus.dates.length===0||!bus.dates.find(dateObj=>dateObj.date===props.date))
-    {bus.dates.push({date:props.date,bookedSeats:[]})}
-  })
-  console.log(busDetails)
+  props.busDetails.forEach((bus) => {
+    if (
+      bus.dates.length === 0 ||
+      !bus.dates.find((dateObj) => dateObj.date === props.date)
+    ) {
+      fetch(`http://localhost:3001/bus/${bus.id}`, {
+        method: "PUT",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          ...bus,
+          dates: [...bus.dates, { date: props.date, bookedSeats: [] }],
+        }),
+      });
+    }
+  });
+  props.busDetails.forEach((bus) => {
+    if (
+      bus.dates.length === 0 ||
+      !bus.dates.find((dateObj) => dateObj.date === props.date)
+    ) {
+      bus.dates.push({ date: props.date, bookedSeats: [] });
+    }
+  });
   return (
     <div className="searchLayout">
       <div className="component1">
@@ -170,7 +204,6 @@ export default function Search(props) {
           setLocalTo={props.setLocalTo}
           localDate={props.localDate}
           setLocalDate={props.setLocalDate}
-          
         />
       </div>
       <div className="component3">
@@ -211,7 +244,7 @@ export default function Search(props) {
           <br />
           <br />
           <h4>Select Boarding Points:</h4>
-          {busDetails
+          {props.busDetails
             .filter((bus) => bus.from === props.from && bus.to === props.to)
             .flatMap((bus) => bus.boardingStop.map((stop) => stop.stopingPoint))
             .filter((value, index, self) => self.indexOf(value) === index)
@@ -229,7 +262,7 @@ export default function Search(props) {
             ))}
           <br />
           <h4>Select Droping Points:</h4>
-          {busDetails
+          {props.busDetails
             .filter((bus) => bus.to === props.to)
             .flatMap((bus) => bus.dropingStop.map((stop) => stop.stopingPoint))
             .filter((value, index, self) => self.indexOf(value) === index)
@@ -252,7 +285,7 @@ export default function Search(props) {
             onChange={(e) => setSelectBoardingTime(e.target.value)}
           >
             <option value="">Select Time</option>
-            {busDetails
+            {props.busDetails
               .filter((bus) => bus.from === props.from)
               .flatMap((bus) => bus.boardingStop.map((stop) => stop.time))
               .filter((value, index, self) => self.indexOf(value) === index)
@@ -269,7 +302,7 @@ export default function Search(props) {
             onChange={(e) => setSelectDropingTime(e.target.value)}
           >
             <option value="">Select Time</option>
-            {busDetails
+            {props.busDetails
               .filter((bus) => bus.to === props.to)
               .flatMap((bus) => bus.dropingStop.map((stop) => stop.time))
               .filter((value, index, self) => self.indexOf(value) === index)
@@ -305,12 +338,12 @@ export default function Search(props) {
                   <div className="busName">
                     {bus.busname}
                     <div className="acList">
-                      {(bus.AC ? <span>Ac</span> : <span>NonAc</span>)}
-                      {(bus.isSeater ? (
+                      {bus.AC ? <span>Ac</span> : <span>NonAc</span>}
+                      {bus.isSeater ? (
                         <span>seater</span>
                       ) : (
                         <span>sleeper</span>
-                      ))}
+                      )}
                     </div>
                   </div>
                   <div className="fromTiming">
@@ -327,53 +360,106 @@ export default function Search(props) {
                   <div className="price">Inr: {bus.price}</div>
                   <div className="totalSeats">
                     Total: {bus.seat}seats
-                    {bus.dates.map(dateObj=>(
-                      (dateObj.date===props.date)?(
-                      <div key={dateObj.date}>
-                        <p>Date:{dateObj.date}</p>
-                      <button onClick={() => handleShowSeats(bus, dateObj.date)}>
-                      {seatSelectionVisible &&
-                        selectedBus.id === bus.id
-                          ? "Hide Seat"
-                          : "Book Seat"}
-                      </button>
-                      {seatSelectionVisible &&
-                        selectedBus.id === bus.id && props.date===dateObj.date &&(
-                          <div>
-                            <p>
-                              Total Available Seats:
-                              {bus.seat -dateObj.bookedSeats.length}
-                            </p>
-                            <div className="seatContainer">
-                              {[...Array(bus.seat)].map((_, index) => (
+                    {bus.dates.map((dateObj) =>
+                      dateObj.date === props.date ? (
+                        <div key={dateObj.date}>
+                          <p>Date:{dateObj.date}</p>
+                          <button
+                            onClick={() => handleShowSeats(bus, dateObj.date)}
+                          >
+                            {seatSelectionVisible &&
+                            props.selectedBus.id === bus.id
+                              ? "Hide Seat"
+                              : "Book Seat"}
+                          </button>
+                          {seatSelectionVisible &&
+                            props.selectedBus.id === bus.id &&
+                            props.date === dateObj.date && (
+                              <div>
+                                <div></div>
+                                <p>
+                                  Total Available Seats:
+                                  {bus.seat - dateObj.bookedSeats.length}
+                                </p>
+                                <div className="showStopingPoints">
+                                  <select
+                                    value={showBoardingPoint}
+                                    onChange={(e) =>
+                                      setShowBoardingPoint(e.target.value)
+                                    }
+                                  >
+                                    <option value="">
+                                      select Boarding Point
+                                    </option>
+                                    {bus.boardingStop.map((point, index) => (
+                                      <option
+                                        key={index}
+                                        value={point.stopingPoint}
+                                      >
+                                        {point.stopingPoint}-{point.time}
+                                      </option>
+                                    ))}
+                                  </select>
+                                  <select
+                                    value={showDropingPoint}
+                                    onChange={(e) =>
+                                      setShowDropingPoint(e.target.value)
+                                    }
+                                  >
+                                    <option value="">
+                                      select Droping Point
+                                    </option>
+                                    {bus.dropingStop.map((point, index) => (
+                                      <option
+                                        key={index}
+                                        value={point.stopingPoint}
+                                      >
+                                        {point.stopingPoint}-{point.time}
+                                      </option>
+                                    ))}
+                                  </select>
+                                </div>
+                                <div className="seatContainer">
+                                  {[...Array(bus.seat)].map((_, index) => (
+                                    <button
+                                      key={index + 1}
+                                      disabled={isSeatBooked(
+                                        bus,
+                                        props.date,
+                                        index + 1
+                                      )}
+                                      onClick={() => handleSeatClick(index + 1)}
+                                      className="seatStyle"
+                                      style={{
+                                        backgroundColor: isSeatSelected(
+                                          index + 1
+                                        )
+                                          ? "blue"
+                                          : dateObj.bookedSeats.includes(
+                                              index + 1
+                                            )
+                                          ? "red"
+                                          : "green",
+                                      }}
+                                    >
+                                      {index + 1}
+                                    </button>
+                                  ))}
+                                </div>
+
                                 <button
-                                  key={index + 1}
-                                  disabled={isSeatBooked(bus,props.date,index+1)}
-                                  onClick={() => handleSeatClick(index + 1)}
-                                  className="seatStyle"
-                                  style={{
-                                    backgroundColor: isSeatSelected(index + 1)
-                                      ? "blue"
-                                      : dateObj.bookedSeats.includes(index + 1) 
-                                      ? "red"
-                                      : "green"
-                                  }}
+                                  onClick={handleBookTickets}
+                                  disabled={
+                                    !props.selectedSeats[props.date]?.length
+                                  }
                                 >
-                                  {index+1} 
+                                  Book Tickets
                                 </button>
-                              ))}
-                            </div>
-                            <button
-                              onClick={handleBookTickets}
-                              disabled={!selectedSeats[props.date]?.length}
-                            >
-                              Book Tickets
-                            </button>
-                          </div>
-                        )}
-                  
-                    </div>
-                    ):null))}
+                              </div>
+                            )}
+                        </div>
+                      ) : null
+                    )}
                   </div>
                 </div>
               ))}
