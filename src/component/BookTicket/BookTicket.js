@@ -8,8 +8,6 @@ export default function TicketBooking(props) {
     let username = sessionStorage.getItem("username");
     setUsername(username)
   }, []);
-  const [showBoardingPoint, setShowBoardingPoint] = useState([]);
-  const [showDropingPoint, setShowDropingPoint] = useState([]);
   const [username,setUsername]=useState('')
   const initialpassengerDetails = {};
   props.selectedSeats[props.date].forEach((seatNumber) => {
@@ -17,11 +15,7 @@ export default function TicketBooking(props) {
   });
   const [passengerDetails, setPassengerDetails] = useState(initialpassengerDetails);
   function handleBookTicket() {
-    if (showDropingPoint.length === 0) {
-      return alert("Give the Droping Point");
-    } else if (showBoardingPoint.length === 0) {
-      return alert("Give the Boarding Point");
-    }else if (props.selectedBus && props.date) {
+    if (props.selectedBus && props.date) {
       props.busDetails.map((bus) => {
         if (bus.id === props.selectedBus.id) {
           fetch(`http://localhost:3001/bus/${bus.id}`, {
@@ -55,10 +49,10 @@ export default function TicketBooking(props) {
       username:username,
       date:props.date,
       from:props.selectedBus.from,
-      boardingPoint:showBoardingPoint,
+      boardingPoint:props.showBoardingPoint,
       fromTime:props.selectedBus.fromTiming,
       to:props.selectedBus.to,
-      dropingPoint:showDropingPoint,
+      dropingPoint:props.showDropingPoint,
       toTime:props.selectedBus.toTiming,
       busName:props.selectedBus.name,
       price:props.selectedBus.price,
@@ -90,43 +84,6 @@ export default function TicketBooking(props) {
       </div>
       <div className="container2">
           <h1>hello</h1>
-      </div>
-      <div >
-        {props.busDetails.map((bus) =>
-          bus.dates.map((dateObj) =>
-            dateObj.date === props.date ? (
-              <div key={dateObj.date}>
-                {props.selectedBus.id === bus.id &&
-                  props.date === dateObj.date && (
-                    <div>
-                      <select
-                        value={showBoardingPoint}
-                        onChange={(e) => setShowBoardingPoint(e.target.value)}
-                      >
-                        <option value="">select Boarding Point</option>
-                        {bus.boardingStop.map((point, index) => (
-                          <option key={index} value={point.stopingPoint}>
-                            {point.stopingPoint}-{point.time}
-                          </option>
-                        ))}
-                      </select>
-                      <select
-                        value={showDropingPoint}
-                        onChange={(e) => setShowDropingPoint(e.target.value)}
-                      >
-                        <option value="">select Droping Point</option>
-                        {bus.dropingStop.map((point, index) => (
-                          <option key={index} value={point.stopingPoint}>
-                            {point.stopingPoint}-{point.time}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
-                  )}
-              </div>
-            ) : null
-          )
-        )}
       </div>
       <>
         {props.selectedSeats[props.date].map((seatNumber) => (

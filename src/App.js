@@ -16,6 +16,8 @@ function App() {
   const [busDetails, setBusDetails] = useState([]);
   const [selectedSeats, setSelectedSeats] = useState({});
   const [selectedBus, setSelectedBus] = useState(null);
+  const [showBoardingPoint, setShowBoardingPoint] = useState([]);
+  const [showDropingPoint, setShowDropingPoint] = useState([]);
   return (
     <div className="App">
       <BrowserRouter>
@@ -78,6 +80,10 @@ function App() {
                 setSelectedBus={setSelectedBus}
                 selectedSeats={selectedSeats}
                 setSelectedSeats={setSelectedSeats}
+                showBoardingPoint={showBoardingPoint}
+               setShowBoardingPoint={setShowBoardingPoint}
+               showDropingPoint={showDropingPoint}
+               setShowDropingPoint={setShowDropingPoint}
               />
             }
           ></Route>
@@ -90,7 +96,14 @@ function App() {
             selectedBus={selectedBus}
             setSelectedBus={setSelectedBus}
             selectedSeats={selectedSeats}
-            setSelectedSeats={setSelectedSeats}/>
+            setSelectedSeats={setSelectedSeats}
+            showBoardingPoint={{showBoardingPoint}}
+            setShowBoardingPoint={setShowBoardingPoint}
+            showDropingPoint={showDropingPoint}
+            setShowDropingPoint={setShowDropingPoint}
+            />
+            
+
           }></Route>
         </Routes>
       </BrowserRouter>

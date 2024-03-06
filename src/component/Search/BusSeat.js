@@ -35,6 +35,10 @@ export default function BusSeat(props) {
   function handleBookTickets() {
     if (!props.selectedSeats[props.date]?.length) {
       return alert("Select at least one seat to proceed");
+    }else if (props.showDropingPoint.length === 0) {
+      return alert("Give the Droping Point");
+    } else if (props.showBoardingPoint.length === 0) {
+      return alert("Give the Boarding Point");
     }
     usenavigate(`${bookticket}`);
   }
@@ -52,7 +56,28 @@ export default function BusSeat(props) {
                       Total Available Seats:
                       {bus.seat - dateObj.bookedSeats.length}
                     </p>
-                    <div className="outerDiv">
+                    <select
+                        value={props.showBoardingPoint}
+                        onChange={(e) =>props.setShowBoardingPoint(e.target.value)}
+                      >
+                        <option value="">select Boarding Point</option>
+                        {bus.boardingStop.map((point, index) => (
+                          <option key={index} value={point.stopingPoint}>
+                            {point.stopingPoint}-{point.time}
+                          </option>
+                        ))}
+                      </select>
+                      <select
+                        value={props.showDropingPoint}
+                        onChange={(e) => props.setShowDropingPoint(e.target.value)}
+                      >
+                        <option value="">select Droping Point</option>
+                        {bus.dropingStop.map((point, index) => (
+                          <option key={index} value={point.stopingPoint}>
+                            {point.stopingPoint}-{point.time}
+                          </option>
+                        ))}
+                      </select>
                     <div className="seatContainer">
                       {Array.from({length:Math.ceil(bus.seat/4)},(_,rowIndex)=>(
                         <div key={rowIndex} className="seatRow" >
@@ -63,7 +88,7 @@ export default function BusSeat(props) {
                           key={seatNumber}
                           disabled={isSeatBooked(bus, props.date, seatNumber)}
                           onClick={() => handleSeatClick(seatNumber)}
-                          className={`seatButton ${isSeatBooked(bus,props.date,seatNumber)?'disabled':''} ${isSeatSelected(seatNumber)?'selected':''}${seatIndex%2===1?'withGap':''}`}
+                          className={`${bus.isSeater?'seatButton':'seatRectangleButton'} ${isSeatBooked(bus,props.date,seatNumber)?'disabled':''} ${isSeatSelected(seatNumber)?'selected':''}${seatIndex%2===1?'withGap':''}`}
                         >
                           {seatNumber}
                         </button>
@@ -72,7 +97,7 @@ export default function BusSeat(props) {
                           </div>
                       ))}
                     </div>
-                    </div>
+                   
                     <button
                         onClick={handleBookTickets}
                         disabled={!props.selectedSeats[props.date]?.length}
