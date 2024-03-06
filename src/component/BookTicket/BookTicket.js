@@ -1,17 +1,21 @@
 import { useState } from "react";
-// import InputField from "../HomePage/Input";
+import InputField from "../HomePage/Input";
+import { useEffect } from "react";
+import NavigationBar from "../HomePage/NavigationBar";
+import "./BookTicket.css";
 export default function TicketBooking(props) {
+  useEffect(() => {
+    let username = sessionStorage.getItem("username");
+    setUsername(username)
+  }, []);
   const [showBoardingPoint, setShowBoardingPoint] = useState([]);
   const [showDropingPoint, setShowDropingPoint] = useState([]);
-
-  // const [passengerDetails, setPassengerDetails] = useState({});
-  // const initialpassengerDetails = {};
-  // props.selectedSeats[props.date].forEach((seatNumber) => {
-  //   initialpassengerDetails[seatNumber] = { name: "", email: "", phone: "" };
-  // });
-  // console.log(initialpassengerDetails);
-  // setPassengerDetails(initialpassengerDetails);
-  // console.log(passengerDetails);
+  const [username,setUsername]=useState('')
+  const initialpassengerDetails = {};
+  props.selectedSeats[props.date].forEach((seatNumber) => {
+    initialpassengerDetails[seatNumber] = { name: "", email: "", phone: "" };
+  });
+  const [passengerDetails, setPassengerDetails] = useState(initialpassengerDetails);
   function handleBookTicket() {
     if (showDropingPoint.length === 0) {
       return alert("Give the Droping Point");
@@ -44,13 +48,50 @@ export default function TicketBooking(props) {
       });
       alert(`slected seats:${props.selectedSeats[props.date]}`);
     }
+    const time=Date.now()
+    const ticketnumber=time
+    const newBooking={
+      id:ticketnumber,
+      username:username,
+      date:props.date,
+      from:props.selectedBus.from,
+      boardingPoint:showBoardingPoint,
+      fromTime:props.selectedBus.fromTiming,
+      to:props.selectedBus.to,
+      dropingPoint:showDropingPoint,
+      toTime:props.selectedBus.toTiming,
+      busName:props.selectedBus.name,
+      price:props.selectedBus.price,
+      booked:true,
+      travelCompleted:false,
+      seats:props.selectedSeats[props.date].map(seatNumber=>({
+        seat:seatNumber,
+        passenger:passengerDetails[seatNumber]
+      }))
+    }
+    fetch("http://localhost:3003/Bookings", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(newBooking),
+    })
+      .then((res) => {
+        alert("Ticket booked");
+      })
+      .catch((err) => {
+        alert("Failed :" + err.message);
+      });
     props.setSelectedSeats({ ...props.selectedSeats, [props.date]: [] });
   }
 
   return (
-    <div>
-      <h1>welcome</h1>
-      <div>
+    <div className="ticketBookingDetailsPage">
+      <div className="container1">
+        <NavigationBar/>
+      </div>
+      <div className="container2">
+          <h1>hello</h1>
+      </div>
+      <div >
         {props.busDetails.map((bus) =>
           bus.dates.map((dateObj) =>
             dateObj.date === props.date ? (
@@ -88,9 +129,9 @@ export default function TicketBooking(props) {
         )}
       </div>
       <>
-        {/* {props.selectedSeats[props.date].map((seatNumber) => (
+        {props.selectedSeats[props.date].map((seatNumber) => (
           <div key={seatNumber}>
-            <p>seat{props.seatNumber}</p>
+            <p>Seat Number: {seatNumber}</p>
             <InputField
               type="text"
               placeholder="Name"
@@ -134,9 +175,9 @@ export default function TicketBooking(props) {
               }
             />
           </div>
-        ))} */}
+        ))}
       </>
-      <button onClick={handleBookTicket}>button</button>
+      <button onClick={handleBookTicket} disabled={Object.values(passengerDetails).some(detail=>!detail.name|| !detail.email||!detail.phone)}>Confirm ticket</button>
     </div>
   );
 }

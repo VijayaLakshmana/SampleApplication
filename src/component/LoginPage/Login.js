@@ -9,7 +9,6 @@ export default function Login() {
   useEffect(() => {
     sessionStorage.clear();
   }, []);
-
   function proceedLogin(e) {
     e.preventDefault();
     if (validate()) {

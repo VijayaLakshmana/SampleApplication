@@ -48,19 +48,23 @@ export default function Search(props) {
       setSelectDropingPoint([...selectDropingPoint, value]);
     }
   }
-  console.log(selectBoardingPoint);
   const filterBusType = props.busDetails.filter((bus) => {
     const showBus =
       (showACBus && bus.AC) ||
-      (showNonACBus && !bus.AC) ||
-      (showSeaterBus && bus.isSeater) ||
-      (showNonSeaterBus && !bus.isSeater);
-
+      (showNonACBus && !bus.AC);
     const anyFilterActive =
-      showACBus || showNonACBus || showSeaterBus || showNonSeaterBus;
+      showACBus || showNonACBus ;
     return anyFilterActive ? showBus : true;
   });
-  const filteredStop = filterBusType.filter((bus) => {
+  const filterSeaterType=filterBusType.filter((bus)=>{
+    const showBus= 
+    (showSeaterBus && bus.isSeater) ||
+    (showNonSeaterBus && !bus.isSeater);
+    const anyFilterActive =
+    showSeaterBus || showNonSeaterBus;
+  return anyFilterActive ? showBus : true;
+  })
+  const filteredStop = filterSeaterType.filter((bus) => {
     const hasSelectBoardingPoint =
       selectBoardingPoint.length === 0 ||
       bus.boardingStop.some((stop) =>
@@ -100,6 +104,10 @@ export default function Search(props) {
     (bus) => props.from === bus.from && props.to === bus.to && props.date
   );
   function handleShowSeats(bus) {
+    let username = sessionStorage.getItem("username");
+    if (username === "" || username === null) {
+      return alert("Login in before Book Tickets")
+    }
     props.setSelectedBus(bus);
     usenavigate(`${busseat}`);
   }

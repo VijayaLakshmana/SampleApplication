@@ -31,14 +31,16 @@
         {
           "date": "2024-03-06",
           "bookedSeats": [
-            1,
-            6,
-            2,
-            3
+            33,
+            1
           ]
+        },
+        {
+          "date": "",
+          "bookedSeats": []
         }
       ],
-      "seat": 15,
+      "seat": 36,
       "hrs": "10h 00m",
       "AC": true,
       "isSeater": true,
@@ -75,9 +77,13 @@
         {
           "date": "2024-03-06",
           "bookedSeats": []
+        },
+        {
+          "date": "",
+          "bookedSeats": []
         }
       ],
-      "seat": 20,
+      "seat": 40,
       "hrs": "03h 00m",
       "AC": false,
       "isSeater": true,
@@ -114,9 +120,13 @@
         {
           "date": "2024-03-06",
           "bookedSeats": []
+        },
+        {
+          "date": "",
+          "bookedSeats": []
         }
       ],
-      "seat": 18,
+      "seat": 42,
       "hrs": "09h 00m",
       "AC": false,
       "isSeater": false,
@@ -153,9 +163,13 @@
         {
           "date": "2024-03-06",
           "bookedSeats": []
+        },
+        {
+          "date": "",
+          "bookedSeats": []
         }
       ],
-      "seat": 25,
+      "seat": 38,
       "hrs": "12h 00m",
       "AC": true,
       "isSeater": true,
@@ -192,9 +206,13 @@
         {
           "date": "2024-03-06",
           "bookedSeats": []
+        },
+        {
+          "date": "",
+          "bookedSeats": []
         }
       ],
-      "seat": 20,
+      "seat": 40,
       "hrs": "10h 00m",
       "AC": true,
       "isSeater": false,
@@ -231,9 +249,13 @@
         {
           "date": "2024-03-06",
           "bookedSeats": []
+        },
+        {
+          "date": "",
+          "bookedSeats": []
         }
       ],
-      "seat": 20,
+      "seat": 38,
       "hrs": "03h 00m",
       "AC": false,
       "isSeater": true,
@@ -270,9 +292,13 @@
         {
           "date": "2024-03-06",
           "bookedSeats": []
+        },
+        {
+          "date": "",
+          "bookedSeats": []
         }
       ],
-      "seat": 18,
+      "seat": 42,
       "hrs": "10h 00m",
       "AC": false,
       "isSeater": false,
@@ -309,9 +335,13 @@
         {
           "date": "2024-03-06",
           "bookedSeats": []
+        },
+        {
+          "date": "",
+          "bookedSeats": []
         }
       ],
-      "seat": 25,
+      "seat": 40,
       "hrs": "12h 00m",
       "AC": true,
       "isSeater": false,

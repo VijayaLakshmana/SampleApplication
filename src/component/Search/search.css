@@ -11,7 +11,6 @@
     "component3 component4 component4 ";
 }
 .component1 {
- 
   grid-area: component1;
 }
 .component2 {
@@ -71,15 +70,39 @@
   margin: 10px;
   padding: 30px;
 }
-.seatStyle{
-  margin: 5px;
-  width: 30px;
-  height: 30px;
-  color:white
-}
+.seatRow{
+ 
+  margin-bottom: 10px;
+} */
 .seatContainer{
-  display: "flex";
- flex-wrap: "wrap" 
+  display:flex;
+  flex-direction: column;
 }
+.seatRow{
+  display:flex;
+}
+.seatButton{
+  margin:5px;
+  width:30px;
+  height:30px;
+  background-color:white;
+  
+}
+.seatButton.disabled{
+  background-color: red;
+}
+.seatButton.selected{
+  background-color: blue;
+}
+.seatButton{
+  margin-right: 5px;
+}
+.withGap{
+  margin-right: 20px;
+}
+.outerDiv{
+  display: flex;
+}
+
 
 

@@ -7,7 +7,7 @@ export default function NavigationBar() {
     if (username === "" || username === null) {
       setloginName("Login");
     } else {
-      setloginName(username);
+      setloginName(`${username}`);
     }
   }, []);
   return (

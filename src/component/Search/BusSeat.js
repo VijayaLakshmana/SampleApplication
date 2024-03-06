@@ -1,5 +1,7 @@
+
 import { useNavigate } from "react-router-dom";
 export default function BusSeat(props) {
+ 
   const usenavigate = useNavigate();
   const bookticket = "bookticket";
   function isSeatSelected(seatNumber) {
@@ -50,31 +52,33 @@ export default function BusSeat(props) {
                       Total Available Seats:
                       {bus.seat - dateObj.bookedSeats.length}
                     </p>
+                    <div className="outerDiv">
                     <div className="seatContainer">
-                      {[...Array(bus.seat)].map((_, index) => (
-                        <button
-                          key={index + 1}
-                          disabled={isSeatBooked(bus, props.date, index + 1)}
-                          onClick={() => handleSeatClick(index + 1)}
-                          className="seatStyle"
-                          style={{
-                            backgroundColor: isSeatSelected(index + 1)
-                              ? "blue"
-                              : dateObj.bookedSeats.includes(index + 1)
-                              ? "red"
-                              : "green",
-                          }}
+                      {Array.from({length:Math.ceil(bus.seat/4)},(_,rowIndex)=>(
+                        <div key={rowIndex} className="seatRow" >
+                          {Array.from({length:4},(_,seatIndex)=>{
+                            const seatNumber=rowIndex*4+seatIndex+1
+                            return(
+                              <button
+                          key={seatNumber}
+                          disabled={isSeatBooked(bus, props.date, seatNumber)}
+                          onClick={() => handleSeatClick(seatNumber)}
+                          className={`seatButton ${isSeatBooked(bus,props.date,seatNumber)?'disabled':''} ${isSeatSelected(seatNumber)?'selected':''}${seatIndex%2===1?'withGap':''}`}
                         >
-                          {index + 1}
+                          {seatNumber}
                         </button>
+                            )
+                          })}
+                          </div>
                       ))}
-                      <button
+                    </div>
+                    </div>
+                    <button
                         onClick={handleBookTickets}
                         disabled={!props.selectedSeats[props.date]?.length}
                       >
                         Book Tickets
                       </button>
-                    </div>
                   </div>
                 )}
             </div>
