@@ -1,133 +1,321 @@
 {
-    "bus":[
+  "bus": [
+    {
+      "id": "0",
+      "busname": "Tvs travel",
+      "from": "tirunelveli",
+      "to": "madurai",
+      "boardingStop": [
         {
-            "id":0,
-            "busname":"Tvs travel",
-            "from":"tirunelveli",
-            "to":"madurai",
-            "boardingStop":[{"stopingPoint":"New Bus Stand","time":"12:00pm"},{"stopingPoint":"Vannarpettai","time":"12:10pm"}],
-            "dropingStop":[{"stopingPoint":"New Bus Stand","time":"12:00pm"},{"stopingPoint":"Vannarpettai","time":"12:10pm"}],
-            "fromTiming":"12:00pm",
-            "toTiming":"22:00pm",
-            "dates":[],
-            "seat":15,
-            "hrs":"10h 00m",
-            "AC":true, 
-            "isSeater":true,
-            "price":1000
+          "stopingPoint": "New Bus Stand",
+          "time": "12:00pm"
         },
         {
-            "id":1,
-            "busname":"Aravind travel",
-            "from":"tirunelveli",
-            "to":"madurai",
-            "boardingStop":[{"stopingPoint":"Vannarpettai","time":"15:00pm"},{"stopingPoint":"pettai","time":"12:10pm"}],
-            "dropingStop":[{"stopingPoint":"New Bus Stand","time":"12:00pm"},{"stopingPoint":"Vannarpettai","time":"14:10pm"}],
-            "fromTiming":"14:00pm",
-            "toTiming":"17:00pm",
-            "dates":[],
-            "seat":20,
-            "hrs":"03h 00m",
-            "AC":false, 
-            "isSeater":true,
-            "price":400
-        },
-        {
-            "id":2,
-            "busname":"Arjun travel",
-            "from":"chennai",
-            "to":"tirunelveli",
-            "boardingStop":[{"stopingPoint":"New Bus Stand","time":"15:00pm"},{"stopingPoint":"Vannarpettai","time":"12:10pm"}],
-            "dropingStop":[{"stopingPoint":"New Bus Stand","time":"12:00pm"},{"stopingPoint":"Vannarpettai","time":"12:10pm"}],
-            "fromTiming":"10:00am",
-            "toTiming":"19:00pm",
-            "dates":[],
-            "seat":18,
-            "hrs":"09h 00m",
-            "AC":false,
-            "isSeater":false,
-            "price":1200
-        },
-        {
-            "id":3,
-            "busname":"Dinesh travel",
-            "from":"chennai",
-            "to":"tirunelveli",
-            "boardingStop":[{"stopingPoint":"New Bus Stand","time":"12:00pm"},{"stopingPoint":"Vannarpettai","time":"12:10pm"}],
-            "dropingStop":[{"stopingPoint":"New Bus Stand","time":"12:00pm"},{"stopingPoint":"Vannarpettai","time":"12:10pm"}],
-            "fromTiming":"09:00am",
-            "toTiming":"21:00pm",
-            "dates":[],
-            "seat":25,
-            "hrs":"12h 00m",
-            "AC":true, 
-            "isSeater":true,
-            "price":1100
-        },
-        {
-            "id":4,
-            "busname":"Ram travel",
-            "from":"chennai",
-            "to":"madurai",
-            "boardingStop":[{"stopingPoint":"New Bus Stand","time":"12:00pm"},{"stopingPoint":"Vadachennai","time":"12:10pm"}],
-            "dropingStop":[{"stopingPoint":"New Bus Stand","time":"12:00pm"},{"stopingPoint":"Vannarpettai","time":"12:10pm"}],
-            "fromTiming":"22:00pm",
-            "toTiming":"08:00am",
-            "dates":[],
-            "seat":20,
-            "hrs":"10h 00m",
-            "AC":true, 
-            "isSeater":false,
-            "price":600
-        },
-        {
-            "id":5,
-            "busname":"Aravind travel",
-            "from":"tirunelveli",
-            "to":"madurai",
-            "boardingStop":[{"stopingPoint":"New Bus Stand","time":"12:00pm"},{"stopingPoint":"Vannarpettai","time":"12:10pm"}],
-            "dropingStop":[{"stopingPoint":"New Bus Stand","time":"12:00pm"},{"stopingPoint":"Vannarpettai","time":"12:10pm"}],
-            "fromTiming":"08:00am",
-            "toTiming":"11:00am",
-            "dates":[],
-            "seat":20,
-            "hrs":"03h 00m",
-            "AC":false,
-            "isSeater":true,
-            "price":800
-        },
-        {
-            "id":6,
-            "busname":"Arjun travel",
-            "from":"chennai",
-            "to":"tirunelveli",
-            "boardingStop":[{"stopingPoint":"New Bus Stand","time":"12:00pm"},{"stopingPoint":"Vannarpettai","time":"12:10pm"}],
-            "dropingStop":[{"stopingPoint":"New Bus Stand","time":"12:00pm"},{"stopingPoint":"Vannarpettai","time":"12:10pm"}],
-            "fromTiming":"21:00pm",
-            "toTiming":"07:00am",
-            "dates":[],
-            "seat":18,
-            "hrs":"10h 00m",
-            "AC":false,
-            "isSeater":false,
-            "price":1500
-        },
-        {
-            "id":7,
-            "busname":"Dinesh travel",
-            "from":"chennai",
-            "to":"tirunelveli",
-            "boardingStop":[{"stopingPoint":"New Bus Stand","time":"12:00pm"},{"stopingPoint":"Vannarpettai","time":"12:10pm"}],
-            "dropingStop":[{"stopingPoint":"New Bus Stand","time":"12:00pm"},{"stopingPoint":"Vannarpettai","time":"12:10pm"}],
-            "fromTiming":"19:00pm",
-            "toTiming":"07:00am",
-            "dates":[],
-            "seat":25,
-            "hrs":"12h 00m",
-            "AC":true,
-            "isSeater":false, 
-            "price":1100
+          "stopingPoint": "Vannarpettai",
+          "time": "12:10pm"
         }
-    ]
-
+      ],
+      "dropingStop": [
+        {
+          "stopingPoint": "New Bus Stand",
+          "time": "12:00pm"
+        },
+        {
+          "stopingPoint": "Vannarpettai",
+          "time": "12:10pm"
+        }
+      ],
+      "fromTiming": "12:00pm",
+      "toTiming": "22:00pm",
+      "dates": [
+        {
+          "date": "2024-03-06",
+          "bookedSeats": [
+            1,
+            6,
+            2,
+            3
+          ]
+        }
+      ],
+      "seat": 15,
+      "hrs": "10h 00m",
+      "AC": true,
+      "isSeater": true,
+      "price": 1000
+    },
+    {
+      "id": "1",
+      "busname": "Aravind travel",
+      "from": "tirunelveli",
+      "to": "madurai",
+      "boardingStop": [
+        {
+          "stopingPoint": "Vannarpettai",
+          "time": "15:00pm"
+        },
+        {
+          "stopingPoint": "pettai",
+          "time": "12:10pm"
+        }
+      ],
+      "dropingStop": [
+        {
+          "stopingPoint": "New Bus Stand",
+          "time": "12:00pm"
+        },
+        {
+          "stopingPoint": "Vannarpettai",
+          "time": "14:10pm"
+        }
+      ],
+      "fromTiming": "14:00pm",
+      "toTiming": "17:00pm",
+      "dates": [
+        {
+          "date": "2024-03-06",
+          "bookedSeats": []
+        }
+      ],
+      "seat": 20,
+      "hrs": "03h 00m",
+      "AC": false,
+      "isSeater": true,
+      "price": 400
+    },
+    {
+      "id": "2",
+      "busname": "Arjun travel",
+      "from": "chennai",
+      "to": "tirunelveli",
+      "boardingStop": [
+        {
+          "stopingPoint": "New Bus Stand",
+          "time": "15:00pm"
+        },
+        {
+          "stopingPoint": "Vannarpettai",
+          "time": "12:10pm"
+        }
+      ],
+      "dropingStop": [
+        {
+          "stopingPoint": "New Bus Stand",
+          "time": "12:00pm"
+        },
+        {
+          "stopingPoint": "Vannarpettai",
+          "time": "12:10pm"
+        }
+      ],
+      "fromTiming": "10:00am",
+      "toTiming": "19:00pm",
+      "dates": [
+        {
+          "date": "2024-03-06",
+          "bookedSeats": []
+        }
+      ],
+      "seat": 18,
+      "hrs": "09h 00m",
+      "AC": false,
+      "isSeater": false,
+      "price": 1200
+    },
+    {
+      "id": "3",
+      "busname": "Dinesh travel",
+      "from": "chennai",
+      "to": "tirunelveli",
+      "boardingStop": [
+        {
+          "stopingPoint": "New Bus Stand",
+          "time": "12:00pm"
+        },
+        {
+          "stopingPoint": "Vannarpettai",
+          "time": "12:10pm"
+        }
+      ],
+      "dropingStop": [
+        {
+          "stopingPoint": "New Bus Stand",
+          "time": "12:00pm"
+        },
+        {
+          "stopingPoint": "Vannarpettai",
+          "time": "12:10pm"
+        }
+      ],
+      "fromTiming": "09:00am",
+      "toTiming": "21:00pm",
+      "dates": [
+        {
+          "date": "2024-03-06",
+          "bookedSeats": []
+        }
+      ],
+      "seat": 25,
+      "hrs": "12h 00m",
+      "AC": true,
+      "isSeater": true,
+      "price": 1100
+    },
+    {
+      "id": "4",
+      "busname": "Ram travel",
+      "from": "chennai",
+      "to": "madurai",
+      "boardingStop": [
+        {
+          "stopingPoint": "New Bus Stand",
+          "time": "12:00pm"
+        },
+        {
+          "stopingPoint": "Vadachennai",
+          "time": "12:10pm"
+        }
+      ],
+      "dropingStop": [
+        {
+          "stopingPoint": "New Bus Stand",
+          "time": "12:00pm"
+        },
+        {
+          "stopingPoint": "Vannarpettai",
+          "time": "12:10pm"
+        }
+      ],
+      "fromTiming": "22:00pm",
+      "toTiming": "08:00am",
+      "dates": [
+        {
+          "date": "2024-03-06",
+          "bookedSeats": []
+        }
+      ],
+      "seat": 20,
+      "hrs": "10h 00m",
+      "AC": true,
+      "isSeater": false,
+      "price": 600
+    },
+    {
+      "id": "5",
+      "busname": "Aravind travel",
+      "from": "tirunelveli",
+      "to": "madurai",
+      "boardingStop": [
+        {
+          "stopingPoint": "New Bus Stand",
+          "time": "12:00pm"
+        },
+        {
+          "stopingPoint": "Vannarpettai",
+          "time": "12:10pm"
+        }
+      ],
+      "dropingStop": [
+        {
+          "stopingPoint": "New Bus Stand",
+          "time": "12:00pm"
+        },
+        {
+          "stopingPoint": "Vannarpettai",
+          "time": "12:10pm"
+        }
+      ],
+      "fromTiming": "08:00am",
+      "toTiming": "11:00am",
+      "dates": [
+        {
+          "date": "2024-03-06",
+          "bookedSeats": []
+        }
+      ],
+      "seat": 20,
+      "hrs": "03h 00m",
+      "AC": false,
+      "isSeater": true,
+      "price": 800
+    },
+    {
+      "id": "6",
+      "busname": "Arjun travel",
+      "from": "chennai",
+      "to": "tirunelveli",
+      "boardingStop": [
+        {
+          "stopingPoint": "New Bus Stand",
+          "time": "12:00pm"
+        },
+        {
+          "stopingPoint": "Vannarpettai",
+          "time": "12:10pm"
+        }
+      ],
+      "dropingStop": [
+        {
+          "stopingPoint": "New Bus Stand",
+          "time": "12:00pm"
+        },
+        {
+          "stopingPoint": "Vannarpettai",
+          "time": "12:10pm"
+        }
+      ],
+      "fromTiming": "21:00pm",
+      "toTiming": "07:00am",
+      "dates": [
+        {
+          "date": "2024-03-06",
+          "bookedSeats": []
+        }
+      ],
+      "seat": 18,
+      "hrs": "10h 00m",
+      "AC": false,
+      "isSeater": false,
+      "price": 1500
+    },
+    {
+      "id": "7",
+      "busname": "Dinesh travel",
+      "from": "chennai",
+      "to": "tirunelveli",
+      "boardingStop": [
+        {
+          "stopingPoint": "New Bus Stand",
+          "time": "12:00pm"
+        },
+        {
+          "stopingPoint": "Vannarpettai",
+          "time": "12:10pm"
+        }
+      ],
+      "dropingStop": [
+        {
+          "stopingPoint": "New Bus Stand",
+          "time": "12:00pm"
+        },
+        {
+          "stopingPoint": "Vannarpettai",
+          "time": "12:10pm"
+        }
+      ],
+      "fromTiming": "19:00pm",
+      "toTiming": "07:00am",
+      "dates": [
+        {
+          "date": "2024-03-06",
+          "bookedSeats": []
+        }
+      ],
+      "seat": 25,
+      "hrs": "12h 00m",
+      "AC": true,
+      "isSeater": false,
+      "price": 1100
+    }
+  ]
 }

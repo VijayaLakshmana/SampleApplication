@@ -3,6 +3,7 @@ import HomePage from "./component/HomePage/HomePage";
 import Login from "./component/LoginPage/Login";
 import Search from "./component/Search/Search";
 import TicketBooking from "./component/BookTicket/BookTicket";
+import BusSeat from "./component/Search/BusSeat";
 import { useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 function App() {
@@ -66,7 +67,7 @@ function App() {
             }
           ></Route>
           <Route
-            path="/search/bookticket"
+            path="/search/busseat/bookticket"
             element={
               <TicketBooking
                 date={date}
@@ -80,6 +81,17 @@ function App() {
               />
             }
           ></Route>
+          <Route path="/search/busseat" element={
+            <BusSeat  
+            date={date}
+            setDate={setDate}
+            busDetails={busDetails}
+            setBusDetails={setBusDetails}
+            selectedBus={selectedBus}
+            setSelectedBus={setSelectedBus}
+            selectedSeats={selectedSeats}
+            setSelectedSeats={setSelectedSeats}/>
+          }></Route>
         </Routes>
       </BrowserRouter>
     </div>
