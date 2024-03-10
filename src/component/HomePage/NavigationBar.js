@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
+
 export default function NavigationBar() {
   let [loginName, setloginName] = useState("");
   useEffect(() => {
@@ -14,15 +15,15 @@ export default function NavigationBar() {
     <>
       <div className="content1">
         <span className="appLogo">Bus Ticket Booking</span>
-        <div class="navigationbar-right">
+        <div className="navigationbar-right">
           <Link to={"/login"} id="login">
             {loginName}
           </Link>
-          <Link to={"/ticketcancel"} id="ticketCancel">
+          <Link to={"/mybookings/ticketcancel"} id="ticketCancel">
             Cancel ticket
           </Link>
-          <Link to={"/ticket"} id="ticket">
-            Show my ticket
+          <Link to={"/mybookings"} id="ticket">
+            My Bookings
           </Link>
         </div>
       </div>

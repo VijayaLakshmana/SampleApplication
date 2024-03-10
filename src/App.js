@@ -6,6 +6,8 @@ import TicketBooking from "./component/BookTicket/BookTicket";
 import BusSeat from "./component/Search/BusSeat";
 import { useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import MyBookings from "./component/MyBookings/MyBooking";
+import CancelTicket from "./component/CancelTicket/CancelTicket";
 function App() {
   const [from, setFrom] = useState("");
   const [to, setTo] = useState("");
@@ -41,6 +43,9 @@ function App() {
               />
             }
           ></Route>
+          <Route path="/mybookings" element={<MyBookings/>}></Route>
+          <Route path="/mybookings/ticketcancel" element={<CancelTicket busDetails={busDetails}
+            setBusDetails={setBusDetails}/>}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/register" element={<SignUp />}></Route>
           <Route
@@ -81,9 +86,9 @@ function App() {
                 selectedSeats={selectedSeats}
                 setSelectedSeats={setSelectedSeats}
                 showBoardingPoint={showBoardingPoint}
-               setShowBoardingPoint={setShowBoardingPoint}
-               showDropingPoint={showDropingPoint}
-               setShowDropingPoint={setShowDropingPoint}
+                setShowBoardingPoint={setShowBoardingPoint}
+                showDropingPoint={showDropingPoint}
+                setShowDropingPoint={setShowDropingPoint}
               />
             }
           ></Route>
@@ -102,8 +107,6 @@ function App() {
             showDropingPoint={showDropingPoint}
             setShowDropingPoint={setShowDropingPoint}
             />
-            
-
           }></Route>
         </Routes>
       </BrowserRouter>

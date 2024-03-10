@@ -1,5 +1,70 @@
 {
   "Bookings": [
-   
+    {
+      "id": "1709871804500",
+      "username": "vj",
+      "busName": "Tvs travel",
+      "date": "2024-03-08",
+      "from": "tirunelveli",
+      "boardingPoint": "New Bus Stand",
+      "fromTime": "12:00pm",
+      "to": "madurai",
+      "dropingPoint": "New Bus Stand",
+      "toTime": "22:00pm",
+      "price": 1000,
+      "connection": "0",
+      "bookingStatus": "cancelled",
+      "seats": []
+    },
+    {
+      "id": "1709900143218",
+      "username": "vj",
+      "busName": "Tvs travel",
+      "date": "2024-03-07",
+      "from": "tirunelveli",
+      "boardingPoint": "New Bus Stand",
+      "fromTime": "12:00pm",
+      "to": "madurai",
+      "dropingPoint": "New Bus Stand",
+      "toTime": "22:00pm",
+      "price": 1000,
+      "connection": "0",
+      "bookingStatus": "Completed",
+      "seats": [
+        {
+          "seat": 1,
+          "passenger": {
+            "name": "siva",
+            "email": "siva@gmail",
+            "phone": "38429034"
+          }
+        }
+      ]
+    },
+    {
+      "id": 1709900251518,
+      "username": "vj",
+      "busName": "Ram travel",
+      "date": "2024-03-08",
+      "from": "chennai",
+      "boardingPoint": "New Bus Stand",
+      "fromTime": "22:00pm",
+      "to": "madurai",
+      "dropingPoint": "New Bus Stand",
+      "toTime": "08:00am",
+      "price": 600,
+      "connection": "4",
+      "bookingStatus": "booked",
+      "seats": [
+        {
+          "seat": 1,
+          "passenger": {
+            "name": "karthi",
+            "email": "karthi@gmail.com",
+            "phone": "98394942"
+          }
+        }
+      ]
+    }
   ]
 }

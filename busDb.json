@@ -28,7 +28,26 @@
       "fromTiming": "12:00pm",
       "toTiming": "22:00pm",
       "dates": [
-        
+        {
+          "date": "2024-03-08",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-03-09",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-03-10",
+          "bookedSeats": []
+        },
+        {
+          "date": "",
+          "bookedSeats": []
+        },
+        {
+          "date": null,
+          "bookedSeats": []
+        }
       ],
       "seat": 36,
       "hrs": "10h 00m",
@@ -64,7 +83,26 @@
       "fromTiming": "14:00pm",
       "toTiming": "17:00pm",
       "dates": [
-        
+        {
+          "date": "2024-03-08",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-03-09",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-03-10",
+          "bookedSeats": []
+        },
+        {
+          "date": "",
+          "bookedSeats": []
+        },
+        {
+          "date": null,
+          "bookedSeats": []
+        }
       ],
       "seat": 40,
       "hrs": "03h 00m",
@@ -100,9 +138,28 @@
       "fromTiming": "10:00am",
       "toTiming": "19:00pm",
       "dates": [
-        
+        {
+          "date": "2024-03-08",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-03-09",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-03-10",
+          "bookedSeats": []
+        },
+        {
+          "date": "",
+          "bookedSeats": []
+        },
+        {
+          "date": null,
+          "bookedSeats": []
+        }
       ],
-      "seat": 10,
+      "seat": 12,
       "hrs": "09h 00m",
       "AC": false,
       "isSeater": false,
@@ -136,9 +193,28 @@
       "fromTiming": "09:00am",
       "toTiming": "21:00pm",
       "dates": [
-        
+        {
+          "date": "2024-03-08",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-03-09",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-03-10",
+          "bookedSeats": []
+        },
+        {
+          "date": "",
+          "bookedSeats": []
+        },
+        {
+          "date": null,
+          "bookedSeats": []
+        }
       ],
-      "seat": 38,
+      "seat": 40,
       "hrs": "12h 00m",
       "AC": true,
       "isSeater": true,
@@ -172,7 +248,28 @@
       "fromTiming": "22:00pm",
       "toTiming": "08:00am",
       "dates": [
-        
+        {
+          "date": "2024-03-08",
+          "bookedSeats": [
+            1
+          ]
+        },
+        {
+          "date": "2024-03-09",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-03-10",
+          "bookedSeats": []
+        },
+        {
+          "date": "",
+          "bookedSeats": []
+        },
+        {
+          "date": null,
+          "bookedSeats": []
+        }
       ],
       "seat": 12,
       "hrs": "10h 00m",
@@ -208,9 +305,28 @@
       "fromTiming": "08:00am",
       "toTiming": "11:00am",
       "dates": [
-       
+        {
+          "date": "2024-03-08",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-03-09",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-03-10",
+          "bookedSeats": []
+        },
+        {
+          "date": "",
+          "bookedSeats": []
+        },
+        {
+          "date": null,
+          "bookedSeats": []
+        }
       ],
-      "seat": 38,
+      "seat": 36,
       "hrs": "03h 00m",
       "AC": false,
       "isSeater": true,
@@ -244,7 +360,26 @@
       "fromTiming": "21:00pm",
       "toTiming": "07:00am",
       "dates": [
-       
+        {
+          "date": "2024-03-08",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-03-09",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-03-10",
+          "bookedSeats": []
+        },
+        {
+          "date": "",
+          "bookedSeats": []
+        },
+        {
+          "date": null,
+          "bookedSeats": []
+        }
       ],
       "seat": 16,
       "hrs": "10h 00m",
@@ -280,7 +415,26 @@
       "fromTiming": "19:00pm",
       "toTiming": "07:00am",
       "dates": [
-        
+        {
+          "date": "2024-03-08",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-03-09",
+          "bookedSeats": []
+        },
+        {
+          "date": null,
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-03-10",
+          "bookedSeats": []
+        },
+        {
+          "date": "",
+          "bookedSeats": []
+        }
       ],
       "seat": 16,
       "hrs": "12h 00m",

@@ -23,6 +23,13 @@ export default function Search(props) {
     fetch("http://localhost:3001/bus")
       .then((res) => res.json())
       .then((res) => props.setBusDetails([...res]));
+    const from = sessionStorage.getItem("from");
+    props.setFrom(from);
+    const to = sessionStorage.getItem("to");
+    props.setTo(to);
+    const date = sessionStorage.getItem("date");
+    props.setDate(date);
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   function capitalizeFirstLetter(str) {
@@ -49,21 +56,16 @@ export default function Search(props) {
     }
   }
   const filterBusType = props.busDetails.filter((bus) => {
-    const showBus =
-      (showACBus && bus.AC) ||
-      (showNonACBus && !bus.AC);
-    const anyFilterActive =
-      showACBus || showNonACBus ;
+    const showBus = (showACBus && bus.AC) || (showNonACBus && !bus.AC);
+    const anyFilterActive = showACBus || showNonACBus;
     return anyFilterActive ? showBus : true;
   });
-  const filterSeaterType=filterBusType.filter((bus)=>{
-    const showBus= 
-    (showSeaterBus && bus.isSeater) ||
-    (showNonSeaterBus && !bus.isSeater);
-    const anyFilterActive =
-    showSeaterBus || showNonSeaterBus;
-  return anyFilterActive ? showBus : true;
-  })
+  const filterSeaterType = filterBusType.filter((bus) => {
+    const showBus =
+      (showSeaterBus && bus.isSeater) || (showNonSeaterBus && !bus.isSeater);
+    const anyFilterActive = showSeaterBus || showNonSeaterBus;
+    return anyFilterActive ? showBus : true;
+  });
   const filteredStop = filterSeaterType.filter((bus) => {
     const hasSelectBoardingPoint =
       selectBoardingPoint.length === 0 ||
@@ -103,12 +105,13 @@ export default function Search(props) {
   const filteredSearch = filteredBuses.filter(
     (bus) => props.from === bus.from && props.to === bus.to && props.date
   );
-  function handleShowSeats(bus) {
+  async function handleShowSeats(bus) {
     let username = sessionStorage.getItem("username");
     if (username === "" || username === null) {
-      return alert("Login in before Book Tickets")
+      return alert("Login in before Book Tickets");
     }
     props.setSelectedBus(bus);
+    sessionStorage.setItem("selectedBus", JSON.stringify(bus));
     usenavigate(`${busseat}`);
   }
   props.busDetails.forEach((bus) => {
@@ -165,7 +168,7 @@ export default function Search(props) {
             id="ac"
             name="ac"
           />
-          <label for="ac">AC</label>
+          <label>AC</label>
           <InputField
             type="checkbox"
             checked={showNonACBus}
@@ -173,7 +176,7 @@ export default function Search(props) {
             id="nonac"
             name="nonac"
           />
-          <label for="nonac">NON AC</label>
+          <label>NON AC</label>
           <InputField
             type="checkbox"
             checked={showSeaterBus}
@@ -181,7 +184,7 @@ export default function Search(props) {
             id="seater"
             name="seater"
           />
-          <label for="seater">seater</label>
+          <label>seater</label>
           <InputField
             type="checkbox"
             checked={showNonSeaterBus}
@@ -189,7 +192,7 @@ export default function Search(props) {
             id="sleeper"
             name="sleeper"
           />
-          <label for="sleeper">sleeper</label>
+          <label>sleeper</label>
           <br />
           <br />
           <h4>Select Boarding Points:</h4>

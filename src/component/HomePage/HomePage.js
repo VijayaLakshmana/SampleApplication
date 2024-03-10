@@ -3,7 +3,7 @@ import NavigationBar from "./NavigationBar";
 import SearchField from "./SearchField";
 export default function HomePage(props) {
   return (
-    <>
+    <div>
       <div className="layout">
         <div className="content1">
           <NavigationBar />
@@ -24,12 +24,9 @@ export default function HomePage(props) {
             localDate={props.localDate}
             setLocalDate={props.setLocalDate}
           />
-          
         </div>
-        <div className="content3">
-          
-        </div>
+        <div className="content3"></div>
       </div>
-    </>
+    </div>
   );
 }
