@@ -105,7 +105,7 @@ export default function Search(props) {
   const filteredSearch = filteredBuses.filter(
     (bus) => props.from === bus.from && props.to === bus.to && props.date
   );
-  async function handleShowSeats(bus) {
+   function handleShowSeats(bus) {
     let username = sessionStorage.getItem("username");
     if (username === "" || username === null) {
       return alert("Login in before Book Tickets");

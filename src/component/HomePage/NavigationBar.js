@@ -11,6 +11,12 @@ export default function NavigationBar() {
       setloginName(`${username}`);
     }
   }, []);
+  function handleBookingClick(e,name){
+    if(loginName==="Login"){
+      e.preventDefault()
+          alert(`Please login to  ${name}`)
+    }
+  }
   return (
     <>
       <div className="content1">
@@ -19,10 +25,10 @@ export default function NavigationBar() {
           <Link to={"/login"} id="login">
             {loginName}
           </Link>
-          <Link to={"/mybookings/ticketcancel"} id="ticketCancel">
+          <Link to={"/mybookings/ticketcancel"} id="ticketCancel" onClick={(e)=>handleBookingClick(e,"Cancel Ticket")}>
             Cancel ticket
           </Link>
-          <Link to={"/mybookings"} id="ticket">
+          <Link to={"/mybookings"} id="ticket" onClick={(e)=>handleBookingClick(e,"view My Bookings")}>
             My Bookings
           </Link>
         </div>
@@ -30,3 +36,4 @@ export default function NavigationBar() {
     </>
   );
 }
+

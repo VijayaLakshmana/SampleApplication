@@ -52,7 +52,6 @@ export default function BusSeat(props) {
       );
     }
   }
-  console.log(props.selectedSeats);
   function handleBookTickets() {
     if (!props.selectedSeats[props.date]?.length) {
       return alert("Select at least one seat to proceed");
@@ -101,7 +100,7 @@ export default function BusSeat(props) {
                           {point.stopingPoint}-{point.time}
                         </option>
                       ))}
-                    </select>
+                    </select><br/><br/>
                     <div className="seatContainer">
                       {Array.from(
                         { length: Math.ceil(bus.seat / 4) },

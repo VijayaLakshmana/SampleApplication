@@ -1,7 +1,7 @@
 .ticketBookingDetailsPage {
   width: 100vw;
   height: 100%;
-  margin: -0.6%;
+  margin: -0.5%;
   display: grid;
   grid-template-columns: 100%;
   grid-template-rows: 1fr 2fr;
@@ -9,4 +9,8 @@
 }
 .container2 {
   background-color: rgb(205, 83, 83);
+}
+.bookTicketButton{
+  height: 40px;
+  width: 100px;
 }

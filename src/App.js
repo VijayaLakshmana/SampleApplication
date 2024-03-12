@@ -102,7 +102,7 @@ function App() {
             setSelectedBus={setSelectedBus}
             selectedSeats={selectedSeats}
             setSelectedSeats={setSelectedSeats}
-            showBoardingPoint={{showBoardingPoint}}
+            showBoardingPoint={showBoardingPoint}
             setShowBoardingPoint={setShowBoardingPoint}
             showDropingPoint={showDropingPoint}
             setShowDropingPoint={setShowDropingPoint}

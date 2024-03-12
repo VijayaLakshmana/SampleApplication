@@ -3,6 +3,7 @@ import InputField from "../HomePage/Input";
 import { useEffect } from "react";
 import NavigationBar from "../HomePage/NavigationBar";
 import "./BookTicket.css";
+import { useNavigate } from "react-router-dom";
 export default function TicketBooking(props) {
   useEffect(() => {
     fetch("http://localhost:3001/bus")
@@ -20,17 +21,19 @@ export default function TicketBooking(props) {
     props.setDate(date);
     let username = sessionStorage.getItem("username");
     setUsername(username);
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  const [username, setUsername] = useState("");
-  const initialpassengerDetails = {};
+  useEffect(()=>{
+    const initialpassengerDetails={};
   props.selectedSeats[props.date]?.forEach((seatNumber) => {
     initialpassengerDetails[seatNumber] = { name: "", email: "", phone: "" };
   });
-  const [passengerDetails, setPassengerDetails] = useState(
-    initialpassengerDetails
-  );
+  setPassengerDetails(initialpassengerDetails)
+  },[props.selectedSeats,props.date])
+  const usenavigate=useNavigate()
+  const home='/'
+  const [username, setUsername] = useState("");
+  const [passengerDetails, setPassengerDetails] = useState({});
   function handleBookTicket() {
     if (props.selectedBus && props.date) {
       props.busDetails.map((bus) => {
@@ -58,12 +61,16 @@ export default function TicketBooking(props) {
         return bus;
       });
       alert(`slected seats:${props.selectedSeats[props.date]}`);
+      usenavigate(home)
     }
     const time = Date.now();
     const ticketnumber = time;
+    const totalPrice=props.selectedBus.price*props.selectedSeats[props.date].length;
+    console.log(totalPrice)
     const newBooking = {
       id: ticketnumber,
       username: username,
+      busName:props.selectedBus.busname,
       date: props.date,
       from: props.selectedBus.from,
       boardingPoint: props.showBoardingPoint,
@@ -71,10 +78,10 @@ export default function TicketBooking(props) {
       to: props.selectedBus.to,
       dropingPoint: props.showDropingPoint,
       toTime: props.selectedBus.toTiming,
-      busName: props.selectedBus.name,
-      price: props.selectedBus.price,
-      booked: true,
-      travelCompleted: false,
+      price: totalPrice,
+      connection: props.selectedBus.id,
+      hrs:props.selectedBus.hrs,
+      bookingStatus: "booked",
       seats: props.selectedSeats[props.date]?.map((seatNumber) => ({
         seat: seatNumber,
         passenger: passengerDetails[seatNumber],
@@ -92,6 +99,7 @@ export default function TicketBooking(props) {
         alert("Failed :" + err.message);
       });
     props.setSelectedSeats({ ...props.selectedSeats, [props.date]: [] });
+
   }
 
   return (
@@ -100,7 +108,6 @@ export default function TicketBooking(props) {
         <NavigationBar />
       </div>
       <div className="container2">
-        <h1>hello</h1>
       </div>
       <>
         {props.selectedSeats[props.date]?.map((seatNumber) => (
@@ -109,7 +116,7 @@ export default function TicketBooking(props) {
             <InputField
               type="text"
               placeholder="Name"
-              value={passengerDetails[seatNumber]?.name}
+              value={passengerDetails[seatNumber]?.name||''}
               onChange={(e) =>
                 setPassengerDetails({
                   ...passengerDetails,
@@ -123,7 +130,7 @@ export default function TicketBooking(props) {
             <InputField
               type="email"
               placeholder="Email"
-              value={passengerDetails[seatNumber]?.email}
+              value={passengerDetails[seatNumber]?.email||''}
               onChange={(e) =>
                 setPassengerDetails({
                   ...passengerDetails,
@@ -137,7 +144,7 @@ export default function TicketBooking(props) {
             <InputField
               type="tel"
               placeholder="phone"
-              value={passengerDetails[seatNumber]?.phone}
+              value={passengerDetails[seatNumber]?.phone||''}
               onChange={(e) =>
                 setPassengerDetails({
                   ...passengerDetails,
@@ -151,14 +158,15 @@ export default function TicketBooking(props) {
           </div>
         ))}
       </>
-      <button
+      <button className="bookTicketButton"
         onClick={handleBookTicket}
         disabled={Object.values(passengerDetails).some(
-          (detail) => !detail.name || !detail.email || !detail.phone
+          (detail) => !detail.name || !detail.email || !detail.phone 
         )}
       >
-        Confirm ticket
+        Book ticket
       </button>
+
     </div>
   );
 }

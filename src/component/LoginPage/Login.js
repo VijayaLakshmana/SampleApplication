@@ -7,7 +7,7 @@ export default function Login() {
   const [password, passwordupdate] = useState("");
   const usenavigate = useNavigate();
   useEffect(() => {
-    sessionStorage.clear();
+    sessionStorage.removeItem("username")
   }, []);
   function proceedLogin(e) {
     e.preventDefault();
@@ -68,7 +68,7 @@ export default function Login() {
         </button>
         <br />
         <Link to={"/register"}>New User &nbsp;</Link>
-        <Link to={"/forgetpassword"}>&nbsp; Forget Password?</Link>
+        {/* <Link to={"/forgetpassword"}>&nbsp; Forget Password?</Link> */}
       </form>
     </fieldset>
   );

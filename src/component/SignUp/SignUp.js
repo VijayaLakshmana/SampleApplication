@@ -111,12 +111,12 @@ export default function SignUp() {
               </td>
             </tr>
           </table>
-          <label>Address</label>
+          <label>Address</label><br></br>
           <textarea
             value={address}
             onChange={(e) => addresschange(e.target.value)}
             className="addressArea"
-          />
+          /><br></br>
           <label>Gender</label>
           <br></br>
           <input

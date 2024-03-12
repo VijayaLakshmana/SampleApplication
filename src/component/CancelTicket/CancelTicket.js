@@ -13,6 +13,9 @@ export default function CancelTicket(props) {
       .then((res) => props.setBusDetails([...res]));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  function capitalizeFirstLetter(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  }
   function handleCancelBooking(bookingId, seatNumber, busId, busDate) {
     const updatedTicketDetails = ticketDetails.map((booking) => {
       if (booking.id === bookingId) {
@@ -75,18 +78,41 @@ export default function CancelTicket(props) {
   }
   console.log(props.busDetails);
   return (
-    <>
-      <h2>bookedTickets:</h2>
-      <div>
+    <div>
+      <h2>Booked Tickets:</h2>
+      <div className="busTicket">
         {ticketDetails
           .filter(
             (ticket) =>
               ticket.bookingStatus === "booked" && ticket.username === userName
           )
           .map((booking) => (
-            <div key={booking.id}>
-              <p>bus:{booking.busName}</p>
-              <p>Travel Date:{booking.date}</p>
+            <div key={booking.id} className="busBook">
+               <div className="ticketId">Ticket No: {booking.id}</div>
+              <div className="busName">
+                    {booking.busName}
+                    <div className="acList">
+                      {booking.AC ? <span>Ac</span> : <span>NonAc</span>}
+                      {booking.isSeater ? (
+                        <span>seater</span>
+                      ) : (
+                        <span>sleeper</span>
+                      )}
+                    </div>
+                  </div>
+                  <div className="fromTiming">
+                    {booking.fromTime}
+                    <div className="from">
+                      {capitalizeFirstLetter(booking.from)}
+                    </div>
+                  </div>
+                  <div className="busHours">{booking.hrs}</div>
+                  <div className="toTiming">
+                    {booking.toTime}
+                    <div className="to">{capitalizeFirstLetter(booking.to)}</div>
+                  </div>
+                  <div className="price">Inr: {booking.price}</div>
+                  <div className="passengerDetailsList">
               {booking.seats.map((seat) => (
                 <div key={seat.seat}>
                   <p>Seat:{seat.seat}</p>
@@ -106,8 +132,9 @@ export default function CancelTicket(props) {
                 </div>
               ))}
             </div>
+            </div>
           ))}
       </div>
-    </>
+    </div>
   );
 }

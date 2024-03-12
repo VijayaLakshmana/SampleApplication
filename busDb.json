@@ -17,36 +17,29 @@
       ],
       "dropingStop": [
         {
-          "stopingPoint": "New Bus Stand",
-          "time": "12:00pm"
+          "stopingPoint": "Mattuthavani",
+          "time": "21:50pm"
         },
         {
-          "stopingPoint": "Vannarpettai",
-          "time": "12:10pm"
+          "stopingPoint": "Aarappalyam",
+          "time": "21:55pm"
+        },
+        {
+          "stopingPoint": "Thirumangalam",
+          "time": "22:00pm"
         }
       ],
       "fromTiming": "12:00pm",
       "toTiming": "22:00pm",
       "dates": [
         {
-          "date": "2024-03-08",
-          "bookedSeats": []
-        },
-        {
-          "date": "2024-03-09",
-          "bookedSeats": []
-        },
-        {
-          "date": "2024-03-10",
-          "bookedSeats": []
-        },
-        {
-          "date": "",
-          "bookedSeats": []
-        },
-        {
-          "date": null,
-          "bookedSeats": []
+          "date": "2024-03-12",
+          "bookedSeats": [
+            1,
+            2,
+            5,
+            6
+          ]
         }
       ],
       "seat": 36,
@@ -63,44 +56,32 @@
       "boardingStop": [
         {
           "stopingPoint": "Vannarpettai",
-          "time": "15:00pm"
+          "time": "14:00pm"
         },
         {
           "stopingPoint": "pettai",
-          "time": "12:10pm"
+          "time": "14:10pm"
         }
       ],
       "dropingStop": [
         {
-          "stopingPoint": "New Bus Stand",
-          "time": "12:00pm"
+          "stopingPoint": "Mattuthavani",
+          "time": "16:40pm"
         },
         {
-          "stopingPoint": "Vannarpettai",
-          "time": "14:10pm"
+          "stopingPoint": "Aarappalyam",
+          "time": "16:45pm"
+        },
+        {
+          "stopingPoint": "Thirumangalam",
+          "time": "16:50pm"
         }
       ],
       "fromTiming": "14:00pm",
       "toTiming": "17:00pm",
       "dates": [
         {
-          "date": "2024-03-08",
-          "bookedSeats": []
-        },
-        {
-          "date": "2024-03-09",
-          "bookedSeats": []
-        },
-        {
-          "date": "2024-03-10",
-          "bookedSeats": []
-        },
-        {
-          "date": "",
-          "bookedSeats": []
-        },
-        {
-          "date": null,
+          "date": "2024-03-12",
           "bookedSeats": []
         }
       ],
@@ -117,45 +98,33 @@
       "to": "tirunelveli",
       "boardingStop": [
         {
-          "stopingPoint": "New Bus Stand",
-          "time": "15:00pm"
+          "stopingPoint": "Kilampakkam",
+          "time": "10:00am"
         },
         {
-          "stopingPoint": "Vannarpettai",
-          "time": "12:10pm"
+          "stopingPoint": "Tambaram",
+          "time": "10:10am"
+        },
+        {
+          "stopingPoint": "Koyambedu",
+          "time": "10:15am"
         }
       ],
       "dropingStop": [
         {
           "stopingPoint": "New Bus Stand",
-          "time": "12:00pm"
+          "time": "18:50pm"
         },
         {
           "stopingPoint": "Vannarpettai",
-          "time": "12:10pm"
+          "time": "19:00pm"
         }
       ],
       "fromTiming": "10:00am",
       "toTiming": "19:00pm",
       "dates": [
         {
-          "date": "2024-03-08",
-          "bookedSeats": []
-        },
-        {
-          "date": "2024-03-09",
-          "bookedSeats": []
-        },
-        {
-          "date": "2024-03-10",
-          "bookedSeats": []
-        },
-        {
-          "date": "",
-          "bookedSeats": []
-        },
-        {
-          "date": null,
+          "date": "2024-03-12",
           "bookedSeats": []
         }
       ],
@@ -172,45 +141,33 @@
       "to": "tirunelveli",
       "boardingStop": [
         {
-          "stopingPoint": "New Bus Stand",
-          "time": "12:00pm"
+          "stopingPoint": "Kilampakkam",
+          "time": "09:00am"
         },
         {
-          "stopingPoint": "Vannarpettai",
-          "time": "12:10pm"
+          "stopingPoint": "Tambaram",
+          "time": "09:10am"
+        },
+        {
+          "stopingPoint": "Koyambedu",
+          "time": "09:15am"
         }
       ],
       "dropingStop": [
         {
           "stopingPoint": "New Bus Stand",
-          "time": "12:00pm"
+          "time": "20:50pm"
         },
         {
           "stopingPoint": "Vannarpettai",
-          "time": "12:10pm"
+          "time": "21:00pm"
         }
       ],
       "fromTiming": "09:00am",
       "toTiming": "21:00pm",
       "dates": [
         {
-          "date": "2024-03-08",
-          "bookedSeats": []
-        },
-        {
-          "date": "2024-03-09",
-          "bookedSeats": []
-        },
-        {
-          "date": "2024-03-10",
-          "bookedSeats": []
-        },
-        {
-          "date": "",
-          "bookedSeats": []
-        },
-        {
-          "date": null,
+          "date": "2024-03-12",
           "bookedSeats": []
         }
       ],
@@ -227,47 +184,37 @@
       "to": "madurai",
       "boardingStop": [
         {
-          "stopingPoint": "New Bus Stand",
-          "time": "12:00pm"
+          "stopingPoint": "Kilampakkam",
+          "time": "22:10am"
         },
         {
-          "stopingPoint": "Vadachennai",
-          "time": "12:10pm"
+          "stopingPoint": "Tambaram",
+          "time": "22:20am"
+        },
+        {
+          "stopingPoint": "Koyambedu",
+          "time": "22:45am"
         }
       ],
       "dropingStop": [
         {
-          "stopingPoint": "New Bus Stand",
-          "time": "12:00pm"
+          "stopingPoint": "Mattuthavani",
+          "time": "07:30am"
         },
         {
-          "stopingPoint": "Vannarpettai",
-          "time": "12:10pm"
+          "stopingPoint": "Aarappalyam",
+          "time": "07:45am"
+        },
+        {
+          "stopingPoint": "Thirumangalam",
+          "time": "08:00am"
         }
       ],
       "fromTiming": "22:00pm",
       "toTiming": "08:00am",
       "dates": [
         {
-          "date": "2024-03-08",
-          "bookedSeats": [
-            1
-          ]
-        },
-        {
-          "date": "2024-03-09",
-          "bookedSeats": []
-        },
-        {
-          "date": "2024-03-10",
-          "bookedSeats": []
-        },
-        {
-          "date": "",
-          "bookedSeats": []
-        },
-        {
-          "date": null,
+          "date": "2024-03-12",
           "bookedSeats": []
         }
       ],
@@ -285,45 +232,35 @@
       "boardingStop": [
         {
           "stopingPoint": "New Bus Stand",
-          "time": "12:00pm"
+          "time": "08:00am"
         },
         {
           "stopingPoint": "Vannarpettai",
-          "time": "12:10pm"
+          "time": "08:20am"
         }
       ],
       "dropingStop": [
         {
-          "stopingPoint": "New Bus Stand",
-          "time": "12:00pm"
+          "stopingPoint": "Mattuthavani",
+          "time": "10:30am"
         },
         {
-          "stopingPoint": "Vannarpettai",
-          "time": "12:10pm"
+          "stopingPoint": "Aarappalyam",
+          "time": "10:45am"
+        },
+        {
+          "stopingPoint": "Thirumangalam",
+          "time": "11:00am"
         }
       ],
       "fromTiming": "08:00am",
       "toTiming": "11:00am",
       "dates": [
         {
-          "date": "2024-03-08",
-          "bookedSeats": []
-        },
-        {
-          "date": "2024-03-09",
-          "bookedSeats": []
-        },
-        {
-          "date": "2024-03-10",
-          "bookedSeats": []
-        },
-        {
-          "date": "",
-          "bookedSeats": []
-        },
-        {
-          "date": null,
-          "bookedSeats": []
+          "date": "2024-03-12",
+          "bookedSeats": [
+            1
+          ]
         }
       ],
       "seat": 36,
@@ -339,45 +276,33 @@
       "to": "tirunelveli",
       "boardingStop": [
         {
-          "stopingPoint": "New Bus Stand",
-          "time": "12:00pm"
+          "stopingPoint": "Kilampakkam",
+          "time": "21:00pm"
         },
         {
-          "stopingPoint": "Vannarpettai",
-          "time": "12:10pm"
+          "stopingPoint": "Tambaram",
+          "time": "21:20pm"
+        },
+        {
+          "stopingPoint": "Koyambedu",
+          "time": "21:45pm"
         }
       ],
       "dropingStop": [
         {
           "stopingPoint": "New Bus Stand",
-          "time": "12:00pm"
+          "time": "06:50am"
         },
         {
           "stopingPoint": "Vannarpettai",
-          "time": "12:10pm"
+          "time": "07:00am"
         }
       ],
       "fromTiming": "21:00pm",
       "toTiming": "07:00am",
       "dates": [
         {
-          "date": "2024-03-08",
-          "bookedSeats": []
-        },
-        {
-          "date": "2024-03-09",
-          "bookedSeats": []
-        },
-        {
-          "date": "2024-03-10",
-          "bookedSeats": []
-        },
-        {
-          "date": "",
-          "bookedSeats": []
-        },
-        {
-          "date": null,
+          "date": "2024-03-12",
           "bookedSeats": []
         }
       ],
@@ -394,45 +319,33 @@
       "to": "tirunelveli",
       "boardingStop": [
         {
-          "stopingPoint": "New Bus Stand",
-          "time": "12:00pm"
+          "stopingPoint": "Kilampakkam",
+          "time": "19:00pm"
         },
         {
-          "stopingPoint": "Vannarpettai",
-          "time": "12:10pm"
+          "stopingPoint": "Tambaram",
+          "time": "19:20pm"
+        },
+        {
+          "stopingPoint": "Koyambedu",
+          "time": "19:45pm"
         }
       ],
       "dropingStop": [
         {
           "stopingPoint": "New Bus Stand",
-          "time": "12:00pm"
+          "time": "06:50am"
         },
         {
           "stopingPoint": "Vannarpettai",
-          "time": "12:10pm"
+          "time": "07:00am"
         }
       ],
       "fromTiming": "19:00pm",
       "toTiming": "07:00am",
       "dates": [
         {
-          "date": "2024-03-08",
-          "bookedSeats": []
-        },
-        {
-          "date": "2024-03-09",
-          "bookedSeats": []
-        },
-        {
-          "date": null,
-          "bookedSeats": []
-        },
-        {
-          "date": "2024-03-10",
-          "bookedSeats": []
-        },
-        {
-          "date": "",
+          "date": "2024-03-12",
           "bookedSeats": []
         }
       ],
