@@ -35,6 +35,15 @@
       "phone": "7598686691",
       "address": "utygfgkjhtgfc",
       "gender": "Male"
+    },
+    {
+      "id": "sakthi",
+      "name": "sakthi",
+      "password": "Sakthi",
+      "email": "sakthi@gmail.com",
+      "phone": "958574844",
+      "address": "2/256",
+      "gender": "Male"
     }
   ]
 }

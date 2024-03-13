@@ -42,12 +42,19 @@ function App() {
                 setLocalDate={setLocalDate}
               />
             }
-          ></Route>
-          <Route path="/mybookings" element={<MyBookings/>}></Route>
-          <Route path="/mybookings/ticketcancel" element={<CancelTicket busDetails={busDetails}
-            setBusDetails={setBusDetails}/>}></Route>
-          <Route path="/login" element={<Login />}></Route>
-          <Route path="/register" element={<SignUp />}></Route>
+          />
+          <Route path="/mybookings" element={<MyBookings />} />
+          <Route
+            path="/mybookings/ticketcancel"
+            element={
+              <CancelTicket
+                busDetails={busDetails}
+                setBusDetails={setBusDetails}
+              />
+            }
+          />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<SignUp />} />
           <Route
             path="/search"
             element={
@@ -72,7 +79,7 @@ function App() {
                 setSelectedSeats={setSelectedSeats}
               />
             }
-          ></Route>
+          />
           <Route
             path="/search/busseat/bookticket"
             element={
@@ -91,23 +98,26 @@ function App() {
                 setShowDropingPoint={setShowDropingPoint}
               />
             }
-          ></Route>
-          <Route path="/search/busseat" element={
-            <BusSeat  
-            date={date}
-            setDate={setDate}
-            busDetails={busDetails}
-            setBusDetails={setBusDetails}
-            selectedBus={selectedBus}
-            setSelectedBus={setSelectedBus}
-            selectedSeats={selectedSeats}
-            setSelectedSeats={setSelectedSeats}
-            showBoardingPoint={showBoardingPoint}
-            setShowBoardingPoint={setShowBoardingPoint}
-            showDropingPoint={showDropingPoint}
-            setShowDropingPoint={setShowDropingPoint}
-            />
-          }></Route>
+          />
+          <Route
+            path="/search/busseat"
+            element={
+              <BusSeat
+                date={date}
+                setDate={setDate}
+                busDetails={busDetails}
+                setBusDetails={setBusDetails}
+                selectedBus={selectedBus}
+                setSelectedBus={setSelectedBus}
+                selectedSeats={selectedSeats}
+                setSelectedSeats={setSelectedSeats}
+                showBoardingPoint={showBoardingPoint}
+                setShowBoardingPoint={setShowBoardingPoint}
+                showDropingPoint={showDropingPoint}
+                setShowDropingPoint={setShowDropingPoint}
+              />
+            }
+          />
         </Routes>
       </BrowserRouter>
     </div>

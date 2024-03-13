@@ -11,7 +11,6 @@ export default function BusSeat(props) {
     }
     const date = sessionStorage.getItem("date");
     props.setDate(date);
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const usenavigate = useNavigate();

@@ -9,7 +9,7 @@ export default function HomePage(props) {
           <NavigationBar />
         </div>
         <div className="content2">
-          <h3>Bus Ticket Booking </h3>
+          <h3>Book Your Tickets </h3>
           <SearchField
             from={props.from}
             setFrom={props.setFrom}
@@ -25,7 +25,10 @@ export default function HomePage(props) {
             setLocalDate={props.setLocalDate}
           />
         </div>
-        <div className="content3"></div>
+        <div className="content3">
+          <h1 className="heading">RJ Travels</h1>
+          <p className="para">Books us for a safe and relax journey!</p>
+        </div>
       </div>
     </div>
   );
