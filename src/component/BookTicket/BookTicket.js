@@ -4,103 +4,105 @@ import { useEffect } from "react";
 import NavigationBar from "../HomePage/NavigationBar";
 import "./BookTicket.css";
 import { useNavigate } from "react-router-dom";
-export default function TicketBooking(props) {
+import axios from "axios";
+import { useSelector,useDispatch } from "react-redux";
+import {  setDate,setBusDetails,setSelectedBus,setSelectedSeats } from "../../BusDetails";
+export default function TicketBooking() {
   useEffect(() => {
-    fetch("http://localhost:3001/bus")
-      .then((res) => res.json())
-      .then((res) => props.setBusDetails([...res]));
+    axios.get("http://localhost:3001/bus")
+    .then((res)=>dispatch(setBusDetails([...res.data])))
     const storedSelectedBus = sessionStorage.getItem("selectedBus");
     if (storedSelectedBus) {
-      props.setSelectedBus(JSON.parse(storedSelectedBus));
+      dispatch(setSelectedBus(JSON.parse(storedSelectedBus)));
     }
     const storedSeat = sessionStorage.getItem("selectedSeats");
     if (storedSeat) {
-      props.setSelectedSeats(JSON.parse(storedSeat));
+      dispatch(setSelectedSeats(JSON.parse(storedSeat)));
     }
     const date = sessionStorage.getItem("date");
-    props.setDate(date);
+    dispatch(setDate(date));
     let username = sessionStorage.getItem("username");
     setUsername(username);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  const dispatch = useDispatch();
+  const {
+    date,
+    busDetails,
+    selectedBus,
+    selectedSeats,
+    showBoardingPoint,
+    showDropingPoint,
+  }= useSelector(state => state.bus);
   useEffect(()=>{
     const initialpassengerDetails={};
-  props.selectedSeats[props.date]?.forEach((seatNumber) => {
+  selectedSeats[date]?.forEach((seatNumber) => {
     initialpassengerDetails[seatNumber] = { name: "", email: "", phone: "" };
   });
   setPassengerDetails(initialpassengerDetails)
-  },[props.selectedSeats,props.date])
+  },[selectedSeats,date])
   const usenavigate=useNavigate()
   const home='/'
   const [username, setUsername] = useState("");
   const [passengerDetails, setPassengerDetails] = useState({});
   function handleBookTicket() {
-    if (props.selectedBus && props.date) {
-      props.busDetails.map((bus) => {
-        if (bus.id === props.selectedBus.id) {
-          fetch(`http://localhost:3001/bus/${bus.id}`, {
-            method: "PUT",
-            headers: { "content-type": "application/json" },
-            body: JSON.stringify({
+    if (selectedBus && date) {
+      busDetails.map((bus) => {
+        if (bus.id === selectedBus.id) {
+          axios.put(`http://localhost:3001/bus/${bus.id}`, {
               ...bus,
               dates: bus.dates.map((dateObj) => {
-                if (dateObj.date === props.date) {
+                if (dateObj.date === date) {
                   return {
                     ...dateObj,
                     bookedSeats: [
                       ...dateObj.bookedSeats,
-                      ...props.selectedSeats[props.date],
+                      ...selectedSeats[date],
                     ],
                   };
                 }
                 return dateObj;
               }),
-            }),
+           
           });
         }
         return bus;
       });
-      alert(`slected seats:${props.selectedSeats[props.date]}`);
+      alert(`slected seats:${selectedSeats[date]}`);
       usenavigate(home)
     }
     const time = Date.now();
     const ticketnumber = time;
-    const totalPrice=props.selectedBus.price*props.selectedSeats[props.date].length;
+    const totalPrice=selectedBus.price*selectedSeats[date].length;
     console.log(totalPrice)
     const newBooking = {
       id: ticketnumber,
       username: username,
-      busName:props.selectedBus.busname,
-      date: props.date,
-      from: props.selectedBus.from,
-      boardingPoint: props.showBoardingPoint,
-      fromTime: props.selectedBus.fromTiming,
-      to: props.selectedBus.to,
-      dropingPoint: props.showDropingPoint,
-      toTime: props.selectedBus.toTiming,
+      busName:selectedBus.busname,
+      date: date,
+      from: selectedBus.from,
+      boardingPoint: showBoardingPoint,
+      fromTime: selectedBus.fromTiming,
+      to: selectedBus.to,
+      dropingPoint: showDropingPoint,
+      toTime: selectedBus.toTiming,
       price: totalPrice,
-      connection: props.selectedBus.id,
-      hrs:props.selectedBus.hrs,
+      connection: selectedBus.id,
+      hrs:selectedBus.hrs,
       bookingStatus: "booked",
-      seats: props.selectedSeats[props.date]?.map((seatNumber) => ({
+      seats: selectedSeats[date]?.map((seatNumber) => ({
         seat: seatNumber,
         passenger: passengerDetails[seatNumber],
       })),
     };
-    fetch("http://localhost:3003/Bookings", {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify(newBooking),
+    dispatch(setSelectedSeats({ ...selectedSeats, [date]: [] }));
+    axios.post("http://localhost:3003/Bookings",{
+      newBooking
+     }).then(() => {
+      alert("Ticket booked");
     })
-      .then((res) => {
-        alert("Ticket booked");
-      })
-      .catch((err) => {
-        alert("Failed :" + err.message);
-      });
-    props.setSelectedSeats({ ...props.selectedSeats, [props.date]: [] });
-
   }
+ 
 
   return (
     <div className="ticketBookingDetailsPage">
@@ -110,7 +112,7 @@ export default function TicketBooking(props) {
       <div className="container2">
       </div>
       <>
-        {props.selectedSeats[props.date]?.map((seatNumber) => (
+        {selectedSeats[date]?.map((seatNumber) => (
           <div key={seatNumber}>
             <p>Seat Number: {seatNumber}</p>
             <InputField

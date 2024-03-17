@@ -4,123 +4,34 @@ import Login from "./component/LoginPage/Login";
 import Search from "./component/Search/Search";
 import TicketBooking from "./component/BookTicket/BookTicket";
 import BusSeat from "./component/Search/BusSeat";
-import { useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import MyBookings from "./component/MyBookings/MyBooking";
 import CancelTicket from "./component/CancelTicket/CancelTicket";
+// import AppProvider from "./Context";
+import PrivateRoute from "./component/HomePage/PrivateRoute";
+import { Provider } from "react-redux";
+import store from "./store";
 function App() {
-  const [from, setFrom] = useState("");
-  const [to, setTo] = useState("");
-  const [date, setDate] = useState("");
-  const [localFrom, setLocalFrom] = useState("");
-  const [localTo, setLocalTo] = useState("");
-  const [localDate, setLocalDate] = useState("");
-  const [busDetails, setBusDetails] = useState([]);
-  const [selectedSeats, setSelectedSeats] = useState({});
-  const [selectedBus, setSelectedBus] = useState(null);
-  const [showBoardingPoint, setShowBoardingPoint] = useState([]);
-  const [showDropingPoint, setShowDropingPoint] = useState([]);
   return (
-    <div className="App">
-      <BrowserRouter>
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <HomePage
-                from={from}
-                setFrom={setFrom}
-                to={to}
-                setTo={setTo}
-                date={date}
-                setDate={setDate}
-                localFrom={localFrom}
-                setLocalFrom={setLocalFrom}
-                localTo={localTo}
-                setLocalTo={setLocalTo}
-                localDate={localDate}
-                setLocalDate={setLocalDate}
-              />
-            }
-          />
-          <Route path="/mybookings" element={<MyBookings />} />
-          <Route
-            path="/mybookings/ticketcancel"
-            element={
-              <CancelTicket
-                busDetails={busDetails}
-                setBusDetails={setBusDetails}
-              />
-            }
-          />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<SignUp />} />
-          <Route
-            path="/search"
-            element={
-              <Search
-                from={from}
-                setFrom={setFrom}
-                to={to}
-                setTo={setTo}
-                date={date}
-                setDate={setDate}
-                localFrom={localFrom}
-                setLocalFrom={setLocalFrom}
-                localTo={localTo}
-                setLocalTo={setLocalTo}
-                localDate={localDate}
-                setLocalDate={setLocalDate}
-                busDetails={busDetails}
-                setBusDetails={setBusDetails}
-                selectedBus={selectedBus}
-                setSelectedBus={setSelectedBus}
-                selectedSeats={selectedSeats}
-                setSelectedSeats={setSelectedSeats}
-              />
-            }
-          />
-          <Route
-            path="/search/busseat/bookticket"
-            element={
-              <TicketBooking
-                date={date}
-                setDate={setDate}
-                busDetails={busDetails}
-                setBusDetails={setBusDetails}
-                selectedBus={selectedBus}
-                setSelectedBus={setSelectedBus}
-                selectedSeats={selectedSeats}
-                setSelectedSeats={setSelectedSeats}
-                showBoardingPoint={showBoardingPoint}
-                setShowBoardingPoint={setShowBoardingPoint}
-                showDropingPoint={showDropingPoint}
-                setShowDropingPoint={setShowDropingPoint}
-              />
-            }
-          />
-          <Route
-            path="/search/busseat"
-            element={
-              <BusSeat
-                date={date}
-                setDate={setDate}
-                busDetails={busDetails}
-                setBusDetails={setBusDetails}
-                selectedBus={selectedBus}
-                setSelectedBus={setSelectedBus}
-                selectedSeats={selectedSeats}
-                setSelectedSeats={setSelectedSeats}
-                showBoardingPoint={showBoardingPoint}
-                setShowBoardingPoint={setShowBoardingPoint}
-                showDropingPoint={showDropingPoint}
-                setShowDropingPoint={setShowDropingPoint}
-              />
-            }
-          />
-        </Routes>
-      </BrowserRouter>
-    </div>
+     <Provider store={store}>
+      <div className="App">
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/mybookings" element={<PrivateRoute><MyBookings/></PrivateRoute>} />
+            <Route path="/mybookings/ticketcancel" element={<CancelTicket />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<SignUp />} />
+            <Route path="/search" element={<Search />} />
+            <Route
+              path="/search/busseat/bookticket"
+              element={<TicketBooking />}
+            />
+            <Route path="/search/busseat" element={<BusSeat />} />
+          </Routes>
+        </BrowserRouter>
+      </div>
+      </Provider>
   );
 }
 

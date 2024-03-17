@@ -1,18 +1,23 @@
 import { useEffect, useState } from "react";
+import axios from "axios";
+import { useSelector,useDispatch } from "react-redux";
+import {  setBusDetails } from "../../BusDetails";
 export default function CancelTicket(props) {
   const [ticketDetails, setTicketDetails] = useState([]);
   const [userName, setUserName] = useState("");
   useEffect(() => {
     let username = sessionStorage.getItem("username");
     setUserName(username);
-    fetch("http://localhost:3003/Bookings")
-      .then((res) => res.json())
-      .then((res) => setTicketDetails([...res]));
-    fetch("http://localhost:3001/bus")
-      .then((res) => res.json())
-      .then((res) => props.setBusDetails([...res]));
+    axios.get("http://localhost:3003/Bookings")
+      .then((res) => setTicketDetails([...res.data]));
+    axios.get("http://localhost:3001/bus")
+      .then((res) => dispatch(setBusDetails([...res.data])));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  const dispatch = useDispatch();
+  const {
+    busDetails,
+  }= useSelector(state => state.bus);
   function capitalizeFirstLetter(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
   }
@@ -32,15 +37,12 @@ export default function CancelTicket(props) {
       return booking;
     });
     setTicketDetails(updatedTicketDetails);
-    fetch(`http://localhost:3003/Bookings/${bookingId}`, {
-      method: "PUT",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify(
-        updatedTicketDetails.find((booking) => booking.id === bookingId)
-      ),
+    axios.put(`http://localhost:3003/Bookings/${bookingId}`, {
+        ...updatedTicketDetails.find((booking) => booking.id === bookingId)
+      
     });
 
-    const updatedBusDetails = props.busDetails.map((prevBusDetails) => {
+    const updatedBusDetails = busDetails.map((prevBusDetails) => {
       if (busId === prevBusDetails.id) {
         const updatedDates = prevBusDetails.dates.map((date) => {
           if (busDate === date.date) {
@@ -58,13 +60,9 @@ export default function CancelTicket(props) {
       }
       return prevBusDetails;
     });
-    props.setBusDetails(updatedBusDetails);
-    fetch(`http://localhost:3001/bus/${busId}`, {
-      method: "PUT",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify({
+    dispatch(setBusDetails(updatedBusDetails));
+    axios.put(`http://localhost:3001/bus/${busId}`, {
         ...updatedBusDetails.find((booking) => booking.id === busId),
-      }),
     })
       .then((response) => {
         if (!response.ok) {
@@ -76,7 +74,7 @@ export default function CancelTicket(props) {
         console.error("error", error);
       });
   }
-  console.log(props.busDetails);
+  console.log(busDetails);
   return (
     <div>
       <h2>Booked Tickets:</h2>

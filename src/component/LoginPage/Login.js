@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
 import InputField from "../HomePage/Input";
+import axios from "axios";
 export default function Login() {
   const [username, usernameupdate] = useState("");
   const [password, passwordupdate] = useState("");
@@ -12,10 +13,9 @@ export default function Login() {
   function proceedLogin(e) {
     e.preventDefault();
     if (validate()) {
-      fetch(`http://localhost:3000/user/${username}`)
-        .then((res) => res.json())
+      axios.get(`http://localhost:3000/user/${username}`)
         .then((resp) => {
-          if (resp.password === password) {
+          if (resp.data.password === password) {
             alert("success");
             sessionStorage.setItem("username", username);
             usenavigate("/");

@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./SignUp.css";
 import { useNavigate } from "react-router-dom";
 import InputField from "../HomePage/Input";
+import axios from "axios";
 export default function SignUp() {
   const [id, idchange] = useState("");
   const [name, namechange] = useState("");
@@ -14,12 +15,10 @@ export default function SignUp() {
   function handleSubmit(e) {
     e.preventDefault();
     let regObj = { id, name, password, email, phone, address, gender };
-    fetch("http://localhost:3000/user", {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify(regObj),
+    axios.post("http://localhost:3000/user", {
+     regObj
     })
-      .then((res) => {
+      .then(() => {
         alert("Registered successfully.");
         usenavigate("/login");
       })
@@ -79,6 +78,7 @@ export default function SignUp() {
                   type="text"
                   id="email"
                   placeholder="Enter your Email"
+                  pattern="[^\s@]+@[^\s@]+\.[^\s@]+"
                   name="email"
                 />
               </td>

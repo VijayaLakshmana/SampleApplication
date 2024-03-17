@@ -4,8 +4,11 @@ import SearchField from "../HomePage/SearchField";
 import InputField from "../HomePage/Input";
 import "./search.css";
 import { useNavigate } from "react-router-dom";
-
-export default function Search(props) {
+import { useSelector,useDispatch } from "react-redux";
+import { setFrom,setTo,setDate,setBusDetails,setSelectedBus } from "../../BusDetails";
+// import { AppContext } from "../../Context";
+import axios from "axios";
+export default function Search() {
   const [showACBus, setShowACBus] = useState(false);
   const [showNonACBus, setShowNonACBus] = useState(false);
   const [showSeaterBus, setShowSeaterBus] = useState(false);
@@ -16,19 +19,35 @@ export default function Search(props) {
   const [selectDropingTime, setSelectDropingTime] = useState("");
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
-
+   const dispatch = useDispatch();
+    const { 
+      from, 
+      to, 
+      date, 
+      busDetails, 
+    } = useSelector(state => state.bus);
+  // const {
+  //   from,
+  //   setFrom,
+  //   to,
+  //   setTo,
+  //   date,
+  //   setDate,
+  //   busDetails,
+  //   setBusDetails,
+  //   setSelectedBus,
+  // } = useContext(AppContext);
   const usenavigate = useNavigate();
   let busseat = "busseat";
   useEffect(() => {
-    fetch("http://localhost:3001/bus")
-      .then((res) => res.json())
-      .then((res) => props.setBusDetails([...res]));
+         axios.get("http://localhost:3001/bus")
+         .then((res) => dispatch(setBusDetails([...res.data],console.log(res))));
     const from = sessionStorage.getItem("from");
-    props.setFrom(from);
+    dispatch(setFrom(from));
     const to = sessionStorage.getItem("to");
-    props.setTo(to);
+    dispatch(setTo(to));
     const date = sessionStorage.getItem("date");
-    props.setDate(date);
+    dispatch(setDate(date));
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -55,7 +74,7 @@ export default function Search(props) {
       setSelectDropingPoint([...selectDropingPoint, value]);
     }
   }
-  const filterBusType = props.busDetails.filter((bus) => {
+  const filterBusType = busDetails.filter((bus) => {
     const showBus = (showACBus && bus.AC) || (showNonACBus && !bus.AC);
     const anyFilterActive = showACBus || showNonACBus;
     return anyFilterActive ? showBus : true;
@@ -103,38 +122,36 @@ export default function Search(props) {
       : true;
   });
   const filteredSearch = filteredBuses.filter(
-    (bus) => props.from === bus.from && props.to === bus.to && props.date
+    (bus) => from === bus.from && to === bus.to && date
   );
-   function handleShowSeats(bus) {
+  function handleShowSeats(bus) {
     let username = sessionStorage.getItem("username");
     if (username === "" || username === null) {
       return alert("Login in before Book Tickets");
     }
-    props.setSelectedBus(bus);
+    dispatch(setSelectedBus(bus));
     sessionStorage.setItem("selectedBus", JSON.stringify(bus));
     usenavigate(`${busseat}`);
   }
-  props.busDetails.forEach((bus) => {
+  busDetails.forEach((bus) => {
     if (
       bus.dates.length === 0 ||
-      !bus.dates.find((dateObj) => dateObj.date === props.date)
+      !bus.dates.find((dateObj) => dateObj.date === date)
     ) {
-      fetch(`http://localhost:3001/bus/${bus.id}`, {
-        method: "PUT",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify({
-          ...bus,
-          dates: [...bus.dates, { date: props.date, bookedSeats: [] }],
-        }),
-      });
+      axios.put(`http://localhost:3001/bus/${bus.id}`,{
+        ...bus,
+          dates: [...bus.dates, { date: date, bookedSeats: [] }],
+      },{
+        headers: { "content-type": "application/json" }
+      })   
     }
   });
-  props.busDetails.forEach((bus) => {
+  busDetails.forEach((bus) => {
     if (
       bus.dates.length === 0 ||
-      !bus.dates.find((dateObj) => dateObj.date === props.date)
+      !bus.dates.find((dateObj) => dateObj.date === date)
     ) {
-      bus.dates.push({ date: props.date, bookedSeats: [] });
+      bus.dates.push({ date: date, bookedSeats: [] });
     }
   });
   return (
@@ -144,18 +161,12 @@ export default function Search(props) {
       </div>
       <div className="component2">
         <SearchField
-          from={props.from}
-          setFrom={props.setFrom}
-          to={props.to}
-          setTo={props.setTo}
-          date={props.date}
-          setDate={props.setDate}
-          localFrom={props.localFrom}
-          setLocalFrom={props.setLocalFrom}
-          localTo={props.localTo}
-          setLocalTo={props.setLocalTo}
-          localDate={props.localDate}
-          setLocalDate={props.setLocalDate}
+          // from={from}
+          // setFrom={dispatch(setFrom())}
+          // to={to}
+          // setTo={dispatch(setTo())}
+          // date={date}
+          // setDate={dispatch(setDate())}
         />
       </div>
       <div className="component3">
@@ -196,8 +207,8 @@ export default function Search(props) {
           <br />
           <br />
           <h4>Select Boarding Points:</h4>
-          {props.busDetails
-            .filter((bus) => bus.from === props.from && bus.to === props.to)
+          {busDetails
+            .filter((bus) => bus.from === from && bus.to === to)
             .flatMap((bus) => bus.boardingStop.map((stop) => stop.stopingPoint))
             .filter((value, index, self) => self.indexOf(value) === index)
             .map((point) => (
@@ -214,8 +225,8 @@ export default function Search(props) {
             ))}
           <br />
           <h4>Select Droping Points:</h4>
-          {props.busDetails
-            .filter((bus) => bus.to === props.to)
+          {busDetails
+            .filter((bus) => bus.to === to)
             .flatMap((bus) => bus.dropingStop.map((stop) => stop.stopingPoint))
             .filter((value, index, self) => self.indexOf(value) === index)
             .map((point) => (
@@ -237,8 +248,8 @@ export default function Search(props) {
             onChange={(e) => setSelectBoardingTime(e.target.value)}
           >
             <option value="">Select Time</option>
-            {props.busDetails
-              .filter((bus) => bus.from === props.from)
+            {busDetails
+              .filter((bus) => bus.from === from)
               .flatMap((bus) => bus.boardingStop.map((stop) => stop.time))
               .filter((value, index, self) => self.indexOf(value) === index)
               .map((time) => (
@@ -254,8 +265,8 @@ export default function Search(props) {
             onChange={(e) => setSelectDropingTime(e.target.value)}
           >
             <option value="">Select Time</option>
-            {props.busDetails
-              .filter((bus) => bus.to === props.to)
+            {busDetails
+              .filter((bus) => bus.to === to)
               .flatMap((bus) => bus.dropingStop.map((stop) => stop.time))
               .filter((value, index, self) => self.indexOf(value) === index)
               .map((time) => (

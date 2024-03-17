@@ -145,6 +145,43 @@
       "hrs": "10h 00m",
       "bookingStatus": "cancelled",
       "seats": []
+    },
+    {
+      "id": "6d04",
+      "newBooking": {
+        "id": 1710403009958,
+        "username": "vj",
+        "busName": "Tvs travel",
+        "date": "2024-03-14",
+        "from": "tirunelveli",
+        "boardingPoint": "New Bus Stand",
+        "fromTime": "12:00pm",
+        "to": "madurai",
+        "dropingPoint": "Mattuthavani",
+        "toTime": "22:00pm",
+        "price": 2000,
+        "connection": "0",
+        "hrs": "10h 00m",
+        "bookingStatus": "booked",
+        "seats": [
+          {
+            "seat": 1,
+            "passenger": {
+              "name": "vijay",
+              "email": "vijay@gmail",
+              "phone": "8339948"
+            }
+          },
+          {
+            "seat": 3,
+            "passenger": {
+              "name": "ram",
+              "email": "ram@gmail",
+              "phone": "3342342"
+            }
+          }
+        ]
+      }
     }
   ]
 }

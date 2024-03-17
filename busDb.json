@@ -44,6 +44,24 @@
         {
           "date": "2024-03-13",
           "bookedSeats": []
+        },
+        {
+          "date": "2024-03-14",
+          "bookedSeats": [
+            1,
+            3
+          ]
+        },
+        {
+          "date": "2024-03-15",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-03-17",
+          "bookedSeats": []
+        },
+        {
+          "bookedSeats": []
         }
       ],
       "seat": 36,
@@ -90,6 +108,21 @@
         },
         {
           "date": "2024-03-13",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-03-14",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-03-15",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-03-17",
+          "bookedSeats": []
+        },
+        {
           "bookedSeats": []
         }
       ],
@@ -138,6 +171,21 @@
         {
           "date": "2024-03-13",
           "bookedSeats": []
+        },
+        {
+          "date": "2024-03-14",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-03-15",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-03-17",
+          "bookedSeats": []
+        },
+        {
+          "bookedSeats": []
         }
       ],
       "seat": 12,
@@ -184,6 +232,21 @@
         },
         {
           "date": "2024-03-13",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-03-14",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-03-15",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-03-17",
+          "bookedSeats": []
+        },
+        {
           "bookedSeats": []
         }
       ],
@@ -236,6 +299,21 @@
         {
           "date": "2024-03-13",
           "bookedSeats": []
+        },
+        {
+          "date": "2024-03-14",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-03-15",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-03-17",
+          "bookedSeats": []
+        },
+        {
+          "bookedSeats": []
         }
       ],
       "seat": 12,
@@ -285,6 +363,21 @@
         {
           "date": "2024-03-13",
           "bookedSeats": []
+        },
+        {
+          "date": "2024-03-14",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-03-15",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-03-17",
+          "bookedSeats": []
+        },
+        {
+          "bookedSeats": []
         }
       ],
       "seat": 36,
@@ -332,6 +425,21 @@
         {
           "date": "2024-03-13",
           "bookedSeats": []
+        },
+        {
+          "date": "2024-03-14",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-03-15",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-03-17",
+          "bookedSeats": []
+        },
+        {
+          "bookedSeats": []
         }
       ],
       "seat": 16,
@@ -378,6 +486,21 @@
         },
         {
           "date": "2024-03-13",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-03-14",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-03-15",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-03-17",
+          "bookedSeats": []
+        },
+        {
           "bookedSeats": []
         }
       ],
