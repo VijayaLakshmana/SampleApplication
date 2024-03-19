@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
 import InputField from "../HomePage/Input";
@@ -8,24 +9,20 @@ export default function Login() {
   const [password, passwordupdate] = useState("");
   const usenavigate = useNavigate();
   useEffect(() => {
-    sessionStorage.removeItem("username")
+    sessionStorage.removeItem("username");
   }, []);
   function proceedLogin(e) {
     e.preventDefault();
     if (validate()) {
-      axios.get(`http://localhost:3000/user/${username}`)
-        .then((resp) => {
-          if (resp.data.password === password) {
-            alert("success");
-            sessionStorage.setItem("username", username);
-            usenavigate("/");
-          } else {
-            alert("Please Enter valid password");
-          }
-        })
-        .catch((err) => {
-          alert("Enter valid username");
-        });
+      axios.get(`http://localhost:3000/user/${username}`).then((resp) => {
+        if (resp.data.password === password) {
+          alert("success");
+          sessionStorage.setItem("username", username);
+          usenavigate("/");
+        } else {
+          alert("Please Enter valid password");
+        }
+      });
     }
   }
   function validate() {

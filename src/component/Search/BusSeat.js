@@ -1,19 +1,27 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import React from "react";
 import axios from "axios";
-import { useSelector,useDispatch } from "react-redux";
-import { setDate,setBusDetails,setSelectedBus,setSelectedSeats,setShowBoardingPoint,setShowDropingPoint} from "../../BusDetails";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  setDate,
+  setBusDetails,
+  setSelectedBus,
+  setSelectedSeats,
+  setShowBoardingPoint,
+  setShowDropingPoint,
+} from "../../BusDetails";
 export default function BusSeat() {
   useEffect(() => {
-      axios.get("http://localhost:3001/bus")
-      .then((res)=>dispatch(setBusDetails([...res.data])))
+    axios
+      .get("http://localhost:3001/bus")
+      .then((res) => dispatch(setBusDetails([...res.data])));
     const storedSelectedBus = sessionStorage.getItem("selectedBus");
     if (storedSelectedBus) {
       dispatch(setSelectedBus(JSON.parse(storedSelectedBus)));
     }
     const date = sessionStorage.getItem("date");
     dispatch(setDate(date));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const dispatch = useDispatch();
   const {
@@ -23,7 +31,7 @@ export default function BusSeat() {
     selectedSeats,
     showBoardingPoint,
     showDropingPoint,
-  } = useSelector(state => state.bus);
+  } = useSelector((state) => state.bus);
   const usenavigate = useNavigate();
   const bookticket = "bookticket";
   function isSeatSelected(seatNumber) {
@@ -42,20 +50,24 @@ export default function BusSeat() {
       const updatedSeats = currentSelectedSeats.filter(
         (seat) => seat !== seatNumber
       );
-      dispatch(setSelectedSeats({
-        ...selectedSeats,
-        [date]: updatedSeats,
-      }));
+      dispatch(
+        setSelectedSeats({
+          ...selectedSeats,
+          [date]: updatedSeats,
+        })
+      );
       sessionStorage.setItem(
         "selectedSeats",
         JSON.stringify({ ...selectedSeats, [date]: updatedSeats })
       );
     } else {
       const updatedSeats = [...currentSelectedSeats, seatNumber];
-      dispatch(setSelectedSeats({
-        ...selectedSeats,
-        [date]: updatedSeats,
-      }));
+      dispatch(
+        setSelectedSeats({
+          ...selectedSeats,
+          [date]: updatedSeats,
+        })
+      );
       sessionStorage.setItem(
         "selectedSeats",
         JSON.stringify({ ...selectedSeats, [date]: updatedSeats })
@@ -86,7 +98,9 @@ export default function BusSeat() {
                   </p>
                   <select
                     value={showBoardingPoint}
-                    onChange={(e) => dispatch(setShowBoardingPoint(e.target.value))}
+                    onChange={(e) =>
+                      dispatch(setShowBoardingPoint(e.target.value))
+                    }
                   >
                     <option value="">select Boarding Point</option>
                     {bus.boardingStop.map((point, index) => (
@@ -97,7 +111,9 @@ export default function BusSeat() {
                   </select>
                   <select
                     value={showDropingPoint}
-                    onChange={(e) => dispatch(setShowDropingPoint(e.target.value))}
+                    onChange={(e) =>
+                      dispatch(setShowDropingPoint(e.target.value))
+                    }
                   >
                     <option value="">select Droping Point</option>
                     {bus.dropingStop.map((point, index) => (
@@ -120,7 +136,7 @@ export default function BusSeat() {
                                 <button
                                   key={seatNumber}
                                   onClick={() => handleSeatClick(seatNumber)}
-                                  disabled={isSeatBooked(bus,date,seatNumber)}
+                                  disabled={isSeatBooked(bus, date, seatNumber)}
                                   className={`${
                                     bus.isSeater
                                       ? "seatButton"

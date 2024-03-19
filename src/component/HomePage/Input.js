@@ -1,3 +1,5 @@
+import React from "react";
+import PropTypes from "prop-types";
 export default function InputField(props) {
   return (
     <>
@@ -13,3 +15,11 @@ export default function InputField(props) {
     </>
   );
 }
+InputField.propTypes = {
+  type: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  className: PropTypes.string,
+  placeholder: PropTypes.string,
+  name: PropTypes.string,
+  value: PropTypes.string
+};

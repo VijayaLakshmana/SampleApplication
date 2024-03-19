@@ -1,7 +1,9 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
-export default function ShowTicket(props) {
+import React from "react";
+export default function ShowTicket({name}) {
   const [ticketDetails, setTicketDetails] = useState([]);
   const [userName, setUserName] = useState("");
   function capitalizeFirstLetter(str) {
@@ -12,10 +14,10 @@ export default function ShowTicket(props) {
   useEffect(() => {
     let username = sessionStorage.getItem("username");
     setUserName(username);
-    axios.get("http://localhost:3003/Bookings")
+    axios
+      .get("http://localhost:3003/Bookings")
       .then((res) => setTicketDetails([...res.data]));
   }, []);
-  const name = props.name;
   function handleCancelBooking() {
     usenavigate(ticketcancel);
   }
@@ -70,3 +72,6 @@ export default function ShowTicket(props) {
     </div>
   );
 }
+ShowTicket.propTypes = {
+  name: PropTypes.string.isRequired,
+};

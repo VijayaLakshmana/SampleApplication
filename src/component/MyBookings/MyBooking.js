@@ -1,6 +1,8 @@
 import NavigationBar from "../HomePage/NavigationBar";
+import React from "react";
 import "./MyBooking.css";
 import ShowTicket from "./ShowTicket";
+
 export default function MyBookings() {
   return (
     <div>
@@ -11,15 +13,15 @@ export default function MyBookings() {
       </div>
       <h2>Booked Tickets:</h2>
       <>
-        <ShowTicket name={"booked"} />{" "}
+        <ShowTicket name={"booked"} />
       </>
       <h2>Travelled Tickets:</h2>
       <>
-        <ShowTicket name={"Completed"} />{" "}
+        <ShowTicket name={"Completed"} />
       </>
       <h2>Cancelled Tickets:</h2>
       <>
-        <ShowTicket name={"cancelled"} />{" "}
+        <ShowTicket name={"cancelled"} />
       </>
     </div>
   );

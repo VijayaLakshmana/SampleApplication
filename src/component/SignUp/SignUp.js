@@ -1,4 +1,5 @@
 import { useState } from "react";
+import React from "react";
 import "./SignUp.css";
 import { useNavigate } from "react-router-dom";
 import InputField from "../HomePage/Input";
@@ -15,9 +16,10 @@ export default function SignUp() {
   function handleSubmit(e) {
     e.preventDefault();
     let regObj = { id, name, password, email, phone, address, gender };
-    axios.post("http://localhost:3000/user", {
-     regObj
-    })
+    axios
+      .post("http://localhost:3000/user", {
+        regObj,
+      })
       .then(() => {
         alert("Registered successfully.");
         usenavigate("/login");
@@ -34,10 +36,10 @@ export default function SignUp() {
           <table>
             <tr>
               <td>
-                <label for="name">Full Name</label>
+                <label>Full Name</label>
               </td>
               <td>
-                <label for="username">Username</label>
+                <label>Username</label>
               </td>
             </tr>
             <tr>
@@ -64,10 +66,10 @@ export default function SignUp() {
             </tr>
             <tr>
               <td>
-                <label for="email">Email</label>
+                <label>Email</label>
               </td>
               <td>
-                <label for="phonenumber">Phone Number</label>
+                <label>Phone Number</label>
               </td>
             </tr>
             <tr>
@@ -95,7 +97,7 @@ export default function SignUp() {
             </tr>
             <tr>
               <td>
-                <label for="password">Password</label>
+                <label>Password</label>
               </td>
             </tr>
             <tr>
@@ -111,12 +113,14 @@ export default function SignUp() {
               </td>
             </tr>
           </table>
-          <label>Address</label><br></br>
+          <label>Address</label>
+          <br></br>
           <textarea
             value={address}
             onChange={(e) => addresschange(e.target.value)}
             className="addressArea"
-          /><br></br>
+          />
+          <br></br>
           <label>Gender</label>
           <br></br>
           <input
@@ -127,7 +131,7 @@ export default function SignUp() {
             name="gender"
             value="Male"
           />
-          <label for="male">Male</label>
+          <label >Male</label>
           <input
             type="radio"
             checked={gender === "Female"}
@@ -136,7 +140,7 @@ export default function SignUp() {
             name="gender"
             value="Female"
           />
-            <label for="female">Female</label>
+          <label>Female</label>
           <br></br>
           <button className="registrationbutton">submit</button>
         </form>

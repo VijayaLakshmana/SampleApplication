@@ -1,13 +1,19 @@
 import { useEffect, useState } from "react";
+import React from "react";
+import axios from "axios";
 import NavigationBar from "../HomePage/NavigationBar";
 import SearchField from "../HomePage/SearchField";
 import InputField from "../HomePage/Input";
 import "./search.css";
 import { useNavigate } from "react-router-dom";
-import { useSelector,useDispatch } from "react-redux";
-import { setFrom,setTo,setDate,setBusDetails,setSelectedBus } from "../../BusDetails";
-// import { AppContext } from "../../Context";
-import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  setFrom,
+  setTo,
+  setDate,
+  setBusDetails,
+  setSelectedBus,
+} from "../../BusDetails";
 export default function Search() {
   const [showACBus, setShowACBus] = useState(false);
   const [showNonACBus, setShowNonACBus] = useState(false);
@@ -19,37 +25,25 @@ export default function Search() {
   const [selectDropingTime, setSelectDropingTime] = useState("");
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
-   const dispatch = useDispatch();
-    const { 
-      from, 
-      to, 
-      date, 
-      busDetails, 
-    } = useSelector(state => state.bus);
-  // const {
-  //   from,
-  //   setFrom,
-  //   to,
-  //   setTo,
-  //   date,
-  //   setDate,
-  //   busDetails,
-  //   setBusDetails,
-  //   setSelectedBus,
-  // } = useContext(AppContext);
+  const dispatch = useDispatch();
+  const { from, to, date, busDetails } = useSelector((state) => state.bus);
   const usenavigate = useNavigate();
   let busseat = "busseat";
   useEffect(() => {
-         axios.get("http://localhost:3001/bus")
-         .then((res) => dispatch(setBusDetails([...res.data],console.log(res))));
+    axios
+      .get("http://localhost:3001/bus")
+      .then((res) => {
+        dispatch(setBusDetails([...res.data]));
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
     const from = sessionStorage.getItem("from");
     dispatch(setFrom(from));
     const to = sessionStorage.getItem("to");
     dispatch(setTo(to));
     const date = sessionStorage.getItem("date");
     dispatch(setDate(date));
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   function capitalizeFirstLetter(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
@@ -74,7 +68,10 @@ export default function Search() {
       setSelectDropingPoint([...selectDropingPoint, value]);
     }
   }
-  const filterBusType = busDetails.filter((bus) => {
+  const filteredLocation = busDetails.filter(
+    (bus) => from === bus.from && to === bus.to && date
+  );
+  const filterBusType = filteredLocation.filter((bus) => {
     const showBus = (showACBus && bus.AC) || (showNonACBus && !bus.AC);
     const anyFilterActive = showACBus || showNonACBus;
     return anyFilterActive ? showBus : true;
@@ -109,7 +106,7 @@ export default function Search() {
       ? hasSelectBoardingPoint && hasSelectDropingPoint && priceRange
       : true;
   });
-  const filteredBuses = filteredStop.filter((bus) => {
+  const filteredSearch = filteredStop.filter((bus) => {
     const hasSelectBoardingTime =
       selectBoardingTime === "" ||
       bus.boardingStop.some((stop) => stop.time === selectBoardingTime);
@@ -121,9 +118,7 @@ export default function Search() {
       ? hasSelectBoardingTime && hasSelectDropingTime
       : true;
   });
-  const filteredSearch = filteredBuses.filter(
-    (bus) => from === bus.from && to === bus.to && date
-  );
+
   function handleShowSeats(bus) {
     let username = sessionStorage.getItem("username");
     if (username === "" || username === null) {
@@ -138,12 +133,16 @@ export default function Search() {
       bus.dates.length === 0 ||
       !bus.dates.find((dateObj) => dateObj.date === date)
     ) {
-      axios.put(`http://localhost:3001/bus/${bus.id}`,{
-        ...bus,
+      axios.put(
+        `http://localhost:3001/bus/${bus.id}`,
+        {
+          ...bus,
           dates: [...bus.dates, { date: date, bookedSeats: [] }],
-      },{
-        headers: { "content-type": "application/json" }
-      })   
+        },
+        {
+          headers: { "content-type": "application/json" },
+        }
+      );
     }
   });
   busDetails.forEach((bus) => {
@@ -160,50 +159,51 @@ export default function Search() {
         <NavigationBar />
       </div>
       <div className="component2">
-        <SearchField
-          // from={from}
-          // setFrom={dispatch(setFrom())}
-          // to={to}
-          // setTo={dispatch(setTo())}
-          // date={date}
-          // setDate={dispatch(setDate())}
-        />
+        <SearchField />
       </div>
       <div className="component3">
         <div className="filterContent">
           <h4>Bus type:</h4>
-          <InputField
-            type="checkbox"
-            checked={showACBus}
-            onChange={() => setShowACBus(!showACBus)}
-            id="ac"
-            name="ac"
-          />
-          <label>AC</label>
-          <InputField
-            type="checkbox"
-            checked={showNonACBus}
-            onChange={() => setShowNonACBus(!showNonACBus)}
-            id="nonac"
-            name="nonac"
-          />
-          <label>NON AC</label>
-          <InputField
-            type="checkbox"
-            checked={showSeaterBus}
-            onChange={() => setShowSeaterBus(!showSeaterBus)}
-            id="seater"
-            name="seater"
-          />
-          <label>seater</label>
-          <InputField
-            type="checkbox"
-            checked={showNonSeaterBus}
-            onChange={() => setShowNonSeaterBus(!showNonSeaterBus)}
-            id="sleeper"
-            name="sleeper"
-          />
-          <label>sleeper</label>
+          <label>
+            <InputField
+              type="checkbox"
+              checked={showACBus}
+              onChange={() => setShowACBus(!showACBus)}
+              id="ac"
+              name="ac"
+            />
+            AC
+          </label>
+          <label>
+            <InputField
+              type="checkbox"
+              checked={showNonACBus}
+              onChange={() => setShowNonACBus(!showNonACBus)}
+              id="nonac"
+              name="nonac"
+            />
+            NONAC
+          </label>
+          <label>
+            <InputField
+              type="checkbox"
+              checked={showSeaterBus}
+              onChange={() => setShowSeaterBus(!showSeaterBus)}
+              id="seater"
+              name="seater"
+            />
+            seater
+          </label>
+          <label>
+            <InputField
+              type="checkbox"
+              checked={showNonSeaterBus}
+              onChange={() => setShowNonSeaterBus(!showNonSeaterBus)}
+              id="sleeper"
+              name="sleeper"
+            />
+            sleeper
+          </label>
           <br />
           <br />
           <h4>Select Boarding Points:</h4>
@@ -277,19 +277,23 @@ export default function Search() {
           </select>
           <br />
           <h4>Price Range:</h4>
-          <label> Min Price: </label>
-          <InputField
-            type="number"
-            value={minPrice}
-            onChange={(e) => setMinPrice(e.target.value)}
-          />
+          <label>
+            <InputField
+              type="number"
+              value={minPrice}
+              onChange={(e) => setMinPrice(e.target.value)}
+            />
+            Min Price:{" "}
+          </label>
           <br />
-          <label>Max Price:</label>
-          <InputField
-            type="number"
-            value={maxPrice}
-            onChange={(e) => setMaxPrice(e.target.value)}
-          />
+          <label>
+            <InputField
+              type="number"
+              value={maxPrice}
+              onChange={(e) => setMaxPrice(e.target.value)}
+            />
+            Max Price:
+          </label>
         </div>
       </div>
       <div className="component4">

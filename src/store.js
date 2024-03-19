@@ -1,5 +1,5 @@
-import { configureStore } from '@reduxjs/toolkit';
-import busReducer from './BusDetails';
+import { configureStore } from "@reduxjs/toolkit";
+import busReducer from "./BusDetails";
 
 const store = configureStore({
   reducer: {

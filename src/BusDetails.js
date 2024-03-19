@@ -1,11 +1,11 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 export const busDetails = createSlice({
-  name: 'bus',
+  name: "bus",
   initialState: {
-    from: '',
-    to: '',
-    date: '',
+    from: "",
+    to: "",
+    date: "",
     busDetails: [],
     selectedSeats: {},
     selectedBus: null,

@@ -1,13 +1,8 @@
-// import { AppContext } from "../../Context";
 import "./HomePage.css";
 import NavigationBar from "./NavigationBar";
 import SearchField from "./SearchField";
-// import { useContext } from "react";
+import React from "react";
 export default function HomePage() {
-  // const { from, setFrom, to, setTo, date, setDate } = useContext(AppContext);
-
-  // const value=useSelector(state=>state.bus)
-  // console.log(val);
   return (
     <div>
       <div className="layout">
@@ -16,14 +11,7 @@ export default function HomePage() {
         </div>
         <div className="content2">
           <h3>Book Your Tickets </h3>
-          <SearchField
-            // from={from}
-            // setFrom={dispatch(setFrom())}
-            // to={to}
-            // setTo={dispatch(setTo())}
-            // date={date}
-            // setDate={dispatch(setDate())}
-          />
+          <SearchField />
         </div>
         <div className="content3">
           <h1 className="heading">RJ Travels</h1>

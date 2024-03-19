@@ -2,8 +2,9 @@ import { useNavigate } from "react-router-dom";
 import InputField from "./Input";
 import { useEffect } from "react";
 import { useState } from "react";
-import {  useDispatch } from "react-redux";
-import { setFrom,setTo,setDate } from "../../BusDetails";
+import { useDispatch } from "react-redux";
+import { setFrom, setTo, setDate } from "../../BusDetails";
+import React from "react";
 export default function SearchField() {
   const [localFrom, setLocalFrom] = useState("");
   const [localTo, setLocalTo] = useState("");
@@ -15,11 +16,6 @@ export default function SearchField() {
   const usenavigate = useNavigate();
   let link;
   const dispatch = useDispatch();
-  // const { 
-  //   from, 
-  //   to, 
-  //   date, 
-  // } = useSelector(state => state.bus);
   useEffect(() => {
     const storedFrom = sessionStorage.getItem("from");
     const storedTo = sessionStorage.getItem("to");
