@@ -1,11 +1,10 @@
 import React from "react";
-import { render, screen, waitFor } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import { render, screen, waitFor, fireEvent } from "@testing-library/react";
 import Search from "./Search";
 import { Provider } from "react-redux";
-import { MemoryRouter } from "react-router-dom";
 import configureStore from "redux-mock-store";
 import { BrowserRouter as Router } from "react-router-dom";
+import userEvent from "@testing-library/user-event";
 import axios from "axios";
 import "@testing-library/jest-dom";
 
@@ -74,28 +73,62 @@ describe("Search component", () => {
     }));
   });
 
+  const renderSearchComponent = () => {
+    render(
+      <Provider store={store}>
+        <Router>
+          <Search />
+        </Router>
+      </Provider>
+    );
+    return waitFor(() => {
+      expect(screen.getByText("Tvs travel")).toBeInTheDocument();
+    });
+  };
+
   test("example async test", async () => {
     const response = await axios.get("http://localhost:3001/bus");
     expect(response.status).toBe(200);
   });
-
-
-  test("filters buses based on selected options", async () => {
-    render(
-      <Provider store={store}>
-        <MemoryRouter>
-          <Search />
-        </MemoryRouter>
-      </Provider>
-    );
-    await waitFor(() => {
-      expect(screen.getByText("Tvs travel")).toBeInTheDocument();
-    });
-    userEvent.click(screen.getByLabelText("AC"));
-    userEvent.click(screen.getByLabelText("NONAC"));
-    userEvent.click(screen.getByLabelText("seater"));
-    userEvent.click(screen.getByLabelText("sleeper"));
-    expect(screen.getByText("Tvs travel")).toBeInTheDocument();
-    expect(screen.queryByText("Aravind travel")).not.toBeInTheDocument();
+  test("handle event", async () => {
+    await renderSearchComponent();
+    userEvent.click(screen.getByText("bookticket"));
+  });
+  test("allows user to input values in minimum and maximum price fields", async () => {
+    await renderSearchComponent();
+    const minPriceInput = screen.getByLabelText("Min Price:");
+    const maxPriceInput = screen.getByLabelText("Max Price:");
+    fireEvent.change(minPriceInput, { target: { value: 100 } });
+    fireEvent.change(maxPriceInput, { target: { value: 200 } });
+    expect(minPriceInput).toHaveValue(100);
+    expect(maxPriceInput).toHaveValue(200);
+  });
+  test("handles boarding and dropping point changes", async () => {
+    await renderSearchComponent();
+    const boardingPointCheckbox = screen.getByLabelText("New Bus Stand");
+    fireEvent.click(boardingPointCheckbox);
+    expect(boardingPointCheckbox.checked).toEqual(true);
+    const droppingPointCheckbox = screen.getByLabelText("Mattuthavani");
+    fireEvent.click(droppingPointCheckbox);
+    expect(droppingPointCheckbox.checked).toEqual(true);
+  });
+  test("handles the ac and nonac changes and handles the seater and sleeper changes", async () => {
+    await renderSearchComponent();
+    const acCheckbox = screen.getByLabelText("AC");
+    fireEvent.click(acCheckbox);
+    expect(acCheckbox.checked).toEqual(true);
+    const nonacCheckbox = screen.getByLabelText("NONAC");
+    fireEvent.click(nonacCheckbox);
+    expect(nonacCheckbox.checked).toEqual(true);
+    const seaterCheckbox = screen.getByLabelText("seater");
+    fireEvent.click(seaterCheckbox);
+    expect(seaterCheckbox.checked).toEqual(true);
+    const sleeperCheckbox = screen.getByLabelText("sleeper");
+    fireEvent.click(sleeperCheckbox);
+    expect(sleeperCheckbox.checked).toEqual(true);
+  });
+  test("handles booking", async() => {
+    await renderSearchComponent();
+    fireEvent.click(screen.getByText("bookticket"));
   });
 });

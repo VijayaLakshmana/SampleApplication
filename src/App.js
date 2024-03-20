@@ -27,15 +27,15 @@ function App() {
                 </PrivateRoute>
               }
             />
-            <Route path="/mybookings/ticketcancel" element={<CancelTicket />} />
+            <Route path="/mybookings/ticketcancel" element={<PrivateRoute><CancelTicket /></PrivateRoute>} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<SignUp />} />
             <Route path="/search" element={<Search />} />
             <Route
               path="/search/busseat/bookticket"
-              element={<TicketBooking />}
+              element={<PrivateRoute><TicketBooking /></PrivateRoute>}
             />
-            <Route path="/search/busseat" element={<BusSeat />} />
+            <Route path="/search/busseat" element={<PrivateRoute><BusSeat /></PrivateRoute>} />
           </Routes>
         </Router>
       </div>

@@ -44,6 +44,24 @@
       "phone": "958574844",
       "address": "2/256",
       "gender": "Male"
+    },
+    {
+      "id": "hari",
+      "name": "hari",
+      "password": "Hari",
+      "email": "vija",
+      "phone": "88",
+      "address": "k",
+      "gender": "Male"
+    },
+    {
+      "id": "abi",
+      "name": "abi",
+      "password": "33343232",
+      "email": "abi@gmail",
+      "phone": "34",
+      "address": "kk",
+      "gender": "Male"
     }
   ]
 }

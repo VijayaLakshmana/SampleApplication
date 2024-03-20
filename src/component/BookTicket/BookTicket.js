@@ -99,8 +99,10 @@ export default function TicketBooking() {
     };
     dispatch(setSelectedSeats({ ...selectedSeats, [date]: [] }));
     axios
-      .post("http://localhost:3003/Bookings", {
-        newBooking
+      .post("http://localhost:3003/Bookings", newBooking, {
+        headers: {
+          "Content-Type": "application/json",
+        },
       })
       .then(() => {
         alert("Ticket booked");

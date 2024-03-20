@@ -17,9 +17,7 @@ export default function SignUp() {
     e.preventDefault();
     let regObj = { id, name, password, email, phone, address, gender };
     axios
-      .post("http://localhost:3000/user", {
-        regObj,
-      })
+      .post("http://localhost:3000/user", regObj)
       .then(() => {
         alert("Registered successfully.");
         usenavigate("/login");
@@ -88,14 +86,15 @@ export default function SignUp() {
                 <InputField
                   value={phone}
                   onChange={(e) => phonechange(e.target.value)}
-                  type="tell"
+                  type="tel"
                   id="phonenumber"
                   placeholder="Enter your phone number"
                   name="phonenumber"
+                  pattern="[0-9]{10}"
                 />
               </td>
             </tr>
-            <tr>
+            <tr>  
               <td>
                 <label>Password</label>
               </td>

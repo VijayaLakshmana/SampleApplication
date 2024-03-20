@@ -76,7 +76,10 @@ export default function SearchField() {
           min={currentDate}
           max={maxSelectableDate}
           className="icon3"
+          id="date" 
+          data-testid="date-input" 
           name="date"
+          placeholder="Date"
           required
         />
         <button className="searchButton">search</button>

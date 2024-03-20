@@ -34,9 +34,6 @@ export default function Search() {
       .get("http://localhost:3001/bus")
       .then((res) => {
         dispatch(setBusDetails([...res.data]));
-      })
-      .catch((error) => {
-        console.error("Error:", error);
       });
     const from = sessionStorage.getItem("from");
     dispatch(setFrom(from));
@@ -300,8 +297,8 @@ export default function Search() {
         <div>
           {filteredSearch.length > 0 ? (
             <div>
-              {filteredSearch.map((bus) => (
-                <div className="busContent" key={bus.id}>
+              {filteredSearch.map((bus,index) => (
+                <div className="busContent" key={bus.id} data-testid={`bus-name-${index}`}>
                   <div className="busName">
                     {bus.busname}
                     <div className="acList">
