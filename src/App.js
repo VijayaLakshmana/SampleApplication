@@ -5,7 +5,6 @@ import Login from "./component/LoginPage/Login";
 import Search from "./component/Search/Search";
 import TicketBooking from "./component/BookTicket/BookTicket";
 import BusSeat from "./component/Search/BusSeat";
-// import { BrowserRouter, Route, Routes } from "react-router-dom";
 import MyBookings from "./component/MyBookings/MyBooking";
 import CancelTicket from "./component/CancelTicket/CancelTicket";
 import PrivateRoute from "./component/HomePage/PrivateRoute";

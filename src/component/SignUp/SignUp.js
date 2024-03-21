@@ -4,6 +4,8 @@ import "./SignUp.css";
 import { useNavigate } from "react-router-dom";
 import InputField from "../HomePage/Input";
 import axios from "axios";
+import "react-toastify/dist/ReactToastify.css";
+import {toast} from "react-toastify";
 export default function SignUp() {
   const [id, idchange] = useState("");
   const [name, namechange] = useState("");
@@ -19,7 +21,7 @@ export default function SignUp() {
     axios
       .post("http://localhost:3000/user", regObj)
       .then(() => {
-        alert("Registered successfully.");
+        toast.success("Registered successfully.");
         usenavigate("/login");
       })
       .catch((err) => {
@@ -48,6 +50,8 @@ export default function SignUp() {
                   type="text"
                   id="name"
                   placeholder="Enter your name"
+                  pattern="^[a-zA-Z]+$"
+                  title="Name only contains alphabets"
                   name="name"
                 />
               </td>
@@ -58,6 +62,8 @@ export default function SignUp() {
                   type="text"
                   id="username"
                   placeholder="Enter your username"
+                  pattern="^[a-zA-Z]+$"
+                  title="Name only contains alphabets"
                   name="username"
                 />
               </td>
@@ -75,10 +81,9 @@ export default function SignUp() {
                 <InputField
                   value={email}
                   onChange={(e) => emailchange(e.target.value)}
-                  type="text"
+                  type="email"
                   id="email"
                   placeholder="Enter your Email"
-                  pattern="[^\s@]+@[^\s@]+\.[^\s@]+"
                   name="email"
                 />
               </td>
@@ -90,6 +95,7 @@ export default function SignUp() {
                   id="phonenumber"
                   placeholder="Enter your phone number"
                   name="phonenumber"
+                  title="phonenumber must contain 10 digit"
                   pattern="[0-9]{10}"
                 />
               </td>
@@ -108,6 +114,8 @@ export default function SignUp() {
                   id="password"
                   placeholder="Enter your password"
                   name="password"
+                  pattern="(?=.*[A-Z])(?=.*\d).{8,}"
+                  title="Password must contain at least one capital letter, one number, and be at least 8 characters long"
                 />
               </td>
             </tr>

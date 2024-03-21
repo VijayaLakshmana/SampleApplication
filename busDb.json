@@ -33,52 +33,24 @@
       "toTiming": "22:00pm",
       "dates": [
         {
-          "date": "2024-03-12",
+          "date": "2024-03-21",
           "bookedSeats": [
-            1,
             2,
-            6
-          ]
-        },
-        {
-          "date": "2024-03-13",
-          "bookedSeats": []
-        },
-        {
-          "date": "2024-03-14",
-          "bookedSeats": []
-        },
-        {
-          "date": "2024-03-15",
-          "bookedSeats": []
-        },
-        {
-          "date": "2024-03-17",
-          "bookedSeats": []
-        },
-        {
-          "bookedSeats": []
-        },
-        {
-          "date": "2024-03-18",
-          "bookedSeats": []
-        },
-        {
-          "date": "2024-03-19",
-          "bookedSeats": [
-            2
-          ]
-        },
-        {
-          "date": "",
-          "bookedSeats": []
-        },
-        {
-          "date": "2024-03-20",
-          "bookedSeats": [
             1,
-            5,
-            6
+            34,
+            29
+          ]
+        },
+        {
+          "date": "2024-03-22",
+          "bookedSeats": [
+            10
+          ]
+        },
+        {
+          "date": "2024-03-25",
+          "bookedSeats": [
+            10
           ]
         }
       ],
@@ -121,43 +93,20 @@
       "toTiming": "17:00pm",
       "dates": [
         {
-          "date": "2024-03-12",
+          "date": "2024-03-21",
           "bookedSeats": []
         },
         {
-          "date": "2024-03-13",
-          "bookedSeats": []
+          "date": "2024-03-22",
+          "bookedSeats": [
+            10
+          ]
         },
         {
-          "date": "2024-03-14",
-          "bookedSeats": []
-        },
-        {
-          "date": "2024-03-15",
-          "bookedSeats": []
-        },
-        {
-          "date": "2024-03-17",
-          "bookedSeats": []
-        },
-        {
-          "bookedSeats": []
-        },
-        {
-          "date": "2024-03-18",
-          "bookedSeats": []
-        },
-        {
-          "date": "2024-03-19",
-          "bookedSeats": []
-        },
-        {
-          "date": "",
-          "bookedSeats": []
-        },
-        {
-          "date": "2024-03-20",
-          "bookedSeats": []
+          "date": "2024-03-25",
+          "bookedSeats": [
+            10
+          ]
         }
       ],
       "seat": 40,
@@ -199,43 +148,20 @@
       "toTiming": "19:00pm",
       "dates": [
         {
-          "date": "2024-03-12",
+          "date": "2024-03-21",
           "bookedSeats": []
         },
         {
-          "date": "2024-03-13",
-          "bookedSeats": []
+          "date": "2024-03-22",
+          "bookedSeats": [
+            10
+          ]
         },
         {
-          "date": "2024-03-14",
-          "bookedSeats": []
-        },
-        {
-          "date": "2024-03-15",
-          "bookedSeats": []
-        },
-        {
-          "date": "2024-03-17",
-          "bookedSeats": []
-        },
-        {
-          "bookedSeats": []
-        },
-        {
-          "date": "2024-03-18",
-          "bookedSeats": []
-        },
-        {
-          "date": "2024-03-19",
-          "bookedSeats": []
-        },
-        {
-          "date": "",
-          "bookedSeats": []
-        },
-        {
-          "date": "2024-03-20",
-          "bookedSeats": []
+          "date": "2024-03-25",
+          "bookedSeats": [
+            10
+          ]
         }
       ],
       "seat": 12,
@@ -277,43 +203,20 @@
       "toTiming": "21:00pm",
       "dates": [
         {
-          "date": "2024-03-12",
+          "date": "2024-03-21",
           "bookedSeats": []
         },
         {
-          "date": "2024-03-13",
-          "bookedSeats": []
+          "date": "2024-03-22",
+          "bookedSeats": [
+            10
+          ]
         },
         {
-          "date": "2024-03-14",
-          "bookedSeats": []
-        },
-        {
-          "date": "2024-03-15",
-          "bookedSeats": []
-        },
-        {
-          "date": "2024-03-17",
-          "bookedSeats": []
-        },
-        {
-          "bookedSeats": []
-        },
-        {
-          "date": "2024-03-18",
-          "bookedSeats": []
-        },
-        {
-          "date": "2024-03-19",
-          "bookedSeats": []
-        },
-        {
-          "date": "",
-          "bookedSeats": []
-        },
-        {
-          "date": "2024-03-20",
-          "bookedSeats": []
+          "date": "2024-03-25",
+          "bookedSeats": [
+            10
+          ]
         }
       ],
       "seat": 40,
@@ -359,43 +262,20 @@
       "toTiming": "08:00am",
       "dates": [
         {
-          "date": "2024-03-12",
+          "date": "2024-03-21",
           "bookedSeats": []
         },
         {
-          "date": "2024-03-13",
-          "bookedSeats": []
+          "date": "2024-03-22",
+          "bookedSeats": [
+            10
+          ]
         },
         {
-          "date": "2024-03-14",
-          "bookedSeats": []
-        },
-        {
-          "date": "2024-03-15",
-          "bookedSeats": []
-        },
-        {
-          "date": "2024-03-17",
-          "bookedSeats": []
-        },
-        {
-          "bookedSeats": []
-        },
-        {
-          "date": "2024-03-18",
-          "bookedSeats": []
-        },
-        {
-          "date": "2024-03-19",
-          "bookedSeats": []
-        },
-        {
-          "date": "",
-          "bookedSeats": []
-        },
-        {
-          "date": "2024-03-20",
-          "bookedSeats": []
+          "date": "2024-03-25",
+          "bookedSeats": [
+            10
+          ]
         }
       ],
       "seat": 12,
@@ -437,45 +317,20 @@
       "toTiming": "11:00am",
       "dates": [
         {
-          "date": "2024-03-12",
+          "date": "2024-03-21",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-03-22",
           "bookedSeats": [
-            1
+            10
           ]
         },
         {
-          "date": "2024-03-13",
-          "bookedSeats": []
-        },
-        {
-          "date": "2024-03-14",
-          "bookedSeats": []
-        },
-        {
-          "date": "2024-03-15",
-          "bookedSeats": []
-        },
-        {
-          "date": "2024-03-17",
-          "bookedSeats": []
-        },
-        {
-          "bookedSeats": []
-        },
-        {
-          "date": "2024-03-18",
-          "bookedSeats": []
-        },
-        {
-          "date": "2024-03-19",
-          "bookedSeats": []
-        },
-        {
-          "date": "",
-          "bookedSeats": []
-        },
-        {
-          "date": "2024-03-20",
-          "bookedSeats": []
+          "date": "2024-03-25",
+          "bookedSeats": [
+            10
+          ]
         }
       ],
       "seat": 36,
@@ -517,43 +372,20 @@
       "toTiming": "07:00am",
       "dates": [
         {
-          "date": "2024-03-12",
+          "date": "2024-03-21",
           "bookedSeats": []
         },
         {
-          "date": "2024-03-13",
-          "bookedSeats": []
+          "date": "2024-03-22",
+          "bookedSeats": [
+            10
+          ]
         },
         {
-          "date": "2024-03-14",
-          "bookedSeats": []
-        },
-        {
-          "date": "2024-03-15",
-          "bookedSeats": []
-        },
-        {
-          "date": "2024-03-17",
-          "bookedSeats": []
-        },
-        {
-          "bookedSeats": []
-        },
-        {
-          "date": "2024-03-18",
-          "bookedSeats": []
-        },
-        {
-          "date": "2024-03-19",
-          "bookedSeats": []
-        },
-        {
-          "date": "",
-          "bookedSeats": []
-        },
-        {
-          "date": "2024-03-20",
-          "bookedSeats": []
+          "date": "2024-03-25",
+          "bookedSeats": [
+            10
+          ]
         }
       ],
       "seat": 16,
@@ -595,43 +427,20 @@
       "toTiming": "07:00am",
       "dates": [
         {
-          "date": "2024-03-12",
+          "date": "2024-03-21",
           "bookedSeats": []
         },
         {
-          "date": "2024-03-13",
-          "bookedSeats": []
+          "date": "2024-03-22",
+          "bookedSeats": [
+            10
+          ]
         },
         {
-          "date": "2024-03-14",
-          "bookedSeats": []
-        },
-        {
-          "date": "2024-03-15",
-          "bookedSeats": []
-        },
-        {
-          "date": "2024-03-17",
-          "bookedSeats": []
-        },
-        {
-          "bookedSeats": []
-        },
-        {
-          "date": "2024-03-18",
-          "bookedSeats": []
-        },
-        {
-          "date": "2024-03-19",
-          "bookedSeats": []
-        },
-        {
-          "date": "",
-          "bookedSeats": []
-        },
-        {
-          "date": "2024-03-20",
-          "bookedSeats": []
+          "date": "2024-03-25",
+          "bookedSeats": [
+            10
+          ]
         }
       ],
       "seat": 16,

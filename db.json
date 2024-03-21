@@ -19,48 +19,21 @@
       "gender": "Male"
     },
     {
-      "id": "sugu",
-      "name": "Sugumaran",
-      "password": "sugu@4243",
-      "email": "sugumaranrk@gmail.com",
-      "phone": "090070703",
-      "address": "hahfdhzbkz",
-      "gender": "Male"
-    },
-    {
-      "id": "deepak",
-      "name": "deepak",
-      "password": "a123",
-      "email": "deepak@gmail.com",
-      "phone": "7598686691",
-      "address": "utygfgkjhtgfc",
-      "gender": "Male"
-    },
-    {
-      "id": "sakthi",
-      "name": "sakthi",
-      "password": "Sakthi",
-      "email": "sakthi@gmail.com",
-      "phone": "958574844",
-      "address": "2/256",
-      "gender": "Male"
-    },
-    {
-      "id": "hari",
-      "name": "hari",
-      "password": "Hari",
-      "email": "vija",
-      "phone": "88",
-      "address": "k",
-      "gender": "Male"
-    },
-    {
       "id": "abi",
       "name": "abi",
-      "password": "33343232",
+      "password": "VIJAY@102",
       "email": "abi@gmail",
-      "phone": "34",
-      "address": "kk",
+      "phone": "8484784842",
+      "address": "D",
+      "gender": "Male"
+    },
+    {
+      "id": "krishna",
+      "name": "krish",
+      "password": "VIJAY@102",
+      "email": "krish@gmail.com",
+      "phone": "8595958738",
+      "address": "2/256 SELVE NAGAR",
       "gender": "Male"
     }
   ]

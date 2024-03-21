@@ -1,4 +1,4 @@
-import Login from "../LoginPage/Login";
+import HomePage from "./HomePage";
 import React from "react";
 import PropTypes from "prop-types";
 export default function PrivateRoute({ children }) {
@@ -6,7 +6,7 @@ export default function PrivateRoute({ children }) {
   if (username) {
     return children;
   } else {
-    return <Login />;
+    return <HomePage />;
   }
 }
 PrivateRoute.propTypes = {

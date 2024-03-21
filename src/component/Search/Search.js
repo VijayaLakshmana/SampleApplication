@@ -7,6 +7,10 @@ import InputField from "../HomePage/Input";
 import "./search.css";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import { formatPrice } from "../HomePage/Utils";
+import "react-toastify/dist/ReactToastify.css";
+import {toast} from "react-toastify";
+
 import {
   setFrom,
   setTo,
@@ -28,13 +32,11 @@ export default function Search() {
   const dispatch = useDispatch();
   const { from, to, date, busDetails } = useSelector((state) => state.bus);
   const usenavigate = useNavigate();
-  let busseat = "busseat";
+  const busseat = "busseat";
   useEffect(() => {
-    axios
-      .get("http://localhost:3001/bus")
-      .then((res) => {
-        dispatch(setBusDetails([...res.data]));
-      });
+    axios.get("http://localhost:3001/bus").then((res) => {
+      dispatch(setBusDetails([...res.data]));
+    });
     const from = sessionStorage.getItem("from");
     dispatch(setFrom(from));
     const to = sessionStorage.getItem("to");
@@ -119,7 +121,7 @@ export default function Search() {
   function handleShowSeats(bus) {
     let username = sessionStorage.getItem("username");
     if (username === "" || username === null) {
-      return alert("Login in before Book Tickets");
+      return toast.error("Login in before Book Tickets");
     }
     dispatch(setSelectedBus(bus));
     sessionStorage.setItem("selectedBus", JSON.stringify(bus));
@@ -134,7 +136,7 @@ export default function Search() {
         `http://localhost:3001/bus/${bus.id}`,
         {
           ...bus,
-          dates: [...bus.dates, { date: date, bookedSeats: [] }],
+          dates: [...bus.dates, { date: date, bookedSeats: [10] }],
         },
         {
           headers: { "content-type": "application/json" },
@@ -147,7 +149,7 @@ export default function Search() {
       bus.dates.length === 0 ||
       !bus.dates.find((dateObj) => dateObj.date === date)
     ) {
-      bus.dates.push({ date: date, bookedSeats: [] });
+      bus.dates.push({ date: date, bookedSeats: [10] });
     }
   });
   return (
@@ -297,8 +299,12 @@ export default function Search() {
         <div>
           {filteredSearch.length > 0 ? (
             <div>
-              {filteredSearch.map((bus,index) => (
-                <div className="busContent" key={bus.id} data-testid={`bus-name-${index}`}>
+              {filteredSearch.map((bus, index) => (
+                <div
+                  className="busContent"
+                  key={bus.id}
+                  data-testid={`bus-name-${index}`}
+                >
                   <div className="busName">
                     {bus.busname}
                     <div className="acList">
@@ -321,7 +327,7 @@ export default function Search() {
                     {bus.toTiming}
                     <div className="to">{capitalizeFirstLetter(bus.to)}</div>
                   </div>
-                  <div className="price">Inr: {bus.price}</div>
+                  <div className="price">{formatPrice(bus.price)}</div>
                   <div className="totalSeats">
                     Total: {bus.seat}seats
                     <button onClick={() => handleShowSeats(bus)}>

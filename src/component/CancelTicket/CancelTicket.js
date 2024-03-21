@@ -3,6 +3,9 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { setBusDetails } from "../../BusDetails";
+import { formatPrice } from "../HomePage/Utils";
+import "react-toastify/dist/ReactToastify.css";
+import {toast} from "react-toastify";
 export default function CancelTicket() {
   const [ticketDetails, setTicketDetails] = useState([]);
   const [userName, setUserName] = useState("");
@@ -21,63 +24,69 @@ export default function CancelTicket() {
   function capitalizeFirstLetter(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
   }
-  function handleCancelBooking(bookingId, seatNumber, busId, busDate) {
-    const updatedTicketDetails = ticketDetails.map((booking) => {
-      if (booking.id === bookingId) {
-        const updatedSeats = booking.seats.filter(
-          (seat) => seat.seat !== seatNumber
-        ); 
-        console.log(updatedSeats,"hello");
-        return {
-          ...booking,
-          seats: updatedSeats,
-          bookingStatus:
-            updatedSeats.length === 0 ? "cancelled" : booking.bookingStatus,
-        };
-      }
-      return booking;
-    });
-    setTicketDetails(updatedTicketDetails);
-    axios.put(`http://localhost:3003/Bookings/${bookingId}`, {
-      ...updatedTicketDetails.find((booking) => booking.id === bookingId),
-    });
-
-    const updatedBusDetails = busDetails.map((prevBusDetails) => {
-      if (busId === prevBusDetails.id) {
-        const updatedDates = prevBusDetails.dates.map((date) => {
-          if (busDate === date.date) {
-            const updatedBookedSeats = date.bookedSeats.filter(
-              (seat) => seat !== seatNumber
-            );
-            console.log(updatedBookedSeats,"hi");
-            return { ...date, bookedSeats: updatedBookedSeats };
-          }
-          return date;
-        });
-        return {
-          ...prevBusDetails,
-          dates: updatedDates,
-        };
-      }
-      return prevBusDetails;
-    });
-    dispatch(setBusDetails(updatedBusDetails));
-    axios
-      .put(`http://localhost:3001/bus/${busId}`, {
-        ...updatedBusDetails.find((booking) => booking.id === busId),
-      })
-      .then((response) => {
-        if (response.status === 200) {
-          console.log("Bus details updated successfully");
-        } else {
-          throw new Error("Failed to update bus details");
+  function handleCancelBooking(bookingId, seatNumber, busId, busDate, time) {
+    const departureDateTime = new Date(`${busDate} ${time}`);
+    const currentTime = new Date();
+    const timeDifference = departureDateTime.getTime() - currentTime.getTime();
+    const hoursDifference = timeDifference / (1000 * 60 * 60);
+    if (hoursDifference > 24) {
+      const updatedTicketDetails = ticketDetails.map((booking) => {
+        if (booking.id === bookingId) {
+          const updatedSeats = booking.seats.filter(
+            (seat) => seat.seat !== seatNumber
+          );
+          console.log(updatedSeats, "hello");
+          return {
+            ...booking,
+            seats: updatedSeats,
+            bookingStatus:
+              updatedSeats.length === 0 ? "cancelled" : booking.bookingStatus,
+          };
         }
-      })
-      .catch((error) => {
-        console.error("Error:", error);
+        return booking;
       });
+      setTicketDetails(updatedTicketDetails);
+      axios.put(`http://localhost:3003/Bookings/${bookingId}`, {
+        ...updatedTicketDetails.find((booking) => booking.id === bookingId),
+      });
+
+      const updatedBusDetails = busDetails.map((prevBusDetails) => {
+        if (busId === prevBusDetails.id) {
+          const updatedDates = prevBusDetails.dates.map((date) => {
+            if (busDate === date.date) {
+              const updatedBookedSeats = date.bookedSeats.filter(
+                (seat) => seat !== seatNumber
+              );
+              return { ...date, bookedSeats: updatedBookedSeats };
+            }
+            return date;
+          });
+          return {
+            ...prevBusDetails,
+            dates: updatedDates,
+          };
+        }
+        return prevBusDetails;
+      });
+      dispatch(setBusDetails(updatedBusDetails));
+      axios
+        .put(`http://localhost:3001/bus/${busId}`, {
+          ...updatedBusDetails.find((booking) => booking.id === busId),
+        })
+        .then((response) => {
+          if (response.status === 200) {
+            console.log("Bus details updated successfully");
+          } else {
+            throw new Error("Failed to update bus details");
+          }
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+    } else {
+      toast.error("You can't cancel ticket Befor 24hrs for Boarding");
+    }
   }
-  console.log(busDetails);
   return (
     <div>
       <h2>Booked Tickets:</h2>
@@ -89,7 +98,9 @@ export default function CancelTicket() {
           )
           .map((booking) => (
             <div key={booking.id} className="busBook">
-              <div className="ticketId">Ticket No: {booking.id}</div>
+              <div className="ticketId">Ticket No: {booking.id}<br></br><br></br>
+                <div>Date:{booking.date}</div>
+              </div>
               <div className="busName">
                 {booking.busName}
                 <div className="acList">
@@ -112,7 +123,7 @@ export default function CancelTicket() {
                 {booking.toTime}
                 <div className="to">{capitalizeFirstLetter(booking.to)}</div>
               </div>
-              <div className="price">Inr: {booking.price}</div>
+              <div className="price">{formatPrice(booking.price)}</div>
               <div className="passengerDetailsList">
                 {booking.seats.map((seat) => (
                   <div key={seat.seat}>
@@ -124,7 +135,8 @@ export default function CancelTicket() {
                           booking.id,
                           seat.seat,
                           booking.connection,
-                          booking.date
+                          booking.date,
+                          booking.fromTime
                         )
                       }
                     >

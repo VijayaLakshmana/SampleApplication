@@ -13,15 +13,15 @@ export default function MyBookings() {
       </div>
       <h2>Booked Tickets:</h2>
       <>
-        <ShowTicket name={"booked"} />
+        <ShowTicket status={"booked"} />
       </>
       <h2>Travelled Tickets:</h2>
       <>
-        <ShowTicket name={"Completed"} />
+        <ShowTicket status={"Completed"} />
       </>
       <h2>Cancelled Tickets:</h2>
       <>
-        <ShowTicket name={"cancelled"} />
+        <ShowTicket status={"cancelled"} />
       </>
     </div>
   );

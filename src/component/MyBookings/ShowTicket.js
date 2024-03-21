@@ -3,7 +3,8 @@ import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 import React from "react";
-export default function ShowTicket({name}) {
+import { formatPrice } from "../HomePage/Utils";
+export default function ShowTicket({status}) {
   const [ticketDetails, setTicketDetails] = useState([]);
   const [userName, setUserName] = useState("");
   function capitalizeFirstLetter(str) {
@@ -27,7 +28,7 @@ export default function ShowTicket({name}) {
         {ticketDetails
           .filter(
             (ticket) =>
-              ticket.bookingStatus === name && ticket.username === userName
+              ticket.bookingStatus === status && ticket.username === userName
           )
           .map((booking) => (
             <div key={booking.id} className="busBook">
@@ -54,7 +55,7 @@ export default function ShowTicket({name}) {
                 {booking.toTime}
                 <div className="to">{capitalizeFirstLetter(booking.to)}</div>
               </div>
-              <div className="price">Inr: {booking.price}</div>
+              <div className="price">{formatPrice(booking.price)}</div>
               <div className="passengerDetailsList">
                 {booking.seats.map((seat) => (
                   <div key={seat.seat}>
@@ -62,7 +63,7 @@ export default function ShowTicket({name}) {
                     <p>Passenger Name:{seat.passenger.name}</p>
                   </div>
                 ))}
-                {name === "booked" ? (
+                {status === "booked" ? (
                   <button onClick={handleCancelBooking}>Cancel Ticket</button>
                 ) : null}
               </div>
@@ -73,5 +74,5 @@ export default function ShowTicket({name}) {
   );
 }
 ShowTicket.propTypes = {
-  name: PropTypes.string.isRequired,
+  status: PropTypes.string.isRequired,
 };

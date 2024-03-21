@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
-import InputField from "../HomePage/Input";
 import axios from "axios";
+import "react-toastify/dist/ReactToastify.css";
+import {toast} from "react-toastify";
 export default function Login() {
   const [username, usernameupdate] = useState("");
   const [password, passwordupdate] = useState("");
@@ -16,24 +17,24 @@ export default function Login() {
     if (validate()) {
       axios.get(`http://localhost:3000/user/${username}`).then((resp) => {
         if (resp.data.password === password) {
-          alert("success");
+          toast.success("Logged in successfully");
           sessionStorage.setItem("username", username);
           usenavigate("/");
         } else {
-          alert("Please Enter valid password");
+          toast.error("Please Enter valid password");
         }
-      });
+      }).catch(()=>toast.error("Please Enter valid username"));
     }
   }
   function validate() {
     let result = true;
     if (username === "" || username === null) {
       result = false;
-      alert("Please Enter username");
+      toast.error("Please Enter username");
     }
     if (password === "" || password === null) {
       result = false;
-      alert("Please Enter password");
+      toast.error("Please Enter password");
     }
     return result;
   }
@@ -43,7 +44,7 @@ export default function Login() {
         <h3 className="login">
           <center>Login Form</center>
         </h3>
-        <InputField
+        <input
           value={username}
           onChange={(e) => usernameupdate(e.target.value)}
           className="userNameLogin"
@@ -51,7 +52,7 @@ export default function Login() {
           placeholder="User Name"
           name="username"
         />
-        <InputField
+        <input
           value={password}
           onChange={(e) => passwordupdate(e.target.value)}
           type="password"

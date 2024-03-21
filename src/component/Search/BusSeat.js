@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import React from "react";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
+import "react-toastify/dist/ReactToastify.css";
+import {toast} from "react-toastify";
 import {
   setDate,
   setBusDetails,
@@ -76,11 +78,11 @@ export default function BusSeat() {
   }
   function handleBookTickets() {
     if (!selectedSeats[date]?.length) {
-      return alert("Select at least one seat to proceed");
+      return toast.error("Select at least one seat to proceed");
     } else if (showDropingPoint.length === 0) {
-      return alert("Give the Droping Point");
+      return toast.error("Give the Droping Point");
     } else if (showBoardingPoint.length === 0) {
-      return alert("Give the Boarding Point");
+      return toast.error("Give the Boarding Point");
     }
     usenavigate(`${bookticket}`);
   }

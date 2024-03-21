@@ -5,6 +5,8 @@ import NavigationBar from "../HomePage/NavigationBar";
 import React from "react";
 import "./BookTicket.css";
 import { useNavigate } from "react-router-dom";
+import "react-toastify/dist/ReactToastify.css";
+import {toast} from "react-toastify";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -70,7 +72,7 @@ export default function TicketBooking() {
         }
         return bus;
       });
-      alert(`slected seats:${selectedSeats[date]}`);
+      toast.success(`slected seats:${selectedSeats[date]}`);
       usenavigate(home);
     }
     const time = Date.now();
@@ -105,7 +107,7 @@ export default function TicketBooking() {
         },
       })
       .then(() => {
-        alert("Ticket booked");
+        toast.success("Ticket booked");
       });
   }
   return (
@@ -121,6 +123,8 @@ export default function TicketBooking() {
             <InputField
               type="text"
               placeholder="Name"
+              pattern="^[a-zA-Z]+$"
+              title="Name only contains alphabets"
               value={passengerDetails[seatNumber]?.name || ""}
               onChange={(e) =>
                 setPassengerDetails({
@@ -149,6 +153,8 @@ export default function TicketBooking() {
             <InputField
               type="tel"
               placeholder="phone"
+              title="phonenumber must contain 10 digit"
+              pattern="[0-9]{10}"
               value={passengerDetails[seatNumber]?.phone || ""}
               onChange={(e) =>
                 setPassengerDetails({
