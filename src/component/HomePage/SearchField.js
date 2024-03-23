@@ -3,7 +3,8 @@ import InputField from "./Input";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { setFrom, setTo, setDate } from "../../BusDetails";
+import { updateField } from "../../BusDetails";
+// import { setFrom, setTo, setDate } from "../../BusDetails";
 import React from "react";
 export default function SearchField() {
   const [localFrom, setLocalFrom] = useState("");
@@ -39,9 +40,12 @@ export default function SearchField() {
     const from = sessionStorage.getItem("from");
     const to = sessionStorage.getItem("to");
     const date = sessionStorage.getItem("date");
-    dispatch(setFrom(from));
-    dispatch(setTo(to));
-    dispatch(setDate(date));
+    // dispatch(setFrom(from));
+    // dispatch(setTo(to));
+    // dispatch(setDate(date));
+    dispatch(updateField({ field: "from", value: from }));
+    dispatch(updateField({ field: "to", value: to }));
+    dispatch(updateField({ field: "date", value: date }));
     if (localFrom !== localTo) {
       link = "/search";
     } else {
@@ -76,8 +80,8 @@ export default function SearchField() {
           min={currentDate}
           max={maxSelectableDate}
           className="icon3"
-          id="date" 
-          data-testid="date-input" 
+          id="date"
+          data-testid="date-input"
           name="date"
           placeholder="Date"
           required

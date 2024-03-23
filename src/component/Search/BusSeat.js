@@ -1,31 +1,56 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import React from "react";
-import axios from "axios";
+// import { fetchBusData } from "../../service/busService";
+import Api from "../../service/busService";
 import { useSelector, useDispatch } from "react-redux";
 import "react-toastify/dist/ReactToastify.css";
-import {toast} from "react-toastify";
-import {
-  setDate,
-  setBusDetails,
-  setSelectedBus,
-  setSelectedSeats,
-  setShowBoardingPoint,
-  setShowDropingPoint,
-} from "../../BusDetails";
+import { updateField } from "../../BusDetails";
+import { toast } from "react-toastify";
+const busUrl = process.env.REACT_APP_BUS_URL;
+const api = new Api();
+// import {
+//   setDate,
+//   setBusDetails,
+//   setSelectedBus,
+//   setSelectedSeats,
+//   setShowBoardingPoint,
+//   setShowDropingPoint,
+// } from "../../BusDetails";
 export default function BusSeat() {
+  const dispatch = useDispatch();
   useEffect(() => {
-    axios
-      .get("http://localhost:3001/bus")
-      .then((res) => dispatch(setBusDetails([...res.data])));
+    // async function fetchData() {
+    //   try {
+    //     const data = await fetchBusData();
+    //     dispatch(updateField({ field: "busDetails", value: data }));
+    //   } catch (error) {
+    //     console.error("Error fetching bus data:", error);
+    //     toast.error("Failed to fetch bus data. Please try again later.");
+    //   }
+    // }
+    // fetchData();
+    api
+      .get(busUrl)
+      .then((response) => {
+        dispatch(updateField({ field: "busDetails", value: response.data }));
+      })
+      .catch((error) => {
+        console.error("Error fetching bus data:", error);
+      });
     const storedSelectedBus = sessionStorage.getItem("selectedBus");
     if (storedSelectedBus) {
-      dispatch(setSelectedBus(JSON.parse(storedSelectedBus)));
+      // dispatch(setSelectedBus(JSON.parse(storedSelectedBus)));
+      dispatch(
+        updateField({
+          field: "selectedBus",
+          value: JSON.parse(storedSelectedBus),
+        })
+      );
     }
     const date = sessionStorage.getItem("date");
-    dispatch(setDate(date));
+    dispatch(updateField({ field: "date", value: date }));
   }, []);
-  const dispatch = useDispatch();
   const {
     date,
     busDetails,
@@ -34,6 +59,7 @@ export default function BusSeat() {
     showBoardingPoint,
     showDropingPoint,
   } = useSelector((state) => state.bus);
+  console.log(busDetails);
   const usenavigate = useNavigate();
   const bookticket = "bookticket";
   function isSeatSelected(seatNumber) {
@@ -52,10 +78,16 @@ export default function BusSeat() {
       const updatedSeats = currentSelectedSeats.filter(
         (seat) => seat !== seatNumber
       );
+      // dispatch(
+      //   setSelectedSeats({
+      //     ...selectedSeats,
+      //     [date]: updatedSeats,
+      //   })
+      // );
       dispatch(
-        setSelectedSeats({
-          ...selectedSeats,
-          [date]: updatedSeats,
+        updateField({
+          field: "selectedSeats",
+          value: { ...selectedSeats, [date]: updatedSeats },
         })
       );
       sessionStorage.setItem(
@@ -64,10 +96,19 @@ export default function BusSeat() {
       );
     } else {
       const updatedSeats = [...currentSelectedSeats, seatNumber];
+      // dispatch(
+      //   setSelectedSeats({
+      //     ...selectedSeats,
+      //     [date]: updatedSeats,
+      //   })
+      // );
       dispatch(
-        setSelectedSeats({
-          ...selectedSeats,
-          [date]: updatedSeats,
+        updateField({
+          field: "selectedSeats",
+          value: {
+            ...selectedSeats,
+            [date]: updatedSeats,
+          },
         })
       );
       sessionStorage.setItem(
@@ -101,7 +142,13 @@ export default function BusSeat() {
                   <select
                     value={showBoardingPoint}
                     onChange={(e) =>
-                      dispatch(setShowBoardingPoint(e.target.value))
+                      // dispatch(setShowBoardingPoint(e.target.value))
+                      dispatch(
+                        updateField({
+                          field: "showBoardingPoint",
+                          value: e.target.value,
+                        })
+                      )
                     }
                   >
                     <option value="">select Boarding Point</option>
@@ -114,7 +161,13 @@ export default function BusSeat() {
                   <select
                     value={showDropingPoint}
                     onChange={(e) =>
-                      dispatch(setShowDropingPoint(e.target.value))
+                      // dispatch(setShowDropingPoint(e.target.value))
+                      dispatch(
+                        updateField({
+                          field: "showDropingPoint",
+                          value: e.target.value,
+                        })
+                      )
                     }
                   >
                     <option value="">select Droping Point</option>

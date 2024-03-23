@@ -3,9 +3,10 @@ import React from "react";
 import "./SignUp.css";
 import { useNavigate } from "react-router-dom";
 import InputField from "../HomePage/Input";
-import axios from "axios";
+// import { registerUser } from "../../service/busService";
+import Api from "../../service/busService";
 import "react-toastify/dist/ReactToastify.css";
-import {toast} from "react-toastify";
+import { toast } from "react-toastify";
 export default function SignUp() {
   const [id, idchange] = useState("");
   const [name, namechange] = useState("");
@@ -15,17 +16,26 @@ export default function SignUp() {
   const [address, addresschange] = useState("");
   const [gender, genderchange] = useState("");
   const usenavigate = useNavigate();
+  const userUrl=process.env.REACT_APP_USER_URL;
   function handleSubmit(e) {
     e.preventDefault();
     let regObj = { id, name, password, email, phone, address, gender };
-    axios
-      .post("http://localhost:3000/user", regObj)
+    // registerUser(regObj)
+    //   .then(() => {
+    //     toast.success("Registered successfully.");
+    //     usenavigate("/login");
+    //   })
+    //   .catch((err) => {
+    //     alert("Failed: " + err.message);
+    //   });
+    const api = new Api();
+    api.post(userUrl, regObj)
       .then(() => {
         toast.success("Registered successfully.");
         usenavigate("/login");
       })
       .catch((err) => {
-        alert("Failed :" + err.message);
+        alert("Failed: " + err.message);
       });
   }
   return (
@@ -100,7 +110,7 @@ export default function SignUp() {
                 />
               </td>
             </tr>
-            <tr>  
+            <tr>
               <td>
                 <label>Password</label>
               </td>
@@ -138,7 +148,7 @@ export default function SignUp() {
             name="gender"
             value="Male"
           />
-          <label >Male</label>
+          <label>Male</label>
           <input
             type="radio"
             checked={gender === "Female"}

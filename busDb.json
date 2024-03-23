@@ -44,7 +44,8 @@
         {
           "date": "2024-03-22",
           "bookedSeats": [
-            10
+            10,
+            1
           ]
         },
         {
@@ -52,6 +53,86 @@
           "bookedSeats": [
             10
           ]
+        },
+        {
+          "date": "2024-03-23",
+          "bookedSeats": [
+            10,
+            2,
+            3
+          ]
+        },
+        {
+          "date": "2024-03-28",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-03-29",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-01",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-02",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-03",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-04",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-03-27",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-08",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-10",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-11",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-03-30",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-03-26",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-18",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-30",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-29",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-22",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-23",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-26",
+          "bookedSeats": []
         }
       ],
       "seat": 36,
@@ -107,6 +188,84 @@
           "bookedSeats": [
             10
           ]
+        },
+        {
+          "date": "2024-03-23",
+          "bookedSeats": [
+            10
+          ]
+        },
+        {
+          "date": "2024-03-28",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-03-29",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-01",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-02",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-03",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-04",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-03-27",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-08",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-10",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-11",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-03-30",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-03-26",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-18",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-30",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-29",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-22",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-23",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-26",
+          "bookedSeats": []
         }
       ],
       "seat": 40,
@@ -162,6 +321,84 @@
           "bookedSeats": [
             10
           ]
+        },
+        {
+          "date": "2024-03-23",
+          "bookedSeats": [
+            10
+          ]
+        },
+        {
+          "date": "2024-03-28",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-03-29",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-01",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-02",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-03",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-04",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-03-27",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-08",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-10",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-11",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-03-30",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-03-26",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-18",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-30",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-29",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-22",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-23",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-26",
+          "bookedSeats": []
         }
       ],
       "seat": 12,
@@ -217,6 +454,84 @@
           "bookedSeats": [
             10
           ]
+        },
+        {
+          "date": "2024-03-23",
+          "bookedSeats": [
+            10
+          ]
+        },
+        {
+          "date": "2024-03-28",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-03-29",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-01",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-02",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-03",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-04",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-03-27",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-08",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-10",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-11",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-03-30",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-03-26",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-18",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-30",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-29",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-22",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-23",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-26",
+          "bookedSeats": []
         }
       ],
       "seat": 40,
@@ -276,6 +591,84 @@
           "bookedSeats": [
             10
           ]
+        },
+        {
+          "date": "2024-03-23",
+          "bookedSeats": [
+            10
+          ]
+        },
+        {
+          "date": "2024-03-28",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-03-29",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-01",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-02",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-03",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-04",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-03-27",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-08",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-10",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-11",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-03-30",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-03-26",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-18",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-30",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-29",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-22",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-23",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-26",
+          "bookedSeats": []
         }
       ],
       "seat": 12,
@@ -331,6 +724,80 @@
           "bookedSeats": [
             10
           ]
+        },
+        {
+          "date": "2024-03-23",
+          "bookedSeats": [
+            10
+          ]
+        },
+        {
+          "date": "2024-03-28",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-03-29",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-01",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-02",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-03",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-04",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-03-27",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-10",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-11",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-03-30",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-03-26",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-18",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-30",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-29",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-22",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-23",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-26",
+          "bookedSeats": []
         }
       ],
       "seat": 36,
@@ -386,6 +853,80 @@
           "bookedSeats": [
             10
           ]
+        },
+        {
+          "date": "2024-03-23",
+          "bookedSeats": [
+            10
+          ]
+        },
+        {
+          "date": "2024-03-28",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-03-29",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-01",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-02",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-03",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-04",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-03-27",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-10",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-11",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-03-30",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-03-26",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-18",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-30",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-29",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-22",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-23",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-26",
+          "bookedSeats": []
         }
       ],
       "seat": 16,
@@ -441,6 +982,80 @@
           "bookedSeats": [
             10
           ]
+        },
+        {
+          "date": "2024-03-23",
+          "bookedSeats": [
+            10
+          ]
+        },
+        {
+          "date": "2024-03-28",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-03-29",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-01",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-02",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-03",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-04",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-03-27",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-10",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-11",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-03-30",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-03-26",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-18",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-30",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-29",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-22",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-23",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-26",
+          "bookedSeats": []
         }
       ],
       "seat": 16,

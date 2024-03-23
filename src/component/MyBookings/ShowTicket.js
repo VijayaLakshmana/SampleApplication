@@ -1,12 +1,14 @@
-import axios from "axios";
+// import { fetchBookings } from "../../service/busService";
 import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 import React from "react";
 import { formatPrice } from "../HomePage/Utils";
-export default function ShowTicket({status}) {
+import Api from "../../service/busService";
+export default function ShowTicket({ status }) {
   const [ticketDetails, setTicketDetails] = useState([]);
   const [userName, setUserName] = useState("");
+  const bookingUrl = process.env.REACT_APP_BOOKING_URL;
   function capitalizeFirstLetter(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
   }
@@ -15,9 +17,24 @@ export default function ShowTicket({status}) {
   useEffect(() => {
     let username = sessionStorage.getItem("username");
     setUserName(username);
-    axios
-      .get("http://localhost:3003/Bookings")
-      .then((res) => setTicketDetails([...res.data]));
+    // async function fetchBookingData() {
+    //   try {
+    //     const bookings = await fetchBookings();
+    //     setTicketDetails(bookings);
+    //   } catch (error) {
+    //     console.error("Error fetching bookings:", error);
+    //   }
+    // }
+    // fetchBookingData();
+    const api = new Api();
+    api
+      .get(bookingUrl)
+      .then((response) => {
+        setTicketDetails(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching bus data:", error);
+      });
   }, []);
   function handleCancelBooking() {
     usenavigate(ticketcancel);

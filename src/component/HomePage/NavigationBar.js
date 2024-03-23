@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import React from "react";
 import "react-toastify/dist/ReactToastify.css";
-import {toast} from "react-toastify";
+import { toast } from "react-toastify";
 
 export default function NavigationBar() {
   let [loginName, setloginName] = useState("");

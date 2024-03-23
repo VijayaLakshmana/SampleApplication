@@ -1,25 +1,63 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import axios from "axios";
+// import { fetchBookings } from "../../service/busService";
+import Api from "../../service/busService";
 import { useSelector, useDispatch } from "react-redux";
-import { setBusDetails } from "../../BusDetails";
+import { updateField } from "../../BusDetails";
+// import { setBusDetails } from "../../BusDetails";
 import { formatPrice } from "../HomePage/Utils";
+// import { fetchBusData } from "../../service/busService";
+// import { updateBusDetails } from "../../service/busService";
+// import { updateBooking } from "../../service/busService";
 import "react-toastify/dist/ReactToastify.css";
-import {toast} from "react-toastify";
+import { toast } from "react-toastify";
 export default function CancelTicket() {
   const [ticketDetails, setTicketDetails] = useState([]);
   const [userName, setUserName] = useState("");
   const dispatch = useDispatch();
   const { busDetails } = useSelector((state) => state.bus);
+  const busUrl = process.env.REACT_APP_BUS_URL;
+  const bookingUrl = process.env.REACT_APP_BOOKING_URL;
+  const api = new Api();
   useEffect(() => {
     let username = sessionStorage.getItem("username");
     setUserName(username);
-    axios
-      .get("http://localhost:3003/Bookings")
-      .then((res) => setTicketDetails([...res.data]));
-    axios
-      .get("http://localhost:3001/bus")
-      .then((res) => dispatch(setBusDetails([...res.data])));
+    // async function fetchBookingData() {
+    //   try {
+    //     const bookings = await fetchBookings();
+    //     setTicketDetails(bookings);
+    //   } catch (error) {
+    //     console.error("Error fetching bookings:", error);
+    //   }
+    // }
+    // fetchBookingData();
+    api
+      .get(bookingUrl)
+      .then((response) => {
+        setTicketDetails(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching bus data:", error);
+      });
+    // async function fetchData() {
+    //   try {
+    //     const data = await fetchBusData();
+    //     // dispatch(setBusDetails(data));
+    //     dispatch(updateField({ field: "busDetails", value: data }));
+    //   } catch (error) {
+    //     console.error("Error fetching bus data:", error);
+    //     toast.error("Failed to fetch bus data. Please try again later.");
+    //   }
+    // }
+    // fetchData();
+    api
+      .get(busUrl)
+      .then((response) => {
+        dispatch(updateField({ field: "busDetails", value: response.data }));
+      })
+      .catch((error) => {
+        console.error("Error fetching bus data:", error);
+      });
   }, []);
   function capitalizeFirstLetter(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
@@ -46,10 +84,28 @@ export default function CancelTicket() {
         return booking;
       });
       setTicketDetails(updatedTicketDetails);
-      axios.put(`http://localhost:3003/Bookings/${bookingId}`, {
-        ...updatedTicketDetails.find((booking) => booking.id === bookingId),
-      });
-
+      // const fetchDetails = async () => {
+      //   try {
+      //     await updateBooking(bookingId, updatedTicketDetails);
+      //     console.log("Booking details updated successfully!");
+      //   } catch (error) {
+      //     console.error("Error updating booking details:", error);
+      //     toast.error(
+      //       "Failed to update booking details. Please try again later."
+      //     );
+      //   }
+      // };
+      // fetchDetails();
+      api
+        .put(`${bookingUrl}/${bookingId}`, {
+          ...updatedTicketDetails.find((booking) => booking.id === bookingId),
+        })
+        .then(() =>
+          console.log(`Updated booking ${bookingId} with new details`)
+        )
+        .catch((error) =>
+          console.error(`Failed to update booking ${bookingId}:`, error)
+        );
       const updatedBusDetails = busDetails.map((prevBusDetails) => {
         if (busId === prevBusDetails.id) {
           const updatedDates = prevBusDetails.dates.map((date) => {
@@ -68,23 +124,30 @@ export default function CancelTicket() {
         }
         return prevBusDetails;
       });
-      dispatch(setBusDetails(updatedBusDetails));
-      axios
-        .put(`http://localhost:3001/bus/${busId}`, {
-          ...updatedBusDetails.find((booking) => booking.id === busId),
+      // dispatch(setBusDetails(updatedBusDetails));
+      dispatch(updateField({ field: "busDetails", value: updatedBusDetails }));
+      // const fetchData = async () => {
+      //   try {
+      //     await updateBusDetails(busId, updatedBusDetails);
+      //     console.log("Bus details updated successfully!");
+      //   } catch (error) {
+      //     console.error("Error updating bus details:", error);
+      //     toast.error("Failed to update bus details. Please try again later.");
+      //   }
+      // };
+      // fetchData();
+      api
+        .put(`${busUrl}/${busId}`, {
+          ...updatedBusDetails.find((bus) => bus.id === busId),
         })
-        .then((response) => {
-          if (response.status === 200) {
-            console.log("Bus details updated successfully");
-          } else {
-            throw new Error("Failed to update bus details");
-          }
-        })
-        .catch((error) => {
-          console.error("Error:", error);
-        });
+        .then(() => console.log(`Updated bus ${busId} with new details`))
+        .catch((error) =>
+          console.error(`Failed to update bus ${busId}:`, error)
+        );
     } else {
-      toast.error("You can't cancel ticket Befor 24hrs for Boarding");
+      toast.error(
+        "You can only cancel the ticket up to 24 hours before boarding."
+      );
     }
   }
   return (
@@ -98,7 +161,10 @@ export default function CancelTicket() {
           )
           .map((booking) => (
             <div key={booking.id} className="busBook">
-              <div className="ticketId">Ticket No: {booking.id}<br></br><br></br>
+              <div className="ticketId">
+                Ticket No: {booking.id}
+                <br></br>
+                <br></br>
                 <div>Date:{booking.date}</div>
               </div>
               <div className="busName">

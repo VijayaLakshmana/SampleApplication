@@ -1,30 +1,57 @@
 import { useEffect, useState } from "react";
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
+import Api from "../../service/busService";
+// import { loginUser } from "../../service/busService";
 import "./Login.css";
-import axios from "axios";
 import "react-toastify/dist/ReactToastify.css";
-import {toast} from "react-toastify";
+import { toast } from "react-toastify";
 export default function Login() {
   const [username, usernameupdate] = useState("");
   const [password, passwordupdate] = useState("");
   const usenavigate = useNavigate();
+  const userUrl = process.env.REACT_APP_USER_URL;
   useEffect(() => {
     sessionStorage.removeItem("username");
   }, []);
   function proceedLogin(e) {
     e.preventDefault();
     if (validate()) {
-      axios.get(`http://localhost:3000/user/${username}`).then((resp) => {
-        if (resp.data.password === password) {
-          toast.success("Logged in successfully");
-          sessionStorage.setItem("username", username);
-          usenavigate("/");
-        } else {
-          toast.error("Please Enter valid password");
-        }
-      }).catch(()=>toast.error("Please Enter valid username"));
+      // loginUser(username, password)
+      //   .then(() => {
+      //     toast.success("Logged in successfully");
+      //     sessionStorage.setItem("username", username);
+      //     usenavigate("/");
+      //   })
+      //   .catch((err) => {
+      //     toast.error(err.message);
+      //   });
+      const api = new Api();
+      api
+        .get(`${userUrl}/${username}`)
+        .then((resp) => {
+          if (resp.data.password === password) {
+            toast.success("Logged in successfully");
+            sessionStorage.setItem("username", username);
+            usenavigate("/");
+          } else {
+            toast.error("Please Enter valid password");
+          }
+        })
+        .catch(() => toast.error("Please Enter valid username"));
     }
+    // e.preventDefault();
+    // if (validate()) {
+    //   axios.get(`http://localhost:3000/user/${username}`).then((resp) => {
+    //     if (resp.data.password === password) {
+    //       toast.success("Logged in successfully");
+    //       sessionStorage.setItem("username", username);
+    //       usenavigate("/");
+    //     } else {
+    //       toast.error("Please Enter valid password");
+    //     }
+    //   }).catch(()=>toast.error("Please Enter valid username"));
+    // }
   }
   function validate() {
     let result = true;

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import React from "react";
-import axios from "axios";
+// import axios from "axios";
 import NavigationBar from "../HomePage/NavigationBar";
 import SearchField from "../HomePage/SearchField";
 import InputField from "../HomePage/Input";
@@ -9,15 +9,17 @@ import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { formatPrice } from "../HomePage/Utils";
 import "react-toastify/dist/ReactToastify.css";
-import {toast} from "react-toastify";
-
-import {
-  setFrom,
-  setTo,
-  setDate,
-  setBusDetails,
-  setSelectedBus,
-} from "../../BusDetails";
+import { toast } from "react-toastify";
+// import { fetchBusData } from "../../service/busService";
+import Api from "../../service/busService";
+// import {
+//   setFrom,
+//   setTo,
+//   setDate,
+//   setBusDetails,
+//   setSelectedBus,
+// } from "../../BusDetails";
+import { updateField } from "../../BusDetails";
 export default function Search() {
   const [showACBus, setShowACBus] = useState(false);
   const [showNonACBus, setShowNonACBus] = useState(false);
@@ -33,17 +35,46 @@ export default function Search() {
   const { from, to, date, busDetails } = useSelector((state) => state.bus);
   const usenavigate = useNavigate();
   const busseat = "busseat";
+  const busUrl = process.env.REACT_APP_BUS_URL;
+  const api = new Api();
   useEffect(() => {
-    axios.get("http://localhost:3001/bus").then((res) => {
-      dispatch(setBusDetails([...res.data]));
-    });
+    // async function fetchData() {
+    //   try {
+    //     const data = await fetchBusData();
+    //     dispatch(updateField({ field: "busDetails", value: data }));
+    //   } catch (error) {
+    //     console.error("Error fetching bus data:", error);
+    //     toast.error("Failed to fetch bus data. Please try again later.");
+    //   }
+    // }
+    //   busAPI.get("/bus")
+    // .then((data) => {
+    //   console.log("GET success:", data);
+    //   dispatch(updateField({ field: "busDetails", value: data }));
+    // })
+    // .catch(error => console.error("GET error:", error));
+    //   busAPI.get("/bus")
+    //  .then((data) => console.log("GET success:", data),
+    //  dispatch(updateField({ field: "busDetails", value: data })))
+    //  .catch(error => console.error("GET error:", error));
+    // fetchData();
+    api
+      .get(busUrl)
+      .then((response) => {
+        dispatch(updateField({ field: "busDetails", value: response.data }));
+      })
+      .catch((error) => {
+        console.error("Error fetching bus data:", error);
+      });
     const from = sessionStorage.getItem("from");
-    dispatch(setFrom(from));
+    dispatch(updateField({ field: "from", value: from }));
     const to = sessionStorage.getItem("to");
-    dispatch(setTo(to));
+    dispatch(updateField({ field: "to", value: to }));
     const date = sessionStorage.getItem("date");
-    dispatch(setDate(date));
+    dispatch(updateField({ field: "date", value: date }));
   }, []);
+  console.log();
+  console.log(busDetails);
   function capitalizeFirstLetter(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
   }
@@ -123,35 +154,73 @@ export default function Search() {
     if (username === "" || username === null) {
       return toast.error("Login in before Book Tickets");
     }
-    dispatch(setSelectedBus(bus));
+    dispatch(updateField({ field: "selectedBus", value: bus }));
     sessionStorage.setItem("selectedBus", JSON.stringify(bus));
     usenavigate(`${busseat}`);
   }
+  // busDetails.forEach((bus) => {
+  //   if (
+  //     bus.dates.length === 0 ||
+  //     !bus.dates.find((dateObj) => dateObj.date === date)
+  //   ) {
+  //     axios.put(
+  //       `http://localhost:3001/bus/${bus.id}`,
+  //       {
+  //         ...bus,
+  //         dates: [...bus.dates, { date: date, bookedSeats: [] }],
+  //       },
+  //       {
+  //         headers: { "content-type": "application/json" },
+  //       }
+  //     );
+  //   }
+  // });
   busDetails.forEach((bus) => {
     if (
       bus.dates.length === 0 ||
       !bus.dates.find((dateObj) => dateObj.date === date)
     ) {
-      axios.put(
-        `http://localhost:3001/bus/${bus.id}`,
-        {
+      api
+        .put(`${busUrl}/${bus.id}`, {
           ...bus,
-          dates: [...bus.dates, { date: date, bookedSeats: [10] }],
-        },
-        {
-          headers: { "content-type": "application/json" },
-        }
-      );
+          dates: [...bus.dates, { date: date, bookedSeats: [] }],
+        })
+        .then(() => console.log(`Updated bus ${bus.id} with new date`))
+        .catch((error) =>
+          console.error(`Failed to update bus ${bus.id}:`, error)
+        );
     }
   });
-  busDetails.forEach((bus) => {
-    if (
-      bus.dates.length === 0 ||
-      !bus.dates.find((dateObj) => dateObj.date === date)
-    ) {
-      bus.dates.push({ date: date, bookedSeats: [10] });
-    }
-  });
+  console.log(busDetails);
+  // busDetails((prevBusDetails) => {
+
+  //   return prevBusDetails.map((bus) => {
+  //     if (
+  //       bus.dates.length === 0 ||
+  //       !bus.dates.find((dateObj) => dateObj.date === date)
+  //     ) {
+  //       return {
+  //         ...bus,
+  //         dates: [...bus.dates, { date: date, bookedSeats: [] }],
+  //       };
+  //     }
+  //     return bus;
+  //   });
+  // });
+  // dispatch(updateField({ field: "busDetails", value: ((busDetails) => {
+  //   return busDetails.map((bus) => {
+  //     if (
+  //       bus.dates.length === 0 ||
+  //       !bus.dates.find((dateObj) => dateObj.date === date)
+  //     ) {
+  //       return {
+  //         ...bus,
+  //         dates: [...bus.dates, { date: date, bookedSeats: [] }],
+  //       };
+  //     }
+  //     return bus;
+  //   });
+  // })}));
   return (
     <div className="searchLayout">
       <div className="component1">
