@@ -3,10 +3,10 @@ import React from "react";
 import "./SignUp.css";
 import { useNavigate } from "react-router-dom";
 import InputField from "../HomePage/Input";
-// import { registerUser } from "../../service/busService";
 import Api from "../../service/busService";
 import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";
+import bcrypt from "bcryptjs";
 export default function SignUp() {
   const [id, idchange] = useState("");
   const [name, namechange] = useState("");
@@ -16,20 +16,22 @@ export default function SignUp() {
   const [address, addresschange] = useState("");
   const [gender, genderchange] = useState("");
   const usenavigate = useNavigate();
-  const userUrl=process.env.REACT_APP_USER_URL;
-  function handleSubmit(e) {
+  const userUrl = process.env.REACT_APP_USER_URL;
+  async function handleSubmit(e) {
     e.preventDefault();
-    let regObj = { id, name, password, email, phone, address, gender };
-    // registerUser(regObj)
-    //   .then(() => {
-    //     toast.success("Registered successfully.");
-    //     usenavigate("/login");
-    //   })
-    //   .catch((err) => {
-    //     alert("Failed: " + err.message);
-    //   });
+    const hashedPassword = await bcrypt.hash(password, 10);
+    let regObj = {
+      id,
+      name,
+      password: hashedPassword,
+      email,
+      phone,
+      address,
+      gender,
+    };
     const api = new Api();
-    api.post(userUrl, regObj)
+    api
+      .post(userUrl, regObj)
       .then(() => {
         toast.success("Registered successfully.");
         usenavigate("/login");

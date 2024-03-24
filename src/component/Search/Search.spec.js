@@ -8,6 +8,7 @@ import userEvent from "@testing-library/user-event";
 import axios from "axios";
 import "@testing-library/jest-dom";
 
+jest.mock("react-toastify/dist/ReactToastify.css", () => ({}));
 jest.mock("./search.css", () => ({}));
 const mockStore = configureStore([]);
 const mockBusDetails = [
@@ -102,6 +103,10 @@ describe("Search component", () => {
     fireEvent.change(maxPriceInput, { target: { value: 200 } });
     expect(minPriceInput).toHaveValue(100);
     expect(maxPriceInput).toHaveValue(200);
+    fireEvent.change(minPriceInput, { target: { value: -100 } });
+    fireEvent.change(maxPriceInput, { target: { value: -200 } });
+    expect(minPriceInput).toHaveValue(-100);
+    expect(maxPriceInput).toHaveValue(-200);
   });
   test("handles boarding and dropping point changes", async () => {
     await renderSearchComponent();
@@ -111,6 +116,10 @@ describe("Search component", () => {
     const droppingPointCheckbox = screen.getByLabelText("Mattuthavani");
     fireEvent.click(droppingPointCheckbox);
     expect(droppingPointCheckbox.checked).toEqual(true);
+    fireEvent.click(boardingPointCheckbox);
+    fireEvent.click(droppingPointCheckbox);
+    expect(boardingPointCheckbox.checked).toEqual(false);
+    expect(droppingPointCheckbox.checked).toEqual(false);
   });
   test("handles the ac and nonac changes and handles the seater and sleeper changes", async () => {
     await renderSearchComponent();
@@ -126,8 +135,16 @@ describe("Search component", () => {
     const sleeperCheckbox = screen.getByLabelText("sleeper");
     fireEvent.click(sleeperCheckbox);
     expect(sleeperCheckbox.checked).toEqual(true);
+    fireEvent.click(acCheckbox);
+    fireEvent.click(nonacCheckbox);
+    expect(acCheckbox.checked).toEqual(false);
+    expect(nonacCheckbox.checked).toEqual(false);
+    fireEvent.click(seaterCheckbox);
+    fireEvent.click(sleeperCheckbox);
+    expect(seaterCheckbox.checked).toEqual(false);
+    expect(sleeperCheckbox.checked).toEqual(false);
   });
-  test("handles booking", async() => {
+  test("handles booking", async () => {
     await renderSearchComponent();
     fireEvent.click(screen.getByText("bookticket"));
   });

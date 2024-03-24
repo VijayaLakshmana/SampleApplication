@@ -3,9 +3,6 @@ import InputField from "../HomePage/Input";
 import { useEffect } from "react";
 import NavigationBar from "../HomePage/NavigationBar";
 import React from "react";
-// import axios from "axios";
-// import { bookTicket } from "../../service/busService";
-// import { fetchBusData } from "../../service/busService";
 import Api from "../../service/busService";
 import "./BookTicket.css";
 import { updateField } from "../../BusDetails";
@@ -13,28 +10,11 @@ import { useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";
 import { useSelector, useDispatch } from "react-redux";
-// import {
-//   setDate,
-//   setBusDetails,
-//   setSelectedBus,
-//   setSelectedSeats,
-// } from "../../BusDetails";
 export default function TicketBooking() {
   const busUrl = process.env.REACT_APP_BUS_URL;
   const bookingUrl = process.env.REACT_APP_BOOKING_URL;
   const api = new Api();
   useEffect(() => {
-    // async function fetchData() {
-    //   try {
-    //     const data = await fetchBusData();
-    //     // dispatch(setBusDetails(data));
-    //     dispatch(updateField({ field: "busDetails", value: data }));
-    //   } catch (error) {
-    //     console.error("Error fetching bus data:", error);
-    //     toast.error("Failed to fetch bus data. Please try again later.");
-    //   }
-    // }
-    // fetchData();
     api
       .get(busUrl)
       .then((response) => {
@@ -45,7 +25,6 @@ export default function TicketBooking() {
       });
     const storedSelectedBus = sessionStorage.getItem("selectedBus");
     if (storedSelectedBus) {
-      // dispatch(setSelectedBus(JSON.parse(storedSelectedBus)));
       dispatch(
         updateField({
           field: "selectedBus",
@@ -55,13 +34,11 @@ export default function TicketBooking() {
     }
     const storedSeat = sessionStorage.getItem("selectedSeats");
     if (storedSeat) {
-      // dispatch(setSelectedSeats(JSON.parse(storedSeat)));
       dispatch(
         updateField({ field: "selectedSeats", value: JSON.parse(storedSeat) })
       );
     }
     const date = sessionStorage.getItem("date");
-    // dispatch(setDate(date));
     dispatch(updateField({ field: "date", value: date }));
     let username = sessionStorage.getItem("username");
     setUsername(username);
@@ -89,20 +66,6 @@ export default function TicketBooking() {
   function handleBookTicket() {
     if (selectedBus && date) {
       busDetails.map((bus) => {
-        // if (bus.id === selectedBus.id) {
-        //   axios.put(`http://localhost:3001/bus/${bus.id}`, {
-        //     ...bus,
-        //     dates: bus.dates.map((dateObj) => {
-        //       if (dateObj.date === date) {
-        //         return {
-        //           ...dateObj,
-        //           bookedSeats: [...dateObj.bookedSeats, ...selectedSeats[date]],
-        //         };
-        //       }
-        //       return dateObj;
-        //     }),
-        //   });
-        // }
         if (bus.id === selectedBus.id) {
           api
             .put(`${busUrl}/${bus.id}`, {
@@ -156,32 +119,12 @@ export default function TicketBooking() {
         passenger: passengerDetails[seatNumber],
       })),
     };
-    // dispatch(setSelectedSeats({ ...selectedSeats, [date]: [] }));
     dispatch(
       updateField({
         field: "selectedSeats",
         value: { ...selectedSeats, [date]: [] },
       })
     );
-    // axios
-    //   .post("http://localhost:3003/Bookings", newBooking, {
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //   })
-    //   .then(() => {
-    //     toast.success("Ticket booked");
-    //   });
-    // async function handleBooking(newBooking) {
-    //   try {
-    //     await bookTicket(newBooking);
-    //     toast.success("Ticket booked");
-    //   } catch (error) {
-    //     console.error("Error booking ticket:", error);
-    //     toast.error("Failed to book ticket. Please try again later.");
-    //   }
-    // }
-    // handleBooking(newBooking);
     api
       .post(bookingUrl, newBooking)
       .then(() => {

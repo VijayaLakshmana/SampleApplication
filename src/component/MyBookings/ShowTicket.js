@@ -1,4 +1,3 @@
-// import { fetchBookings } from "../../service/busService";
 import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
@@ -17,15 +16,6 @@ export default function ShowTicket({ status }) {
   useEffect(() => {
     let username = sessionStorage.getItem("username");
     setUserName(username);
-    // async function fetchBookingData() {
-    //   try {
-    //     const bookings = await fetchBookings();
-    //     setTicketDetails(bookings);
-    //   } catch (error) {
-    //     console.error("Error fetching bookings:", error);
-    //   }
-    // }
-    // fetchBookingData();
     const api = new Api();
     api
       .get(bookingUrl)

@@ -4,7 +4,6 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { updateField } from "../../BusDetails";
-// import { setFrom, setTo, setDate } from "../../BusDetails";
 import React from "react";
 export default function SearchField() {
   const [localFrom, setLocalFrom] = useState("");
@@ -40,9 +39,6 @@ export default function SearchField() {
     const from = sessionStorage.getItem("from");
     const to = sessionStorage.getItem("to");
     const date = sessionStorage.getItem("date");
-    // dispatch(setFrom(from));
-    // dispatch(setTo(to));
-    // dispatch(setDate(date));
     dispatch(updateField({ field: "from", value: from }));
     dispatch(updateField({ field: "to", value: to }));
     dispatch(updateField({ field: "date", value: date }));

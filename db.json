@@ -3,7 +3,7 @@
     {
       "id": "vj",
       "name": "vijay",
-      "password": "Vijay@102",
+      "password": "$2a$10$Cvzr3bHesrCmH./nsLKAHO//iEFlP1zGCGubgt6Jsu31nD0.fOaba",
       "email": "vijayalakshmanan1107@gmail.com",
       "phone": "839484994",
       "address": "tirunelveli",
@@ -12,7 +12,7 @@
     {
       "id": "ram",
       "name": "ram",
-      "password": "Ram",
+      "password": "$2a$10$Cvzr3bHesrCmH./nsLKAHO//iEFlP1zGCGubgt6Jsu31nD0.fOaba",
       "email": "ram@gamil.com",
       "phone": "3333333",
       "address": "kdkkd",
@@ -21,7 +21,7 @@
     {
       "id": "abi",
       "name": "abi",
-      "password": "VIJAY@102",
+      "password": "$2a$10$Cvzr3bHesrCmH./nsLKAHO//iEFlP1zGCGubgt6Jsu31nD0.fOaba",
       "email": "abi@gmail",
       "phone": "8484784842",
       "address": "D",
@@ -30,10 +30,19 @@
     {
       "id": "krishna",
       "name": "krish",
-      "password": "VIJAY@102",
+      "password": "$2a$10$Cvzr3bHesrCmH./nsLKAHO//iEFlP1zGCGubgt6Jsu31nD0.fOaba",
       "email": "krish@gmail.com",
       "phone": "8595958738",
       "address": "2/256 SELVE NAGAR",
+      "gender": "Male"
+    },
+    {
+      "id": "hari",
+      "name": "hari",
+      "password": "$2a$10$Cvzr3bHesrCmH./nsLKAHO//iEFlP1zGCGubgt6Jsu31nD0.fOaba",
+      "email": "hari@gmail.com",
+      "phone": "3333455443",
+      "address": "d",
       "gender": "Male"
     }
   ]

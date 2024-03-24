@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import React from "react";
-// import axios from "axios";
 import NavigationBar from "../HomePage/NavigationBar";
 import SearchField from "../HomePage/SearchField";
 import InputField from "../HomePage/Input";
@@ -10,15 +9,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { formatPrice } from "../HomePage/Utils";
 import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";
-// import { fetchBusData } from "../../service/busService";
 import Api from "../../service/busService";
-// import {
-//   setFrom,
-//   setTo,
-//   setDate,
-//   setBusDetails,
-//   setSelectedBus,
-// } from "../../BusDetails";
 import { updateField } from "../../BusDetails";
 export default function Search() {
   const [showACBus, setShowACBus] = useState(false);
@@ -38,26 +29,6 @@ export default function Search() {
   const busUrl = process.env.REACT_APP_BUS_URL;
   const api = new Api();
   useEffect(() => {
-    // async function fetchData() {
-    //   try {
-    //     const data = await fetchBusData();
-    //     dispatch(updateField({ field: "busDetails", value: data }));
-    //   } catch (error) {
-    //     console.error("Error fetching bus data:", error);
-    //     toast.error("Failed to fetch bus data. Please try again later.");
-    //   }
-    // }
-    //   busAPI.get("/bus")
-    // .then((data) => {
-    //   console.log("GET success:", data);
-    //   dispatch(updateField({ field: "busDetails", value: data }));
-    // })
-    // .catch(error => console.error("GET error:", error));
-    //   busAPI.get("/bus")
-    //  .then((data) => console.log("GET success:", data),
-    //  dispatch(updateField({ field: "busDetails", value: data })))
-    //  .catch(error => console.error("GET error:", error));
-    // fetchData();
     api
       .get(busUrl)
       .then((response) => {
@@ -158,23 +129,6 @@ export default function Search() {
     sessionStorage.setItem("selectedBus", JSON.stringify(bus));
     usenavigate(`${busseat}`);
   }
-  // busDetails.forEach((bus) => {
-  //   if (
-  //     bus.dates.length === 0 ||
-  //     !bus.dates.find((dateObj) => dateObj.date === date)
-  //   ) {
-  //     axios.put(
-  //       `http://localhost:3001/bus/${bus.id}`,
-  //       {
-  //         ...bus,
-  //         dates: [...bus.dates, { date: date, bookedSeats: [] }],
-  //       },
-  //       {
-  //         headers: { "content-type": "application/json" },
-  //       }
-  //     );
-  //   }
-  // });
   busDetails.forEach((bus) => {
     if (
       bus.dates.length === 0 ||
@@ -192,35 +146,6 @@ export default function Search() {
     }
   });
   console.log(busDetails);
-  // busDetails((prevBusDetails) => {
-
-  //   return prevBusDetails.map((bus) => {
-  //     if (
-  //       bus.dates.length === 0 ||
-  //       !bus.dates.find((dateObj) => dateObj.date === date)
-  //     ) {
-  //       return {
-  //         ...bus,
-  //         dates: [...bus.dates, { date: date, bookedSeats: [] }],
-  //       };
-  //     }
-  //     return bus;
-  //   });
-  // });
-  // dispatch(updateField({ field: "busDetails", value: ((busDetails) => {
-  //   return busDetails.map((bus) => {
-  //     if (
-  //       bus.dates.length === 0 ||
-  //       !bus.dates.find((dateObj) => dateObj.date === date)
-  //     ) {
-  //       return {
-  //         ...bus,
-  //         dates: [...bus.dates, { date: date, bookedSeats: [] }],
-  //       };
-  //     }
-  //     return bus;
-  //   });
-  // })}));
   return (
     <div className="searchLayout">
       <div className="component1">

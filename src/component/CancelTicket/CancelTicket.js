@@ -1,14 +1,9 @@
 import React from "react";
 import { useEffect, useState } from "react";
-// import { fetchBookings } from "../../service/busService";
 import Api from "../../service/busService";
 import { useSelector, useDispatch } from "react-redux";
 import { updateField } from "../../BusDetails";
-// import { setBusDetails } from "../../BusDetails";
 import { formatPrice } from "../HomePage/Utils";
-// import { fetchBusData } from "../../service/busService";
-// import { updateBusDetails } from "../../service/busService";
-// import { updateBooking } from "../../service/busService";
 import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";
 export default function CancelTicket() {
@@ -22,15 +17,6 @@ export default function CancelTicket() {
   useEffect(() => {
     let username = sessionStorage.getItem("username");
     setUserName(username);
-    // async function fetchBookingData() {
-    //   try {
-    //     const bookings = await fetchBookings();
-    //     setTicketDetails(bookings);
-    //   } catch (error) {
-    //     console.error("Error fetching bookings:", error);
-    //   }
-    // }
-    // fetchBookingData();
     api
       .get(bookingUrl)
       .then((response) => {
@@ -39,17 +25,6 @@ export default function CancelTicket() {
       .catch((error) => {
         console.error("Error fetching bus data:", error);
       });
-    // async function fetchData() {
-    //   try {
-    //     const data = await fetchBusData();
-    //     // dispatch(setBusDetails(data));
-    //     dispatch(updateField({ field: "busDetails", value: data }));
-    //   } catch (error) {
-    //     console.error("Error fetching bus data:", error);
-    //     toast.error("Failed to fetch bus data. Please try again later.");
-    //   }
-    // }
-    // fetchData();
     api
       .get(busUrl)
       .then((response) => {
@@ -84,18 +59,6 @@ export default function CancelTicket() {
         return booking;
       });
       setTicketDetails(updatedTicketDetails);
-      // const fetchDetails = async () => {
-      //   try {
-      //     await updateBooking(bookingId, updatedTicketDetails);
-      //     console.log("Booking details updated successfully!");
-      //   } catch (error) {
-      //     console.error("Error updating booking details:", error);
-      //     toast.error(
-      //       "Failed to update booking details. Please try again later."
-      //     );
-      //   }
-      // };
-      // fetchDetails();
       api
         .put(`${bookingUrl}/${bookingId}`, {
           ...updatedTicketDetails.find((booking) => booking.id === bookingId),
@@ -124,18 +87,7 @@ export default function CancelTicket() {
         }
         return prevBusDetails;
       });
-      // dispatch(setBusDetails(updatedBusDetails));
       dispatch(updateField({ field: "busDetails", value: updatedBusDetails }));
-      // const fetchData = async () => {
-      //   try {
-      //     await updateBusDetails(busId, updatedBusDetails);
-      //     console.log("Bus details updated successfully!");
-      //   } catch (error) {
-      //     console.error("Error updating bus details:", error);
-      //     toast.error("Failed to update bus details. Please try again later.");
-      //   }
-      // };
-      // fetchData();
       api
         .put(`${busUrl}/${busId}`, {
           ...updatedBusDetails.find((bus) => bus.id === busId),
