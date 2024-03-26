@@ -23,7 +23,7 @@ span {
   float: right;
 }
 .content2 {
-  background-image: url(../../assets/SearchBackground.webp);
+  background-image: url("../../assets/SearchBackground.webp");
   background-repeat: no-repeat;
   background-size: 100% 100%;
   display: flex;
@@ -40,13 +40,13 @@ span {
   padding-left: 25px;
 }
 .icon1 {
-  background-image: url(../../assets/from.png);
+  background-image: url("../../assets/from.png");
 }
 .icon2 {
-  background-image: url(../../assets/to.png);
+  background-image: url("../../assets/to.png");
 }
 .appLogo {
-  background-image: url(../../assets/BusLogo.jpg);
+  background-image: url("../../assets/BusLogo.jpg");
 }
 .content1 span {
   padding-right: 85px;
@@ -63,13 +63,13 @@ span {
   padding-left: 30px;
 }
 #login {
-  background-image: url(../../assets/login.png);
+  background-image: url("../../assets/login.png");
 }
 #ticketCancel {
-  background-image: url(../../assets/CancelTicket.png);
+  background-image: url("../../assets/CancelTicket.png");
 }
 #ticket {
-  background-image: url(../../assets/ViewTicket.png);
+  background-image: url("../../assets/ViewTicket.png");
 }
 .searchform input {
   border: 1px solid rgb(154, 151, 155);

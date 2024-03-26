@@ -14,25 +14,24 @@ export default function Login() {
   useEffect(() => {
     sessionStorage.removeItem("username");
   }, []);
-  function proceedLogin(e) {
+  async function proceedLogin(e) {
     e.preventDefault();
     if (validate()) {
-      const api = new Api();
-      api
-        .get(`${userUrl}/${username}`)
-        .then((resp) => {
-          const hashedPasswordFromServer = resp.data.password;
-          bcrypt.compare(password, hashedPasswordFromServer, (err, result) => {
-            if (result) {
-              toast.success("Logged in successfully");
-              sessionStorage.setItem("username", username);
-              usenavigate("/");
-            } else {
-              toast.error("Please Enter valid password");
-            }
-          });
-        })
-        .catch(() => toast.error("Please Enter valid username"));
+      try {
+        const api = new Api();
+        const resp = await api.get(`${userUrl}/${username}`);
+        const hashedPasswordFromServer = resp.data.password;
+        const result = await bcrypt.compare(password, hashedPasswordFromServer);
+        if (result) {
+          toast.success("Logged in successfully");
+          sessionStorage.setItem("username", username);
+          usenavigate("/");
+        } else {
+          toast.error("Please enter a valid password");
+        }
+      } catch (err) {
+        toast.error("Please enter a valid username");
+      }
     }
   }
   function validate() {

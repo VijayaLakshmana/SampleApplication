@@ -4,21 +4,23 @@ import React from "react";
 import Api from "../../service/busService";
 import { useSelector, useDispatch } from "react-redux";
 import "react-toastify/dist/ReactToastify.css";
-import { updateField } from "../../BusDetails";
+import { updateField } from "../../Redux/BusDetails";
 import { toast } from "react-toastify";
 const busUrl = process.env.REACT_APP_BUS_URL;
-const api = new Api();
 export default function BusSeat() {
   const dispatch = useDispatch();
   useEffect(() => {
-    api
-      .get(busUrl)
-      .then((response) => {
+    const api = new Api();
+    async function fetchData(){
+      try {
+        const response = await api.get(busUrl);
         dispatch(updateField({ field: "busDetails", value: response.data }));
-      })
-      .catch((error) => {
-        console.error("Error fetching bus data:", error);
-      });
+      }
+      catch (error) {
+        toast.error("Error fetching data:", error);
+      }
+    }
+    fetchData();
     const storedSelectedBus = sessionStorage.getItem("selectedBus");
     if (storedSelectedBus) {
       dispatch(
@@ -39,9 +41,7 @@ export default function BusSeat() {
     showBoardingPoint,
     showDropingPoint,
   } = useSelector((state) => state.bus);
-  console.log(busDetails);
   const usenavigate = useNavigate();
-  const bookticket = "bookticket";
   function isSeatSelected(seatNumber) {
     return selectedSeats[date]?.includes(seatNumber);
   }
@@ -93,10 +93,14 @@ export default function BusSeat() {
     } else if (showBoardingPoint.length === 0) {
       return toast.error("Give the Boarding Point");
     }
-    usenavigate(`${bookticket}`);
+    dispatch(updateField({ field: "showBoardingPoint", value: showBoardingPoint }));
+    sessionStorage.setItem("BoardingPoint",(showBoardingPoint));
+    dispatch(updateField({ field: "showDropingPoint", value: showDropingPoint }));
+    sessionStorage.setItem("DropingPoint",(showDropingPoint));
+    usenavigate("bookticket");
   }
   return (
-    <div className="seatContainer">
+    <div >
       {busDetails.map((bus) =>
         bus.dates.map((dateObj) =>
           dateObj.date === date ? (
@@ -145,7 +149,7 @@ export default function BusSeat() {
                   </select>
                   <br />
                   <br />
-                  <div className="seatContainer">
+                  <div>
                     {Array.from(
                       { length: Math.ceil(bus.seat / 4) },
                       (_, rowIndex) => (

@@ -9,7 +9,7 @@ import MyBookings from "./component/MyBookings/MyBooking";
 import CancelTicket from "./component/CancelTicket/CancelTicket";
 import PrivateRoute from "./component/HomePage/PrivateRoute";
 import { Provider } from "react-redux";
-import store from "./store";
+import store from "./Redux/store";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 function App() {
   return (

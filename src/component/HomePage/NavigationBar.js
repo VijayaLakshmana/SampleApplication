@@ -4,10 +4,10 @@ import React from "react";
 import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";
 
-export default function NavigationBar() {
-  let [loginName, setloginName] = useState("");
+export default React.memo( function NavigationBar() {
+  const [loginName, setloginName] = useState("");
   useEffect(() => {
-    let username = sessionStorage.getItem("username");
+    const username = sessionStorage.getItem("username");
     if (username === "" || username === null) {
       setloginName("Login");
     } else {
@@ -20,6 +20,7 @@ export default function NavigationBar() {
       toast.error(`Please login to  ${name}`);
     }
   }
+
   return (
     <>
       <div className="content1">
@@ -46,4 +47,4 @@ export default function NavigationBar() {
       </div>
     </>
   );
-}
+});

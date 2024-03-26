@@ -10,7 +10,19 @@
 .container2 {
   background-color: rgb(205, 83, 83);
 }
+.passengerForm{
+  display: flex;
+  flex-direction: column ;
+  align-items: center;
+  border: 1px solid rgb(192, 172, 172);
+  margin: 10px 450px 10px 450px;
+  height: 590px;
+}
 .bookTicketButton{
   height: 40px;
   width: 100px;
+}
+.destingationFont{
+ margin-top: 12px;
+  font-size: 30px;
 }

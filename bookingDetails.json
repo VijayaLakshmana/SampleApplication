@@ -1,579 +1,103 @@
 {
   "Bookings": [
     {
-      "id": "1710223533471",
+      "id": "1711446509750",
       "username": "vj",
-      "busName": "Tvs travel",
-      "date": "2024-03-12",
-      "from": "tirunelveli",
-      "boardingPoint": "New Bus Stand",
-      "fromTime": "12:00pm",
-      "to": "madurai",
-      "dropingPoint": "Mattuthavani",
-      "toTime": "22:00pm",
-      "price": 2000,
-      "connection": "0",
-      "hrs": "10h 00m",
-      "bookingStatus": "Completed",
+      "busName": "Arjun travel",
+      "date": "2024-03-29",
+      "from": "chennai",
+      "boardingPoint": "Kilampakkam",
+      "fromTime": "10:00am",
+      "to": "tirunelveli",
+      "dropingPoint": "New Bus Stand",
+      "toTime": "19:00pm",
+      "price": 2400,
+      "connection": "2",
+      "hrs": "09h 00m",
+      "bookingStatus": "booked",
       "seats": [
         {
           "seat": 1,
           "passenger": {
-            "name": "hari",
-            "email": "hari@gmail.com",
-            "phone": "3234223423"
+            "name": "manoj",
+            "email": "manoj@gmail.com",
+            "phone": "3888484849",
+            "status": "canceled"
           }
         },
         {
           "seat": 2,
           "passenger": {
-            "name": "siva",
-            "email": "siva@gmail.com",
-            "phone": "3234234234"
+            "name": "abi",
+            "email": "abi@gmail.com",
+            "phone": "3343433434",
+            "status": "booked"
           }
         }
       ]
     },
     {
-      "id": "1710230535662",
+      "id": "1711446579961",
       "username": "vj",
-      "busName": "Aravind travel",
-      "date": "2024-03-12",
-      "from": "tirunelveli",
-      "boardingPoint": "New Bus Stand",
-      "fromTime": "14:00pm",
-      "to": "madurai",
-      "dropingPoint": "Mattuthavani",
-      "toTime": "17:00pm",
-      "price": 400,
-      "connection": "1",
-      "hrs": "03h 00m",
-      "bookingStatus": "cancelled",
-      "seats": []
-    },
-    {
-      "id": "1710230599331",
-      "username": "vj",
-      "busName": "Aravind travel",
-      "date": "2024-03-11",
-      "from": "tirunelveli",
-      "boardingPoint": "New Bus Stand",
-      "fromTime": "08:00am",
-      "to": "madurai",
-      "dropingPoint": "Aarappalyam",
-      "toTime": "11:00am",
-      "price": 800,
-      "connection": "5",
-      "hrs": "03h 00m",
-      "bookingStatus": "Completed",
+      "busName": "Arjun travel",
+      "date": "2024-03-28",
+      "from": "chennai",
+      "boardingPoint": "Kilampakkam",
+      "fromTime": "10:00am",
+      "to": "tirunelveli",
+      "dropingPoint": "New Bus Stand",
+      "toTime": "19:00pm",
+      "price": 2400,
+      "connection": "2",
+      "hrs": "09h 00m",
+      "bookingStatus": "canceled",
       "seats": [
         {
           "seat": 1,
           "passenger": {
             "name": "sam",
             "email": "sam@gmail.com",
-            "phone": "342423422"
+            "phone": "3834343434",
+            "status": "canceled"
+          }
+        },
+        {
+          "seat": 6,
+          "passenger": {
+            "name": "som",
+            "email": "som@gmail.com",
+            "phone": "3774883783",
+            "status": "canceled"
           }
         }
       ]
     },
     {
-      "id": "1710230847582",
+      "id": "1711454205678",
       "username": "vj",
-      "busName": "Tvs travel",
-      "date": "2024-03-12",
-      "from": "tirunelveli",
-      "boardingPoint": "New Bus Stand",
-      "fromTime": "12:00pm",
-      "to": "madurai",
-      "dropingPoint": "Mattuthavani",
-      "toTime": "22:00pm",
-      "price": 1000,
-      "connection": "0",
-      "hrs": "10h 00m",
-      "bookingStatus": "cancelled",
-      "seats": []
-    },
-    {
-      "id": "1710230897139",
-      "username": "ram",
-      "busName": "Tvs travel",
-      "date": "2024-03-12",
-      "from": "tirunelveli",
-      "boardingPoint": "New Bus Stand",
-      "fromTime": "12:00pm",
-      "to": "madurai",
-      "dropingPoint": "Mattuthavani",
-      "toTime": "22:00pm",
-      "price": 1000,
-      "connection": "0",
-      "hrs": "10h 00m",
+      "busName": "Arjun travel",
+      "date": "2024-03-21",
+      "from": "chennai",
+      "boardingPoint": "Kilampakkam",
+      "fromTime": "10:00am",
+      "to": "tirunelveli",
+      "dropingPoint": "New Bus Stand",
+      "toTime": "19:00pm",
+      "price": 1200,
+      "connection": "2",
+      "hrs": "09h 00m",
       "bookingStatus": "Completed",
       "seats": [
         {
-          "seat": 6,
+          "seat": 1,
           "passenger": {
             "name": "deepak",
             "email": "deepak@gmail.com",
-            "phone": "3423445435"
+            "phone": "5453453453",
+            "status": "booked"
           }
         }
       ]
-    },
-    {
-      "id": "1710236421227",
-      "username": "sakthi",
-      "busName": "Ram travel",
-      "date": "2024-03-12",
-      "from": "chennai",
-      "boardingPoint": "Kilampakkam",
-      "fromTime": "22:00pm",
-      "to": "madurai",
-      "dropingPoint": "Mattuthavani",
-      "toTime": "08:00am",
-      "price": 600,
-      "connection": "4",
-      "hrs": "10h 00m",
-      "bookingStatus": "cancelled",
-      "seats": []
-    },
-    {
-      "id": "1710403009958",
-      "username": "vj",
-      "busName": "Tvs travel",
-      "date": "2024-03-14",
-      "from": "tirunelveli",
-      "boardingPoint": "New Bus Stand",
-      "fromTime": "12:00pm",
-      "to": "madurai",
-      "dropingPoint": "Mattuthavani",
-      "toTime": "22:00pm",
-      "price": 2000,
-      "connection": "0",
-      "hrs": "10h 00m",
-      "bookingStatus": "cancelled",
-      "seats": []
-    },
-    {
-      "id": "1710818917961",
-      "username": "vj",
-      "busName": "Tvs travel",
-      "date": "2024-03-19",
-      "from": "tirunelveli",
-      "boardingPoint": "Vannarpettai",
-      "fromTime": "12:00pm",
-      "to": "madurai",
-      "dropingPoint": "Mattuthavani",
-      "toTime": "22:00pm",
-      "price": 1000,
-      "connection": "0",
-      "hrs": "10h 00m",
-      "bookingStatus": "cancelled",
-      "seats": []
-    },
-    {
-      "id": "1710849522522",
-      "username": "vj",
-      "busName": "Tvs travel",
-      "date": "2024-03-19",
-      "from": "tirunelveli",
-      "boardingPoint": "New Bus Stand",
-      "fromTime": "12:00pm",
-      "to": "madurai",
-      "dropingPoint": "Mattuthavani",
-      "toTime": "22:00pm",
-      "price": 2000,
-      "connection": "0",
-      "hrs": "10h 00m",
-      "bookingStatus": "Completed",
-      "seats": [
-        {
-          "seat": 2,
-          "passenger": {
-            "name": "kk",
-            "email": "kk",
-            "phone": "343"
-          }
-        }
-      ]
-    },
-    {
-      "id": "1710936868475",
-      "username": "vj",
-      "busName": "Tvs travel",
-      "date": "2024-03-20",
-      "from": "tirunelveli",
-      "boardingPoint": "New Bus Stand",
-      "fromTime": "12:00pm",
-      "to": "madurai",
-      "dropingPoint": "Aarappalyam",
-      "toTime": "22:00pm",
-      "price": 1000,
-      "connection": "0",
-      "hrs": "10h 00m",
-      "bookingStatus": "Completed",
-      "seats": [
-        {
-          "seat": 5,
-          "passenger": {
-            "name": "vj",
-            "email": "vijay@102",
-            "phone": "8399"
-          }
-        }
-      ]
-    },
-    {
-      "id": "1710937116985",
-      "username": "vj",
-      "busName": "Tvs travel",
-      "date": "2024-03-20",
-      "from": "tirunelveli",
-      "boardingPoint": "New Bus Stand",
-      "fromTime": "12:00pm",
-      "to": "madurai",
-      "dropingPoint": "Mattuthavani",
-      "toTime": "22:00pm",
-      "price": 1000,
-      "connection": "0",
-      "hrs": "10h 00m",
-      "bookingStatus": "Completed",
-      "seats": [
-        {
-          "seat": 6,
-          "passenger": {
-            "name": "rage",
-            "email": "3",
-            "phone": "3"
-          }
-        }
-      ]
-    },
-    {
-      "id": "1710937267231",
-      "username": "vj",
-      "busName": "Tvs travel",
-      "date": "2024-03-20",
-      "from": "tirunelveli",
-      "boardingPoint": "New Bus Stand",
-      "fromTime": "12:00pm",
-      "to": "madurai",
-      "dropingPoint": "Mattuthavani",
-      "toTime": "22:00pm",
-      "price": 1000,
-      "connection": "0",
-      "hrs": "10h 00m",
-      "bookingStatus": "cancelled",
-      "seats": []
-    },
-    {
-      "id": "1710997254516",
-      "username": "abi",
-      "busName": "Tvs travel",
-      "date": "2024-03-21",
-      "from": "tirunelveli",
-      "boardingPoint": "New Bus Stand",
-      "fromTime": "12:00pm",
-      "to": "madurai",
-      "dropingPoint": "Aarappalyam",
-      "toTime": "22:00pm",
-      "price": 1000,
-      "connection": "0",
-      "hrs": "10h 00m",
-      "bookingStatus": "cancelled",
-      "seats": []
-    },
-    {
-      "id": "1710997368617",
-      "username": "abi",
-      "busName": "Tvs travel",
-      "date": "2024-03-20",
-      "from": "tirunelveli",
-      "boardingPoint": "New Bus Stand",
-      "fromTime": "12:00pm",
-      "to": "madurai",
-      "dropingPoint": "Aarappalyam",
-      "toTime": "22:00pm",
-      "price": 1000,
-      "connection": "0",
-      "hrs": "10h 00m",
-      "bookingStatus": "Completed",
-      "seats": [
-        {
-          "seat": 1,
-          "passenger": {
-            "name": "vijay",
-            "email": "vijay@gmail.com",
-            "phone": "9867758594"
-          }
-        }
-      ]
-    },
-    {
-      "id": "1710997660573",
-      "username": "abi",
-      "busName": "Tvs travel",
-      "date": "2024-03-21",
-      "from": "tirunelveli",
-      "boardingPoint": "Vannarpettai",
-      "fromTime": "12:00pm",
-      "to": "madurai",
-      "dropingPoint": "Mattuthavani",
-      "toTime": "22:00pm",
-      "price": 1000,
-      "connection": "0",
-      "hrs": "10h 00m",
-      "bookingStatus": "booked",
-      "seats": [
-        {
-          "seat": 2,
-          "passenger": {
-            "name": "ram",
-            "email": "ram@gmail.com",
-            "phone": "9867564748"
-          }
-        }
-      ]
-    },
-    {
-      "id": "1711001578956",
-      "username": "krishna",
-      "busName": "Tvs travel",
-      "date": "2024-03-21",
-      "from": "tirunelveli",
-      "boardingPoint": "New Bus Stand",
-      "fromTime": "12:00pm",
-      "to": "madurai",
-      "dropingPoint": "Mattuthavani",
-      "toTime": "22:00pm",
-      "price": 1000,
-      "connection": "0",
-      "hrs": "10h 00m",
-      "bookingStatus": "cancelled",
-      "seats": []
-    },
-    {
-      "id": "1711016826344",
-      "username": "ram",
-      "busName": "Tvs travel",
-      "date": "2024-03-21",
-      "from": "tirunelveli",
-      "boardingPoint": [],
-      "fromTime": "12:00pm",
-      "to": "madurai",
-      "dropingPoint": [],
-      "toTime": "22:00pm",
-      "price": 1000,
-      "connection": "0",
-      "hrs": "10h 00m",
-      "bookingStatus": "booked",
-      "seats": [
-        {
-          "seat": 1,
-          "passenger": {
-            "name": "vijay",
-            "email": "vijay@gmail",
-            "phone": "9939003033"
-          }
-        }
-      ]
-    },
-    {
-      "id": "1711017072508",
-      "username": "ram",
-      "busName": "Tvs travel",
-      "date": "2024-03-25",
-      "from": "tirunelveli",
-      "boardingPoint": "New Bus Stand",
-      "fromTime": "12:00pm",
-      "to": "madurai",
-      "dropingPoint": "Aarappalyam",
-      "toTime": "22:00pm",
-      "price": 1000,
-      "connection": "0",
-      "hrs": "10h 00m",
-      "bookingStatus": "cancelled",
-      "seats": []
-    },
-    {
-      "id": "1711021602049",
-      "username": "vj",
-      "busName": "Tvs travel",
-      "date": "2024-03-21",
-      "from": "tirunelveli",
-      "boardingPoint": "New Bus Stand",
-      "fromTime": "12:00pm",
-      "to": "madurai",
-      "dropingPoint": "Aarappalyam",
-      "toTime": "22:00pm",
-      "price": 1000,
-      "connection": "0",
-      "hrs": "10h 00m",
-      "bookingStatus": "booked",
-      "seats": [
-        {
-          "seat": 34,
-          "passenger": {
-            "name": "sam",
-            "email": "sam@gmail.com",
-            "phone": "34232342343"
-          }
-        }
-      ]
-    },
-    {
-      "id": "1711021855319",
-      "username": "vj",
-      "busName": "Tvs travel",
-      "date": "2024-03-21",
-      "from": "tirunelveli",
-      "boardingPoint": "Vannarpettai",
-      "fromTime": "12:00pm",
-      "to": "madurai",
-      "dropingPoint": "Mattuthavani",
-      "toTime": "22:00pm",
-      "price": 1000,
-      "connection": "0",
-      "hrs": "10h 00m",
-      "bookingStatus": "booked",
-      "seats": [
-        {
-          "seat": 29,
-          "passenger": {
-            "name": "ram",
-            "email": "Ram@gmail.com",
-            "phone": "34343342"
-          }
-        }
-      ]
-    },
-    {
-      "id": "1711089126514",
-      "username": "vj",
-      "busName": "Tvs travel",
-      "date": "2024-03-22",
-      "from": "tirunelveli",
-      "boardingPoint": "New Bus Stand",
-      "fromTime": "12:00pm",
-      "to": "madurai",
-      "dropingPoint": "Aarappalyam",
-      "toTime": "22:00pm",
-      "price": 1000,
-      "connection": "0",
-      "hrs": "10h 00m",
-      "bookingStatus": "booked",
-      "seats": [
-        {
-          "seat": 1,
-          "passenger": {
-            "name": "krish",
-            "email": "krish@gmail.com",
-            "phone": "9894948333"
-          }
-        }
-      ]
-    },
-    {
-      "id": "1711097291205",
-      "username": "vj",
-      "busName": "Tvs travel",
-      "date": "2024-04-11",
-      "from": "tirunelveli",
-      "boardingPoint": "New Bus Stand",
-      "fromTime": "12:00pm",
-      "to": "madurai",
-      "dropingPoint": "Aarappalyam",
-      "toTime": "22:00pm",
-      "price": 1000,
-      "connection": "0",
-      "hrs": "10h 00m",
-      "bookingStatus": "cancelled",
-      "seats": []
-    },
-    {
-      "id": "1711102180172",
-      "username": "vj",
-      "busName": "Tvs travel",
-      "date": "2024-03-30",
-      "from": "tirunelveli",
-      "boardingPoint": "New Bus Stand",
-      "fromTime": "12:00pm",
-      "to": "madurai",
-      "dropingPoint": "Mattuthavani",
-      "toTime": "22:00pm",
-      "price": 1000,
-      "connection": "0",
-      "hrs": "10h 00m",
-      "bookingStatus": "cancelled",
-      "seats": []
-    },
-    {
-      "id": "1711174084766",
-      "username": "vj",
-      "busName": "Tvs travel",
-      "date": "2024-03-23",
-      "from": "tirunelveli",
-      "boardingPoint": "New Bus Stand",
-      "fromTime": "12:00pm",
-      "to": "madurai",
-      "dropingPoint": "Mattuthavani",
-      "toTime": "22:00pm",
-      "price": 2000,
-      "connection": "0",
-      "hrs": "10h 00m",
-      "bookingStatus": "booked",
-      "seats": [
-        {
-          "seat": 2,
-          "passenger": {
-            "name": "m",
-            "email": "m",
-            "phone": "848848484"
-          }
-        },
-        {
-          "seat": 3,
-          "passenger": {
-            "name": "v",
-            "email": "v",
-            "phone": "849494"
-          }
-        }
-      ]
-    },
-    {
-      "id": "1711174146323",
-      "username": "vj",
-      "busName": "Tvs travel",
-      "date": "2024-03-26",
-      "from": "tirunelveli",
-      "boardingPoint": "New Bus Stand",
-      "fromTime": "12:00pm",
-      "to": "madurai",
-      "dropingPoint": "Mattuthavani",
-      "toTime": "22:00pm",
-      "price": 1000,
-      "connection": "0",
-      "hrs": "10h 00m",
-      "bookingStatus": "cancelled",
-      "seats": []
-    },
-    {
-      "id": "1711200181625",
-      "username": "vj",
-      "busName": "Tvs travel",
-      "date": "2024-04-26",
-      "from": "tirunelveli",
-      "boardingPoint": "New Bus Stand",
-      "fromTime": "12:00pm",
-      "to": "madurai",
-      "dropingPoint": "Mattuthavani",
-      "toTime": "22:00pm",
-      "price": 1000,
-      "connection": "0",
-      "hrs": "10h 00m",
-      "bookingStatus": "cancelled",
-      "seats": []
     }
   ]
 }

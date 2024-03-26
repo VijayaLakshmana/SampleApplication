@@ -6,11 +6,12 @@ import InputField from "../HomePage/Input";
 import "./search.css";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { formatPrice } from "../HomePage/Utils";
+import { formatPrice } from "../../Utils/Utils";
 import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";
 import Api from "../../service/busService";
-import { updateField } from "../../BusDetails";
+import { updateField } from "../../Redux/BusDetails";
+import PointCheckboxList from "./PointsCheckboxList";
 export default function Search() {
   const [showACBus, setShowACBus] = useState(false);
   const [showNonACBus, setShowNonACBus] = useState(false);
@@ -18,25 +19,23 @@ export default function Search() {
   const [showNonSeaterBus, setShowNonSeaterBus] = useState(false);
   const [selectBoardingPoint, setSelectBoardingPoint] = useState([]);
   const [selectDropingPoint, setSelectDropingPoint] = useState([]);
-  const [selectBoardingTime, setSelectBoardingTime] = useState("");
-  const [selectDropingTime, setSelectDropingTime] = useState("");
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
   const dispatch = useDispatch();
   const { from, to, date, busDetails } = useSelector((state) => state.bus);
   const usenavigate = useNavigate();
-  const busseat = "busseat";
   const busUrl = process.env.REACT_APP_BUS_URL;
   const api = new Api();
   useEffect(() => {
-    api
-      .get(busUrl)
-      .then((response) => {
+    async function fetchData() {
+      try {
+        const response = await api.get(busUrl);
         dispatch(updateField({ field: "busDetails", value: response.data }));
-      })
-      .catch((error) => {
-        console.error("Error fetching bus data:", error);
-      });
+      } catch (error) {
+        toast.error("Error fetching data:", error);
+      }
+    }
+    fetchData();
     const from = sessionStorage.getItem("from");
     dispatch(updateField({ field: "from", value: from }));
     const to = sessionStorage.getItem("to");
@@ -44,8 +43,6 @@ export default function Search() {
     const date = sessionStorage.getItem("date");
     dispatch(updateField({ field: "date", value: date }));
   }, []);
-  console.log();
-  console.log(busDetails);
   function capitalizeFirstLetter(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
   }
@@ -83,7 +80,7 @@ export default function Search() {
     const anyFilterActive = showSeaterBus || showNonSeaterBus;
     return anyFilterActive ? showBus : true;
   });
-  const filteredStop = filterSeaterType.filter((bus) => {
+  const filteredSearch = filterSeaterType.filter((bus) => {
     const hasSelectBoardingPoint =
       selectBoardingPoint.length === 0 ||
       bus.boardingStop.some((stop) =>
@@ -107,45 +104,41 @@ export default function Search() {
       ? hasSelectBoardingPoint && hasSelectDropingPoint && priceRange
       : true;
   });
-  const filteredSearch = filteredStop.filter((bus) => {
-    const hasSelectBoardingTime =
-      selectBoardingTime === "" ||
-      bus.boardingStop.some((stop) => stop.time === selectBoardingTime);
-    const hasSelectDropingTime =
-      selectDropingTime === "" ||
-      bus.dropingStop.some((stop) => stop.time === selectDropingTime);
-    const anyFilterActive = selectBoardingTime.length > 0 || selectDropingTime;
-    return anyFilterActive
-      ? hasSelectBoardingTime && hasSelectDropingTime
-      : true;
-  });
-
   function handleShowSeats(bus) {
-    let username = sessionStorage.getItem("username");
+    const username = sessionStorage.getItem("username");
     if (username === "" || username === null) {
       return toast.error("Login in before Book Tickets");
     }
     dispatch(updateField({ field: "selectedBus", value: bus }));
     sessionStorage.setItem("selectedBus", JSON.stringify(bus));
-    usenavigate(`${busseat}`);
+    usenavigate("busseat");
   }
+  const pointLists = [
+    {
+      title: "Select Boarding Points:",
+      points: selectBoardingPoint,
+      handlePointChange: handleBoardingPointChange,
+      stopType: "boardingStop",
+    },
+    {
+      title: "Select Dropping Points:",
+      points: selectDropingPoint,
+      handlePointChange: handleDropingPointChange,
+      stopType: "dropingStop",
+    },
+  ];
+
   busDetails.forEach((bus) => {
     if (
       bus.dates.length === 0 ||
       !bus.dates.find((dateObj) => dateObj.date === date)
     ) {
-      api
-        .put(`${busUrl}/${bus.id}`, {
-          ...bus,
-          dates: [...bus.dates, { date: date, bookedSeats: [] }],
-        })
-        .then(() => console.log(`Updated bus ${bus.id} with new date`))
-        .catch((error) =>
-          console.error(`Failed to update bus ${bus.id}:`, error)
-        );
+      api.put(`${busUrl}/${bus.id}`, {
+        ...bus,
+        dates: [...bus.dates, { date: date, bookedSeats: [] }],
+      });
     }
   });
-  console.log(busDetails);
   return (
     <div className="searchLayout">
       <div className="component1">
@@ -199,75 +192,20 @@ export default function Search() {
           </label>
           <br />
           <br />
-          <h4>Select Boarding Points:</h4>
-          {busDetails
-            .filter((bus) => bus.from === from && bus.to === to)
-            .flatMap((bus) => bus.boardingStop.map((stop) => stop.stopingPoint))
-            .filter((value, index, self) => self.indexOf(value) === index)
-            .map((point) => (
-              <label key={point}>
-                <InputField
-                  type="checkbox"
-                  value={point}
-                  checked={selectBoardingPoint.includes(point)}
-                  onChange={handleBoardingPointChange}
-                />
-                {point}
-                <br />
-              </label>
-            ))}
-          <br />
-          <h4>Select Droping Points:</h4>
-          {busDetails
-            .filter((bus) => bus.to === to)
-            .flatMap((bus) => bus.dropingStop.map((stop) => stop.stopingPoint))
-            .filter((value, index, self) => self.indexOf(value) === index)
-            .map((point) => (
-              <label key={point}>
-                <InputField
-                  type="checkbox"
-                  value={point}
-                  checked={selectDropingPoint.includes(point)}
-                  onChange={handleDropingPointChange}
-                />
-                {point}
-                <br />
-              </label>
-            ))}
-          <br />
-          <h4>Select Boarding Time:</h4>
-          <select
-            value={selectBoardingTime}
-            onChange={(e) => setSelectBoardingTime(e.target.value)}
-          >
-            <option value="">Select Time</option>
-            {busDetails
-              .filter((bus) => bus.from === from)
-              .flatMap((bus) => bus.boardingStop.map((stop) => stop.time))
-              .filter((value, index, self) => self.indexOf(value) === index)
-              .map((time) => (
-                <option key={time} value={time}>
-                  {time}
-                </option>
-              ))}
-          </select>
-          <br />
-          <h4>Select Droping Time:</h4>
-          <select
-            value={selectDropingTime}
-            onChange={(e) => setSelectDropingTime(e.target.value)}
-          >
-            <option value="">Select Time</option>
-            {busDetails
-              .filter((bus) => bus.to === to)
-              .flatMap((bus) => bus.dropingStop.map((stop) => stop.time))
-              .filter((value, index, self) => self.indexOf(value) === index)
-              .map((time) => (
-                <option key={time} value={time}>
-                  {time}
-                </option>
-              ))}
-          </select>
+          {pointLists.map((pointList, index) => (
+            <div key={index}>
+              <h4>{pointList.title}</h4>
+              <PointCheckboxList
+                busDetails={busDetails}
+                from={from}
+                to={to}
+                selectPoints={pointList.points}
+                handlePointChange={pointList.handlePointChange}
+                stopType={pointList.stopType}
+              />
+              <br />
+            </div>
+          ))}
           <br />
           <h4>Price Range:</h4>
           <label>
@@ -289,15 +227,14 @@ export default function Search() {
           </label>
         </div>
       </div>
-      <div className="component4">
+      <div className="component4" id="scrollable-container">
         <div>
           {filteredSearch.length > 0 ? (
             <div>
-              {filteredSearch.map((bus, index) => (
+              {filteredSearch.map((bus) => (
                 <div
                   className="busContent"
                   key={bus.id}
-                  data-testid={`bus-name-${index}`}
                 >
                   <div className="busName">
                     {bus.busname}
@@ -324,9 +261,12 @@ export default function Search() {
                   <div className="price">{formatPrice(bus.price)}</div>
                   <div className="totalSeats">
                     Total: {bus.seat}seats
-                    <button onClick={() => handleShowSeats(bus)}>
-                      bookticket
-                    </button>
+                    <div>
+                      <br />
+                      <button onClick={() => handleShowSeats(bus)}>
+                        Book Ticket
+                      </button>
+                    </div>
                   </div>
                 </div>
               ))}

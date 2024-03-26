@@ -20,7 +20,7 @@ export default function SignUp() {
   async function handleSubmit(e) {
     e.preventDefault();
     const hashedPassword = await bcrypt.hash(password, 10);
-    let regObj = {
+    const regObj = {
       id,
       name,
       password: hashedPassword,
@@ -30,15 +30,13 @@ export default function SignUp() {
       gender,
     };
     const api = new Api();
-    api
-      .post(userUrl, regObj)
-      .then(() => {
-        toast.success("Registered successfully.");
-        usenavigate("/login");
-      })
-      .catch((err) => {
-        alert("Failed: " + err.message);
-      });
+    try {
+      await api.post(userUrl, regObj);
+      toast.success("Registered successfully.");
+      usenavigate("/login");
+    } catch (err) {
+      toast.error("Failed: " + err.message);
+    }
   }
   return (
     <div className="signUpBackground">

@@ -66,14 +66,11 @@
 .filterContent {
   border: 1px solid rgb(192, 172, 172);
   margin: 10px;
-  padding: 30px;
+  padding-left:15px;
+  height: 590px;
 }
 .seatRow {
   margin-bottom: 10px;
-}
-*/ .seatContainer {
-  display: flex;
-  flex-direction: column;
 }
 .seatRow {
   display: flex;
@@ -107,3 +104,8 @@
 .seatRectangleButton.selected {
   background-color: blue;
 }
+#scrollable-container {
+  height: 600px; 
+  overflow-y: auto; 
+}
+

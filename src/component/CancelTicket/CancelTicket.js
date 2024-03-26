@@ -2,8 +2,8 @@ import React from "react";
 import { useEffect, useState } from "react";
 import Api from "../../service/busService";
 import { useSelector, useDispatch } from "react-redux";
-import { updateField } from "../../BusDetails";
-import { formatPrice } from "../HomePage/Utils";
+import { updateField } from "../../Redux/BusDetails";
+import { formatPrice } from "../../Utils/Utils";
 import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";
 export default function CancelTicket() {
@@ -15,24 +15,14 @@ export default function CancelTicket() {
   const bookingUrl = process.env.REACT_APP_BOOKING_URL;
   const api = new Api();
   useEffect(() => {
-    let username = sessionStorage.getItem("username");
+    const username = sessionStorage.getItem("username");
     setUserName(username);
-    api
-      .get(bookingUrl)
-      .then((response) => {
-        setTicketDetails(response.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching bus data:", error);
-      });
-    api
-      .get(busUrl)
-      .then((response) => {
-        dispatch(updateField({ field: "busDetails", value: response.data }));
-      })
-      .catch((error) => {
-        console.error("Error fetching bus data:", error);
-      });
+    api.get(bookingUrl).then((response) => {
+      setTicketDetails(response.data);
+    });
+    api.get(busUrl).then((response) => {
+      dispatch(updateField({ field: "busDetails", value: response.data }));
+    });
   }, []);
   function capitalizeFirstLetter(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
@@ -45,30 +35,39 @@ export default function CancelTicket() {
     if (hoursDifference > 24) {
       const updatedTicketDetails = ticketDetails.map((booking) => {
         if (booking.id === bookingId) {
-          const updatedSeats = booking.seats.filter(
-            (seat) => seat.seat !== seatNumber
-          );
-          console.log(updatedSeats, "hello");
+          const updatedSeats = booking.seats.map((seat) => {
+            if (seat.seat === seatNumber) {
+              return {
+                ...seat,
+                passenger: {
+                  ...seat.passenger,
+                  status: "canceled",
+                },
+              };
+            }
+            return seat;
+          });
           return {
             ...booking,
             seats: updatedSeats,
-            bookingStatus:
-              updatedSeats.length === 0 ? "cancelled" : booking.bookingStatus,
+            bookingStatus: updatedSeats.some(
+              (seat) => seat.passenger.status !== "canceled"
+            )
+              ? "booked"
+              : "canceled",
           };
         }
         return booking;
       });
       setTicketDetails(updatedTicketDetails);
       api
-        .put(`${bookingUrl}/${bookingId}`, {
-          ...updatedTicketDetails.find((booking) => booking.id === bookingId),
-        })
-        .then(() =>
-          console.log(`Updated booking ${bookingId} with new details`)
+        .put(
+          `${bookingUrl}/${bookingId}`,
+          updatedTicketDetails.find((booking) => booking.id === bookingId)
         )
-        .catch((error) =>
-          console.error(`Failed to update booking ${bookingId}:`, error)
-        );
+        .catch((error) => {
+          console.error("Error updating ticket details:", error);
+        });
       const updatedBusDetails = busDetails.map((prevBusDetails) => {
         if (busId === prevBusDetails.id) {
           const updatedDates = prevBusDetails.dates.map((date) => {
@@ -80,22 +79,14 @@ export default function CancelTicket() {
             }
             return date;
           });
-          return {
-            ...prevBusDetails,
-            dates: updatedDates,
-          };
+          return { ...prevBusDetails, dates: updatedDates };
         }
         return prevBusDetails;
       });
       dispatch(updateField({ field: "busDetails", value: updatedBusDetails }));
-      api
-        .put(`${busUrl}/${busId}`, {
-          ...updatedBusDetails.find((bus) => bus.id === busId),
-        })
-        .then(() => console.log(`Updated bus ${busId} with new details`))
-        .catch((error) =>
-          console.error(`Failed to update bus ${busId}:`, error)
-        );
+      api.put(`${busUrl}/${busId}`, {
+        ...updatedBusDetails.find((bus) => bus.id === busId),
+      });
     } else {
       toast.error(
         "You can only cancel the ticket up to 24 hours before boarding."
@@ -145,21 +136,26 @@ export default function CancelTicket() {
               <div className="passengerDetailsList">
                 {booking.seats.map((seat) => (
                   <div key={seat.seat}>
-                    <p>Seat:{seat.seat}</p>
-                    <p>Passenger Name:{seat.passenger.name}</p>
-                    <button
-                      onClick={() =>
-                        handleCancelBooking(
-                          booking.id,
-                          seat.seat,
-                          booking.connection,
-                          booking.date,
-                          booking.fromTime
-                        )
-                      }
-                    >
-                      Cancel Ticket
-                    </button>
+                    {console.log(seat.passenger.name)}
+                    {seat.passenger.status==="booked"?  (
+                      <div>
+                        <p>Seat:{seat.seat}</p>
+                        <p>Passenger Name:{seat.passenger.name}</p>
+                        <button
+                          onClick={() =>
+                            handleCancelBooking(
+                              booking.id,
+                              seat.seat,
+                              booking.connection,
+                              booking.date,
+                              booking.fromTime
+                            )
+                          }
+                        >
+                          Cancel Ticket
+                        </button>
+                      </div>
+                    ) : null}
                   </div>
                 ))}
               </div>

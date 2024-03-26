@@ -5,7 +5,7 @@ import NavigationBar from "../HomePage/NavigationBar";
 import React from "react";
 import Api from "../../service/busService";
 import "./BookTicket.css";
-import { updateField } from "../../BusDetails";
+import { updateField } from "../../Redux/BusDetails";
 import { useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";
@@ -15,14 +15,9 @@ export default function TicketBooking() {
   const bookingUrl = process.env.REACT_APP_BOOKING_URL;
   const api = new Api();
   useEffect(() => {
-    api
-      .get(busUrl)
-      .then((response) => {
-        dispatch(updateField({ field: "busDetails", value: response.data }));
-      })
-      .catch((error) => {
-        console.error("Error fetching bus data:", error);
-      });
+    api.get(busUrl).then((response) => {
+      dispatch(updateField({ field: "busDetails", value: response.data }));
+    });
     const storedSelectedBus = sessionStorage.getItem("selectedBus");
     if (storedSelectedBus) {
       dispatch(
@@ -38,9 +33,21 @@ export default function TicketBooking() {
         updateField({ field: "selectedSeats", value: JSON.parse(storedSeat) })
       );
     }
+    const boarding = sessionStorage.getItem("BoardingPoint");
+    if (boarding) {
+      dispatch(
+        updateField({ field: "showBoardingPoint", value: boarding })
+      );
+    }
+    const droping = sessionStorage.getItem("DropingPoint");
+    if (boarding) {
+      dispatch(
+        updateField({ field: "showDropingPoint", value: droping })
+      );
+    }
     const date = sessionStorage.getItem("date");
     dispatch(updateField({ field: "date", value: date }));
-    let username = sessionStorage.getItem("username");
+    const username = sessionStorage.getItem("username");
     setUsername(username);
   }, []);
   const dispatch = useDispatch();
@@ -52,53 +59,42 @@ export default function TicketBooking() {
     showBoardingPoint,
     showDropingPoint,
   } = useSelector((state) => state.bus);
+  console.log(selectedBus);
   useEffect(() => {
     const initialpassengerDetails = {};
     selectedSeats[date]?.forEach((seatNumber) => {
-      initialpassengerDetails[seatNumber] = { name: "", email: "", phone: "" };
+      initialpassengerDetails[seatNumber] = { name: "", email: "", phone: "",status:"booked" };
     });
     setPassengerDetails(initialpassengerDetails);
   }, [selectedSeats, date]);
   const usenavigate = useNavigate();
-  const home = "/";
   const [username, setUsername] = useState("");
   const [passengerDetails, setPassengerDetails] = useState({});
   function handleBookTicket() {
     if (selectedBus && date) {
       busDetails.map((bus) => {
         if (bus.id === selectedBus.id) {
-          api
-            .put(`${busUrl}/${bus.id}`, {
-              ...bus,
-              dates: bus.dates.map((dateObj) => {
-                if (dateObj.date === date) {
-                  return {
-                    ...dateObj,
-                    bookedSeats: [
-                      ...dateObj.bookedSeats,
-                      ...selectedSeats[date],
-                    ],
-                  };
-                }
-                return dateObj;
-              }),
-            })
-            .then(() =>
-              console.log(`Updated bus ${bus.id} with new booked seats`)
-            )
-            .catch((error) =>
-              console.error(`Failed to update bus ${bus.id}:`, error)
-            );
+          api.put(`${busUrl}/${bus.id}`, {
+            ...bus,
+            dates: bus.dates.map((dateObj) => {
+              if (dateObj.date === date) {
+                return {
+                  ...dateObj,
+                  bookedSeats: [...dateObj.bookedSeats, ...selectedSeats[date]],
+                };
+              }
+              return dateObj;
+            }),
+          });
         }
         return bus;
       });
       toast.success(`slected seats:${selectedSeats[date]}`);
-      usenavigate(home);
+      usenavigate("/");
     }
     const time = Date.now();
     const ticketnumber = time;
     const totalPrice = selectedBus.price * selectedSeats[date].length;
-    console.log(totalPrice);
     const newBooking = {
       id: ticketnumber,
       username: username,
@@ -134,74 +130,77 @@ export default function TicketBooking() {
         alert("Failed: " + err.message);
       });
   }
+  function capitalizeFirstLetter(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  }
   return (
     <div className="ticketBookingDetailsPage">
       <div className="container1">
         <NavigationBar />
       </div>
-      <div className="container2"></div>
-      <>
-        {selectedSeats[date]?.map((seatNumber) => (
-          <div key={seatNumber}>
-            <p>Seat Number: {seatNumber}</p>
-            <InputField
-              type="text"
-              placeholder="Name"
-              pattern="^[a-zA-Z]+$"
-              title="Name only contains alphabets"
-              value={passengerDetails[seatNumber]?.name || ""}
-              onChange={(e) =>
-                setPassengerDetails({
-                  ...passengerDetails,
-                  [seatNumber]: {
-                    ...passengerDetails[seatNumber],
-                    name: e.target.value,
-                  },
-                })
-              }
-            />
-            <InputField
-              type="email"
-              placeholder="Email"
-              value={passengerDetails[seatNumber]?.email || ""}
-              onChange={(e) =>
-                setPassengerDetails({
-                  ...passengerDetails,
-                  [seatNumber]: {
-                    ...passengerDetails[seatNumber],
-                    email: e.target.value,
-                  },
-                })
-              }
-            />
-            <InputField
-              type="tel"
-              placeholder="phone"
-              title="phonenumber must contain 10 digit"
-              pattern="[0-9]{10}"
-              value={passengerDetails[seatNumber]?.phone || ""}
-              onChange={(e) =>
-                setPassengerDetails({
-                  ...passengerDetails,
-                  [seatNumber]: {
-                    ...passengerDetails[seatNumber],
-                    phone: e.target.value,
-                  },
-                })
-              }
-            />
-          </div>
-        ))}
-      </>
-      <button
-        className="bookTicketButton"
-        onClick={handleBookTicket}
-        disabled={Object.values(passengerDetails).some(
-          (detail) => !detail.name || !detail.email || !detail.phone
-        )}
-      >
-        Book ticket
-      </button>
+      <div className="container2">
+        {date?
+          <span className="destingationFont">{capitalizeFirstLetter(selectedBus.from)}&#8594;{capitalizeFirstLetter(selectedBus.to)}</span>:null }
+      </div>
+      <div className="passengerForm">
+        <form onSubmit={() => handleBookTicket()}>
+          {selectedSeats[date]?.map((seatNumber) => (
+            <div key={seatNumber}>
+              <p>Seat Number: {seatNumber}</p>
+              <InputField
+                type="text"
+                placeholder="Name"
+                value={passengerDetails[seatNumber]?.name || ""}
+                onChange={(e) =>
+                  setPassengerDetails({
+                    ...passengerDetails,
+                    [seatNumber]: {
+                      ...passengerDetails[seatNumber],
+                      name: e.target.value,
+                    },
+                  })
+                }
+                pattern="^[a-zA-Z]+$"
+                title="Name only contains alphabets"
+              />
+              <InputField
+                type="email"
+                placeholder="Email"
+                value={passengerDetails[seatNumber]?.email || ""}
+                onChange={(e) =>
+                  setPassengerDetails({
+                    ...passengerDetails,
+                    [seatNumber]: {
+                      ...passengerDetails[seatNumber],
+                      email: e.target.value,
+                    },
+                  })
+                }
+              />
+              <InputField
+                type="tel"
+                placeholder="phone"
+                value={passengerDetails[seatNumber]?.phone || ""}
+                onChange={(e) =>
+                  setPassengerDetails({
+                    ...passengerDetails,
+                    [seatNumber]: {
+                      ...passengerDetails[seatNumber],
+                      phone: e.target.value,
+                    },
+                  })
+                }
+                title="phonenumber must contain 10 digit"
+                pattern="[0-9]{10}"
+              />
+            </div>
+          ))}
+          <br />
+          <center>
+            <button className="bookTicketButton">Book ticket</button>
+          </center>
+        </form>
+      </div>
     </div>
   );
 }

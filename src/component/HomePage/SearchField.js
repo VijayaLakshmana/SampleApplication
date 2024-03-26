@@ -3,9 +3,9 @@ import InputField from "./Input";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { updateField } from "../../BusDetails";
+import { updateField } from "../../Redux/BusDetails";
 import React from "react";
-export default function SearchField() {
+export default React.memo(function SearchField() {
   const [localFrom, setLocalFrom] = useState("");
   const [localTo, setLocalTo] = useState("");
   const [localDate, setLocalDate] = useState("");
@@ -14,7 +14,6 @@ export default function SearchField() {
   endOfNextMonth.setMonth(endOfNextMonth.getMonth() + 2, 0);
   const maxSelectableDate = endOfNextMonth.toISOString().slice(0, 10);
   const usenavigate = useNavigate();
-  let link;
   const dispatch = useDispatch();
   useEffect(() => {
     const storedFrom = sessionStorage.getItem("from");
@@ -30,7 +29,6 @@ export default function SearchField() {
       setLocalDate(storedDate);
     }
   }, []);
-
   function handleClick(e) {
     e.preventDefault();
     sessionStorage.setItem("from", localFrom);
@@ -42,6 +40,7 @@ export default function SearchField() {
     dispatch(updateField({ field: "from", value: from }));
     dispatch(updateField({ field: "to", value: to }));
     dispatch(updateField({ field: "date", value: date }));
+    let link;
     if (localFrom !== localTo) {
       link = "/search";
     } else {
@@ -86,4 +85,4 @@ export default function SearchField() {
       </form>
     </>
   );
-}
+});
