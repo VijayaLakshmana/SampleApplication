@@ -59,7 +59,6 @@ export default function TicketBooking() {
     showBoardingPoint,
     showDropingPoint,
   } = useSelector((state) => state.bus);
-  console.log(selectedBus);
   useEffect(() => {
     const initialpassengerDetails = {};
     selectedSeats[date]?.forEach((seatNumber) => {

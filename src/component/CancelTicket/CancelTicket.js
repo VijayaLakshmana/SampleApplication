@@ -136,7 +136,6 @@ export default function CancelTicket() {
               <div className="passengerDetailsList">
                 {booking.seats.map((seat) => (
                   <div key={seat.seat}>
-                    {console.log(seat.passenger.name)}
                     {seat.passenger.status==="booked"?  (
                       <div>
                         <p>Seat:{seat.seat}</p>

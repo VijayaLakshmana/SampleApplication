@@ -98,6 +98,33 @@
           }
         }
       ]
+    },
+    {
+      "id": 1711510949667,
+      "username": "deepak",
+      "busName": "Arjun travel",
+      "date": "2024-03-27",
+      "from": "chennai",
+      "boardingPoint": "Kilampakkam",
+      "fromTime": "10:00am",
+      "to": "tirunelveli",
+      "dropingPoint": "New Bus Stand",
+      "toTime": "19:00pm",
+      "price": 1200,
+      "connection": "2",
+      "hrs": "09h 00m",
+      "bookingStatus": "booked",
+      "seats": [
+        {
+          "seat": 3,
+          "passenger": {
+            "name": "deepak",
+            "email": "deepak@gmail.com",
+            "phone": "8494773838",
+            "status": "booked"
+          }
+        }
+      ]
     }
   ]
 }

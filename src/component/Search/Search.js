@@ -80,17 +80,15 @@ export default function Search() {
     const anyFilterActive = showSeaterBus || showNonSeaterBus;
     return anyFilterActive ? showBus : true;
   });
+  function filterByStops(busStops, selectedStops) {
+    return (
+      selectedStops.length === 0 ||
+      busStops.some((stop) => selectedStops.includes(stop.stopingPoint))
+    );
+  }
   const filteredSearch = filterSeaterType.filter((bus) => {
-    const hasSelectBoardingPoint =
-      selectBoardingPoint.length === 0 ||
-      bus.boardingStop.some((stop) =>
-        selectBoardingPoint.includes(stop.stopingPoint)
-      );
-    const hasSelectDropingPoint =
-      selectDropingPoint.length === 0 ||
-      bus.dropingStop.some((stop) =>
-        selectDropingPoint.includes(stop.stopingPoint)
-      );
+    const hasSelectBoardingPoint = filterByStops(bus.boardingStop, selectBoardingPoint);
+    const hasSelectDropingPoint = filterByStops(bus.dropingStop, selectDropingPoint);
     const priceRange =
       (minPrice === "" || bus.price >= minPrice) &&
       (maxPrice === "" || bus.price <= maxPrice);

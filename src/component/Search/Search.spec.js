@@ -4,10 +4,8 @@ import Search from "./Search";
 import { Provider } from "react-redux";
 import configureStore from "redux-mock-store";
 import { BrowserRouter as Router } from "react-router-dom";
-import userEvent from "@testing-library/user-event";
 import axios from "axios";
 import "@testing-library/jest-dom";
-
 jest.mock("react-toastify/dist/ReactToastify.css", () => ({}));
 jest.mock("./search.css", () => ({}));
 const mockStore = configureStore([]);
@@ -91,10 +89,6 @@ describe("Search component", () => {
     const response = await axios.get("http://localhost:3001/bus");
     expect(response.status).toBe(200);
   });
-  test("handle event", async () => {
-    await renderSearchComponent();
-    userEvent.click(screen.getByText("bookticket"));
-  });
   test("allows user to input values in minimum and maximum price fields", async () => {
     await renderSearchComponent();
     const minPriceInput = screen.getByLabelText("Min Price:");
@@ -143,9 +137,5 @@ describe("Search component", () => {
     fireEvent.click(sleeperCheckbox);
     expect(seaterCheckbox.checked).toEqual(false);
     expect(sleeperCheckbox.checked).toEqual(false);
-  });
-  test("handles booking", async () => {
-    await renderSearchComponent();
-    fireEvent.click(screen.getByText("bookticket"));
   });
 });

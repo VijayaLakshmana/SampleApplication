@@ -31,5 +31,8 @@ class Api {
   put(url, payload) {
     return this.axiosInstance.put(url, payload);
   }
+  delete(url) {
+    return this.axiosInstance.delete(url);
+  }
 }
 export default Api;

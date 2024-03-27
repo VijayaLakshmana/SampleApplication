@@ -44,6 +44,15 @@
       "phone": "3333455443",
       "address": "d",
       "gender": "Male"
+    },
+    {
+      "id": "deepak",
+      "name": "deepak",
+      "password": "$2a$10$qSRBLZzRM8.iAyVlWgyIT.yzv1xsqp4lZ.6ZTXQ6trrNbi8ad8xV2",
+      "email": "deepak@gmail.com",
+      "phone": "8948477383",
+      "address": "selvi nagar",
+      "gender": "Male"
     }
   ]
 }
