@@ -1,5 +1,5 @@
 {
-  "Bookings": [
+  "bookings": [
     {
       "id": "1711446509750",
       "username": "vj",
@@ -14,7 +14,7 @@
       "price": 2400,
       "connection": "2",
       "hrs": "09h 00m",
-      "bookingStatus": "booked",
+      "bookingStatus": "canceled",
       "seats": [
         {
           "seat": 1,
@@ -31,7 +31,7 @@
             "name": "abi",
             "email": "abi@gmail.com",
             "phone": "3343433434",
-            "status": "booked"
+            "status": "canceled"
           }
         }
       ]
@@ -100,7 +100,7 @@
       ]
     },
     {
-      "id": 1711510949667,
+      "id": "1711510949667",
       "username": "deepak",
       "busName": "Arjun travel",
       "date": "2024-03-27",
@@ -121,6 +121,257 @@
             "name": "deepak",
             "email": "deepak@gmail.com",
             "phone": "8494773838",
+            "status": "booked"
+          }
+        }
+      ]
+    },
+    {
+      "id": "1711516872754",
+      "username": "vj",
+      "busName": "Aravind travel",
+      "date": "2024-03-27",
+      "from": "tirunelveli",
+      "boardingPoint": "Vannarpettai",
+      "fromTime": "14:00pm",
+      "to": "madurai",
+      "dropingPoint": "Mattuthavani",
+      "toTime": "17:00pm",
+      "price": 400,
+      "connection": "1",
+      "hrs": "03h 00m",
+      "bookingStatus": "Completed",
+      "seats": [
+        {
+          "seat": 1,
+          "passenger": {
+            "name": "krish",
+            "email": "Krish@gmail.com",
+            "phone": "9857746647",
+            "status": "booked"
+          }
+        }
+      ]
+    },
+    {
+      "id": "1711521002499",
+      "username": "vj",
+      "busName": "Tvs travel",
+      "date": "2024-03-27",
+      "from": "tirunelveli",
+      "boardingPoint": "New Bus Stand",
+      "fromTime": "12:00pm",
+      "to": "madurai",
+      "dropingPoint": "Mattuthavani",
+      "toTime": "22:00pm",
+      "price": 3000,
+      "connection": "0",
+      "hrs": "10h 00m",
+      "bookingStatus": "Completed",
+      "seats": [
+        {
+          "seat": 5,
+          "passenger": {
+            "name": "vijay",
+            "email": "vijay@gmail.com",
+            "phone": "9875674774",
+            "status": "booked"
+          }
+        },
+        {
+          "seat": 6,
+          "passenger": {
+            "name": "ram",
+            "email": "ram@gmail.com",
+            "phone": "9857764784",
+            "status": "booked"
+          }
+        },
+        {
+          "seat": 9,
+          "passenger": {
+            "name": "siva",
+            "email": "siva@gmail.com",
+            "phone": "9847378388",
+            "status": "booked"
+          }
+        }
+      ]
+    },
+    {
+      "id": "1711965507666",
+      "username": "vj",
+      "busName": "Tvs travel",
+      "date": "2024-04-04",
+      "from": "tirunelveli",
+      "boardingPoint": "New Bus Stand",
+      "fromTime": "12:00pm",
+      "to": "madurai",
+      "dropingPoint": "Mattuthavani",
+      "toTime": "22:00pm",
+      "price": 2000,
+      "connection": "0",
+      "hrs": "10h 00m",
+      "bookingStatus": "canceled",
+      "seats": [
+        {
+          "seat": 2,
+          "passenger": {
+            "name": "siva",
+            "email": "siva@gmail.com",
+            "status": "canceled",
+            "phone": "33"
+          }
+        },
+        {
+          "seat": 6,
+          "passenger": {
+            "name": "kesavan",
+            "email": "kesavan@gmail.com",
+            "status": "canceled",
+            "phone": "33"
+          }
+        }
+      ]
+    },
+    {
+      "id": "1711971911321",
+      "username": "vj",
+      "busName": "Tvs travel",
+      "date": "2024-04-08",
+      "from": "tirunelveli",
+      "boardingPoint": "Vannarpettai",
+      "fromTime": "12:00pm",
+      "to": "madurai",
+      "dropingPoint": "Mattuthavani",
+      "toTime": "22:00pm",
+      "price": 1000,
+      "connection": "0",
+      "hrs": "10h 00m",
+      "bookingStatus": "canceled",
+      "seats": [
+        {
+          "seat": 1,
+          "passenger": {
+            "name": "d",
+            "email": "kv@gmail.com",
+            "age": "32",
+            "status": "canceled"
+          }
+        }
+      ]
+    },
+    {
+      "id": "1711973819500",
+      "username": "vj",
+      "busName": "Tvs travel",
+      "date": "2024-04-08",
+      "from": "tirunelveli",
+      "boardingPoint": "Vannarpettai",
+      "fromTime": "12:00pm",
+      "to": "madurai",
+      "dropingPoint": "Mattuthavani",
+      "toTime": "22:00pm",
+      "price": 1000,
+      "email": "vijay@gmail.com",
+      "phone": "348848999393",
+      "connection": "0",
+      "hrs": "10h 00m",
+      "bookingStatus": "canceled",
+      "seats": [
+        {
+          "seat": 5,
+          "passenger": {
+            "name": "vijay",
+            "age": "34",
+            "gender": "",
+            "status": "canceled"
+          }
+        }
+      ]
+    },
+    {
+      "id": "1711974155725",
+      "username": "vj",
+      "busName": "Tvs travel",
+      "date": "2024-04-08",
+      "from": "tirunelveli",
+      "boardingPoint": "Vannarpettai",
+      "fromTime": "12:00pm",
+      "to": "madurai",
+      "dropingPoint": "Mattuthavani",
+      "toTime": "22:00pm",
+      "price": 1000,
+      "email": "d@gmail.com",
+      "phone": "3343434343",
+      "connection": "0",
+      "hrs": "10h 00m",
+      "bookingStatus": "canceled",
+      "seats": [
+        {
+          "seat": 10,
+          "passenger": {
+            "name": "d",
+            "age": "3",
+            "gender": "Female",
+            "status": "canceled"
+          }
+        }
+      ]
+    },
+    {
+      "id": "1712035256122",
+      "username": "vj",
+      "busName": "Tvs travel",
+      "date": "2024-04-02",
+      "from": "tirunelveli",
+      "boardingPoint": "New Bus Stand",
+      "fromTime": "12:00pm",
+      "to": "madurai",
+      "dropingPoint": "Mattuthavani",
+      "toTime": "22:00pm",
+      "price": 1000,
+      "email": "jumanji@gmail.com",
+      "phone": "9873898373",
+      "connection": "0",
+      "hrs": "10h 00m",
+      "bookingStatus": "Completed",
+      "seats": [
+        {
+          "seat": 7,
+          "passenger": {
+            "name": "jumanji",
+            "age": "22",
+            "gender": "Male",
+            "status": "booked"
+          }
+        }
+      ]
+    },
+    {
+      "id": "1712052090201",
+      "username": "sri",
+      "busName": "Tvs travel",
+      "date": "2024-05-29",
+      "from": "tirunelveli",
+      "boardingPoint": "New Bus Stand",
+      "fromTime": "12:00pm",
+      "to": "madurai",
+      "dropingPoint": "Mattuthavani",
+      "toTime": "22:00pm",
+      "price": 1000,
+      "email": "vijay@gmail.com",
+      "phone": "9848748833",
+      "connection": "0",
+      "hrs": "10h 00m",
+      "bookingStatus": "booked",
+      "seats": [
+        {
+          "seat": 2,
+          "passenger": {
+            "name": "vijay",
+            "age": "3",
+            "gender": "Male",
             "status": "booked"
           }
         }

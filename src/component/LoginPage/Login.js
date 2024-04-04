@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Api from "../../service/busService";
+import Api from "../../service/ApiService";
 import "./Login.css";
 import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";

@@ -3,12 +3,16 @@ import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 import React from "react";
 import { formatPrice } from "../../Utils/Utils";
-import Api from "../../service/busService";
+
+import { useDispatch,useSelector} from "react-redux";
+import TicketService from "../../service/ShowTicketService";
 export default function ShowTicket({ status }) {
-  const [ticketDetails, setTicketDetails] = useState([]);
+  const {
+    ticketDetails,
+  } = useSelector((state) => state.bus);
   const [userName, setUserName] = useState("");
-  const bookingUrl = process.env.REACT_APP_BOOKING_URL;
-  const api = new Api();
+
+  const dispatch = useDispatch();
   function capitalizeFirstLetter(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
   }
@@ -24,45 +28,10 @@ export default function ShowTicket({ status }) {
     };
     const username = sessionStorage.getItem("username");
     setUserName(username);
-    async function fetchData() {
-      try {
-        const response = await api.get(bookingUrl);
-        const updatedBookings = [];
-        const today = new Date();
-        let updated = false;
-        for (const booking of response.data) {
-          const ticketDate = new Date(booking.date);
-          if (
-            username === booking.username &&
-            today > ticketDate &&
-            !isToday(ticketDate) &&
-            booking.bookingStatus === "booked"
-          ) {
-            await api.put(`${bookingUrl}/${booking.id}`, {
-              ...booking,
-              bookingStatus: "Completed",
-            });
-            updatedBookings.push({
-              ...booking,
-              bookingStatus: "Completed",
-            });
-            updated = true;
-          } else {
-            updatedBookings.push(booking);
-          }
-        }
-        if (updated) {
-          setTicketDetails(updatedBookings);
-        } else {
-          setTicketDetails(response.data);
-        }
-      } catch (error) {
-        console.error("Error fetching ticket details:", error);
-      }
-    }
-    fetchData();
+    const ticketService=new TicketService();
+    ticketService.fetchData(username,dispatch,isToday,);
   }, []);
-  function handleCancelBooking() {
+  function handleCancelTicket() {
     usenavigate("ticketcancel");
   }
   return (
@@ -71,7 +40,7 @@ export default function ShowTicket({ status }) {
         {ticketDetails
           .filter(
             (ticket) =>
-              (ticket.bookingStatus === status && ticket.username === userName)
+              ticket.bookingStatus === status && ticket.username === userName
           )
           .map((booking) => (
             <div key={booking.id} className="busBook">
@@ -84,7 +53,7 @@ export default function ShowTicket({ status }) {
               <div className="busName">
                 {booking.busName}
                 <div className="acList">
-                  {booking.AC ?<span>Ac</span>:<span>NonAc</span>}
+                  {booking.AC ? <span>Ac</span> : <span>NonAc</span>}
                   {booking.isSeater ? (
                     <span>seater</span>
                   ) : (
@@ -107,7 +76,7 @@ export default function ShowTicket({ status }) {
               <div className="passengerDetailsList">
                 {booking.seats.map((seat) => (
                   <div key={seat.seat}>
-                    {(booking.bookingStatus==="canceled")||(seat.passenger.status !== "canceled") ? (
+                    {seat.passenger.status !== "canceled" ? (
                       <div>
                         <p>Seat:{seat.seat}</p>
                         <p>Passenger Name:{seat.passenger.name}</p>
@@ -116,7 +85,9 @@ export default function ShowTicket({ status }) {
                   </div>
                 ))}
                 {status === "booked" ? (
-                  <button onClick={handleCancelBooking}>Cancel Ticket</button>
+                  <div>
+                    <button onClick={handleCancelTicket}>Cancel Ticket</button>
+                  </div>
                 ) : null}
               </div>
             </div>

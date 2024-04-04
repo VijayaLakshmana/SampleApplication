@@ -1,28 +1,24 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import Api from "../../service/busService";
 import { useSelector, useDispatch } from "react-redux";
 import { updateField } from "../../Redux/BusDetails";
 import { formatPrice } from "../../Utils/Utils";
 import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";
+import BusSearchService from "../../service/SearchService";
+import CancelDataService from "../../service/CancelTicketServie";
 export default function CancelTicket() {
   const [ticketDetails, setTicketDetails] = useState([]);
   const [userName, setUserName] = useState("");
   const dispatch = useDispatch();
   const { busDetails } = useSelector((state) => state.bus);
-  const busUrl = process.env.REACT_APP_BUS_URL;
-  const bookingUrl = process.env.REACT_APP_BOOKING_URL;
-  const api = new Api();
+  const cancelDataService=new CancelDataService();
   useEffect(() => {
+    const busSearchService = new BusSearchService();
     const username = sessionStorage.getItem("username");
     setUserName(username);
-    api.get(bookingUrl).then((response) => {
-      setTicketDetails(response.data);
-    });
-    api.get(busUrl).then((response) => {
-      dispatch(updateField({ field: "busDetails", value: response.data }));
-    });
+    cancelDataService.fetchBookingDetails(setTicketDetails,toast);
+    busSearchService.busData(dispatch,toast);
   }, []);
   function capitalizeFirstLetter(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
@@ -32,7 +28,12 @@ export default function CancelTicket() {
     const currentTime = new Date();
     const timeDifference = departureDateTime.getTime() - currentTime.getTime();
     const hoursDifference = timeDifference / (1000 * 60 * 60);
+    console.log(hoursDifference);
     if (hoursDifference > 24) {
+      const confirmed = window.confirm("Are you sure to cancel the ticket?");
+      if (!confirmed) {
+        return;
+      }
       const updatedTicketDetails = ticketDetails.map((booking) => {
         if (booking.id === bookingId) {
           const updatedSeats = booking.seats.map((seat) => {
@@ -60,16 +61,10 @@ export default function CancelTicket() {
         return booking;
       });
       setTicketDetails(updatedTicketDetails);
-      api
-        .put(
-          `${bookingUrl}/${bookingId}`,
-          updatedTicketDetails.find((booking) => booking.id === bookingId)
-        )
-        .catch((error) => {
-          console.error("Error updating ticket details:", error);
-        });
+      cancelDataService.updateTicketDetails(bookingId, updatedTicketDetails.find((booking) => booking.id === bookingId), toast);
       const updatedBusDetails = busDetails.map((prevBusDetails) => {
         if (busId === prevBusDetails.id) {
+          console.log(prevBusDetails.dates);
           const updatedDates = prevBusDetails.dates.map((date) => {
             if (busDate === date.date) {
               const updatedBookedSeats = date.bookedSeats.filter(
@@ -84,9 +79,7 @@ export default function CancelTicket() {
         return prevBusDetails;
       });
       dispatch(updateField({ field: "busDetails", value: updatedBusDetails }));
-      api.put(`${busUrl}/${busId}`, {
-        ...updatedBusDetails.find((bus) => bus.id === busId),
-      });
+      cancelDataService.updateSeatCancelled(busId, updatedBusDetails);
     } else {
       toast.error(
         "You can only cancel the ticket up to 24 hours before boarding."

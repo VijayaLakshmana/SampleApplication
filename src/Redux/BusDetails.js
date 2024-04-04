@@ -8,6 +8,7 @@ const initialState = {
   selectedBus: null,
   showBoardingPoint: [],
   showDropingPoint: [],
+  ticketDetails:[],
 };
 const busDetails = createSlice({
   name: "bus",

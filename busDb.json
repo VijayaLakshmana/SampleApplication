@@ -3,7 +3,7 @@
     {
       "id": "0",
       "busname": "Tvs travel",
-      "from": "tirunelveli",
+      "from": "tuticorn",
       "to": "madurai",
       "boardingStop": [
         {
@@ -76,7 +76,9 @@
         },
         {
           "date": "2024-04-02",
-          "bookedSeats": []
+          "bookedSeats": [
+            7
+          ]
         },
         {
           "date": "2024-04-03",
@@ -142,12 +144,26 @@
         {
           "date": "2024-04-05",
           "bookedSeats": []
+        },
+        {
+          "date": "2024-05-29",
+          "bookedSeats": [
+            2
+          ]
+        },
+        {
+          "date": "",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-01-30",
+          "bookedSeats": []
         }
       ],
       "seat": 36,
       "hrs": "10h 00m",
-      "AC": true,
-      "isSeater": true,
+      "AC": false,
+      "isSeater": false,
       "price": 1000
     },
     {
@@ -230,7 +246,9 @@
         },
         {
           "date": "2024-03-27",
-          "bookedSeats": []
+          "bookedSeats": [
+            1
+          ]
         },
         {
           "date": "2024-04-08",
@@ -278,6 +296,18 @@
         },
         {
           "date": "2024-04-05",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-05-29",
+          "bookedSeats": []
+        },
+        {
+          "date": "",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-01-30",
           "bookedSeats": []
         }
       ],
@@ -424,6 +454,18 @@
         {
           "date": "2024-04-05",
           "bookedSeats": []
+        },
+        {
+          "date": "2024-05-29",
+          "bookedSeats": []
+        },
+        {
+          "date": "",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-01-30",
+          "bookedSeats": []
         }
       ],
       "seat": 12,
@@ -560,6 +602,18 @@
         },
         {
           "date": "2024-04-05",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-05-29",
+          "bookedSeats": []
+        },
+        {
+          "date": "",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-01-30",
           "bookedSeats": []
         }
       ],
@@ -702,6 +756,18 @@
         {
           "date": "2024-04-05",
           "bookedSeats": []
+        },
+        {
+          "date": "2024-05-29",
+          "bookedSeats": []
+        },
+        {
+          "date": "",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-01-30",
+          "bookedSeats": []
         }
       ],
       "seat": 12,
@@ -834,6 +900,22 @@
         },
         {
           "date": "2024-04-05",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-08",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-05-29",
+          "bookedSeats": []
+        },
+        {
+          "date": "",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-01-30",
           "bookedSeats": []
         }
       ],
@@ -968,6 +1050,22 @@
         {
           "date": "2024-04-05",
           "bookedSeats": []
+        },
+        {
+          "date": "2024-04-08",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-05-29",
+          "bookedSeats": []
+        },
+        {
+          "date": "",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-01-30",
+          "bookedSeats": []
         }
       ],
       "seat": 16,
@@ -1100,6 +1198,22 @@
         },
         {
           "date": "2024-04-05",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-04-08",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-05-29",
+          "bookedSeats": []
+        },
+        {
+          "date": "",
+          "bookedSeats": []
+        },
+        {
+          "date": "2024-01-30",
           "bookedSeats": []
         }
       ],

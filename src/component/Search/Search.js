@@ -3,15 +3,15 @@ import React from "react";
 import NavigationBar from "../HomePage/NavigationBar";
 import SearchField from "../HomePage/SearchField";
 import InputField from "../HomePage/Input";
-import "./search.css";
+import "./Search.css";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { formatPrice } from "../../Utils/Utils";
 import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";
-import Api from "../../service/busService";
 import { updateField } from "../../Redux/BusDetails";
 import PointCheckboxList from "./PointsCheckboxList";
+import BusSearchService from "../../service/SearchService";
 export default function Search() {
   const [showACBus, setShowACBus] = useState(false);
   const [showNonACBus, setShowNonACBus] = useState(false);
@@ -21,21 +21,12 @@ export default function Search() {
   const [selectDropingPoint, setSelectDropingPoint] = useState([]);
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
+  const busSearchService = new BusSearchService();
   const dispatch = useDispatch();
   const { from, to, date, busDetails } = useSelector((state) => state.bus);
   const usenavigate = useNavigate();
-  const busUrl = process.env.REACT_APP_BUS_URL;
-  const api = new Api();
   useEffect(() => {
-    async function fetchData() {
-      try {
-        const response = await api.get(busUrl);
-        dispatch(updateField({ field: "busDetails", value: response.data }));
-      } catch (error) {
-        toast.error("Error fetching data:", error);
-      }
-    }
-    fetchData();
+    busSearchService.busData(dispatch,toast);
     const from = sessionStorage.getItem("from");
     dispatch(updateField({ field: "from", value: from }));
     const to = sessionStorage.getItem("to");
@@ -115,7 +106,7 @@ export default function Search() {
     {
       title: "Select Boarding Points:",
       points: selectBoardingPoint,
-      handlePointChange: handleBoardingPointChange,
+      handlePointChange: handleBoardingPointChange, 
       stopType: "boardingStop",
     },
     {
@@ -125,18 +116,7 @@ export default function Search() {
       stopType: "dropingStop",
     },
   ];
-
-  busDetails.forEach((bus) => {
-    if (
-      bus.dates.length === 0 ||
-      !bus.dates.find((dateObj) => dateObj.date === date)
-    ) {
-      api.put(`${busUrl}/${bus.id}`, {
-        ...bus,
-        dates: [...bus.dates, { date: date, bookedSeats: [] }],
-      });
-    }
-  });
+  busSearchService.updateBusDetails(busDetails, date);
   return (
     <div className="searchLayout">
       <div className="component1">

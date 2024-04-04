@@ -3,9 +3,7 @@ import React from "react";
 import "./SignUp.css";
 import { useNavigate } from "react-router-dom";
 import InputField from "../HomePage/Input";
-import Api from "../../service/busService";
-import "react-toastify/dist/ReactToastify.css";
-import { toast } from "react-toastify";
+import SignUpService from "../../service/SignUpService";
 import bcrypt from "bcryptjs";
 export default function SignUp() {
   const [id, idchange] = useState("");
@@ -16,7 +14,6 @@ export default function SignUp() {
   const [address, addresschange] = useState("");
   const [gender, genderchange] = useState("");
   const usenavigate = useNavigate();
-  const userUrl = process.env.REACT_APP_USER_URL;
   async function handleSubmit(e) {
     e.preventDefault();
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -29,14 +26,8 @@ export default function SignUp() {
       address,
       gender,
     };
-    const api = new Api();
-    try {
-      await api.post(userUrl, regObj);
-      toast.success("Registered successfully.");
-      usenavigate("/login");
-    } catch (err) {
-      toast.error("Failed: " + err.message);
-    }
+    const signUpService=new SignUpService();
+    signUpService.userData(regObj, usenavigate);
   }
   return (
     <div className="signUpBackground">

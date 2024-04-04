@@ -1,26 +1,16 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import React from "react";
-import Api from "../../service/busService";
 import { useSelector, useDispatch } from "react-redux";
 import "react-toastify/dist/ReactToastify.css";
 import { updateField } from "../../Redux/BusDetails";
 import { toast } from "react-toastify";
-const busUrl = process.env.REACT_APP_BUS_URL;
+import BusSearchService from "../../service/SearchService";
 export default function BusSeat() {
   const dispatch = useDispatch();
   useEffect(() => {
-    const api = new Api();
-    async function fetchData(){
-      try {
-        const response = await api.get(busUrl);
-        dispatch(updateField({ field: "busDetails", value: response.data }));
-      }
-      catch (error) {
-        toast.error("Error fetching data:", error);
-      }
-    }
-    fetchData();
+    const busSearchService = new BusSearchService();
+    busSearchService.busData(dispatch,toast);
     const storedSelectedBus = sessionStorage.getItem("selectedBus");
     if (storedSelectedBus) {
       dispatch(

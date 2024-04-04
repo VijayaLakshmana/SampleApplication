@@ -53,6 +53,15 @@
       "phone": "8948477383",
       "address": "selvi nagar",
       "gender": "Male"
+    },
+    {
+      "id": "sri",
+      "name": "sri",
+      "password": "$2a$10$VotaRGrapFRuSCwKABnYve1S8G9ojSB3wiftQAXEyb46ROnvu8bk2",
+      "email": "sri@gmail.com",
+      "phone": "8938378334",
+      "address": "8",
+      "gender": "Male"
     }
   ]
 }

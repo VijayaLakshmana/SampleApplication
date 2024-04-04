@@ -1,7 +1,8 @@
 import NavigationBar from "../HomePage/NavigationBar";
 import React from "react";
 import "./MyBooking.css";
-import ShowTicket from "./ShowTicket";
+import ShowTicket from "./ShowTickets";
+import ShowCancelledTicket from "./ShowCancelledTickets";
 export default function MyBookings() {
   return (
     <div>
@@ -20,8 +21,11 @@ export default function MyBookings() {
       </>
       <h2>Cancelled Tickets:</h2>
       <>
-        <ShowTicket status={"canceled"}  />
+        <ShowCancelledTicket status={"canceled"}  />
       </>
     </div>
   );
 }
+
+
+

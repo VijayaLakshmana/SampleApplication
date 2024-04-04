@@ -12,6 +12,7 @@ export default function InputField(props) {
         value={props.value}
         pattern={props.pattern}
         title={props.title}
+        list={props.list}
         required
       />
     </>
@@ -26,4 +27,5 @@ InputField.propTypes = {
   value: PropTypes.string,
   pattern:PropTypes.string,
   title:PropTypes.string,
+  list:PropTypes.string,
 };
