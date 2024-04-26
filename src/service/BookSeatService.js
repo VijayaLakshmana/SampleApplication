@@ -17,21 +17,11 @@ class BookingService {
     try {
       await Promise.all(
         busDetails.map(async (bus) => {
-          if (bus.id === selectedBus.id) {
-            await this.api.put(`${this.busUrl}/${bus.id}`, {
-              ...bus,
-              dates: bus.dates.map((dateObj) => {
-                if (dateObj.date === date) {
-                  return {
-                    ...dateObj,
-                    bookedSeats: [
-                      ...dateObj.bookedSeats,
-                      ...selectedSeats[date],
-                    ],
-                  };
-                }
-                return dateObj;
-              }),
+          if (bus._id === selectedBus._id) {
+            console.log(bus._id,"hello");
+            await this.api.put(`${this.busUrl}/seat/${bus._id}`, {
+              date:date,
+              selectedSeats:selectedSeats
             });
           }
         })

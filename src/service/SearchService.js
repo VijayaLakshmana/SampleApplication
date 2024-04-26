@@ -13,15 +13,15 @@ class BusSearchService {
       toast.error("Error fetching data:", error);
     }
   }
-  async updateBusDetails(busDetails, date) {
+  updateBusDetails(busDetails, date) {
     busDetails.map(async (bus) => {
       if (
         bus.dates.length === 0 ||
         !bus.dates.find((dateObj) => dateObj.date === date)
       ) {
-        await this.api.put(`${this.busUrl}/${bus.id}`, {
-          ...bus,
-          dates: [...bus.dates, { date: date, bookedSeats: [] }],
+        await this.api.put(`${this.busUrl}/${bus._id}`, {
+          date: date,
+          bookedSeats: []
         });
       }
     });

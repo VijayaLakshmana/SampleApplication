@@ -78,8 +78,9 @@ export default function TicketBooking() {
     const time = Date.now();
     const ticketnumber = time;
     const totalPrice = selectedBus.price * selectedSeats[date].length;
+    console.log(passengerDetails);
     const newBooking = {
-      id: ticketnumber,
+      _id: ticketnumber,
       username: username,
       busName: selectedBus.busname,
       date: date,
@@ -92,7 +93,7 @@ export default function TicketBooking() {
       price: totalPrice,
       email:email,
       phone:phone,
-      connection: selectedBus.id,
+      connection: selectedBus._id,
       hrs: selectedBus.hrs,
       bookingStatus: "booked",
       seats: selectedSeats[date]?.map((seatNumber) => ({
@@ -111,6 +112,7 @@ export default function TicketBooking() {
   function capitalizeFirstLetter(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
   }
+  console.log();
   return (
     <div className="ticketBookingDetailsPage">
       <div className="container1">

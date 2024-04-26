@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import React from "react";
 import NavigationBar from "../HomePage/NavigationBar";
 import SearchField from "../HomePage/SearchField";
@@ -33,6 +33,7 @@ export default function Search() {
     dispatch(updateField({ field: "to", value: to }));
     const date = sessionStorage.getItem("date");
     dispatch(updateField({ field: "date", value: date }));
+    
   }, []);
   function capitalizeFirstLetter(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
@@ -116,7 +117,7 @@ export default function Search() {
       stopType: "dropingStop",
     },
   ];
-  busSearchService.updateBusDetails(busDetails, date);
+  useMemo(()=> busSearchService.updateBusDetails(busDetails, date),[date]);
   return (
     <div className="searchLayout">
       <div className="component1">
@@ -212,7 +213,7 @@ export default function Search() {
               {filteredSearch.map((bus) => (
                 <div
                   className="busContent"
-                  key={bus.id}
+                  key={bus._id}
                 >
                   <div className="busName">
                     {bus.busname}

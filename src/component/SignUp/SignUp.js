@@ -6,7 +6,7 @@ import InputField from "../HomePage/Input";
 import SignUpService from "../../service/SignUpService";
 import bcrypt from "bcryptjs";
 export default function SignUp() {
-  const [id, idchange] = useState("");
+  const [_id, idchange] = useState("");
   const [name, namechange] = useState("");
   const [password, passwordchange] = useState("");
   const [email, emailchange] = useState("");
@@ -18,7 +18,7 @@ export default function SignUp() {
     e.preventDefault();
     const hashedPassword = await bcrypt.hash(password, 10);
     const regObj = {
-      id,
+      _id,
       name,
       password: hashedPassword,
       email,
@@ -58,7 +58,7 @@ export default function SignUp() {
               </td>
               <td>
                 <InputField
-                  value={id}
+                  value={_id}
                   onChange={(e) => idchange(e.target.value)}
                   type="text"
                   id="username"

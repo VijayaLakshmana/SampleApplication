@@ -36,7 +36,7 @@ export default function BusSeat() {
     return selectedSeats[date]?.includes(seatNumber);
   }
   function isSeatBooked(bus, date, seatNumber) {
-    const selectedBusData = busDetails.find((b) => b.id === bus.id);
+    const selectedBusData = busDetails.find((b) => b._id === bus._id);
     const selectedDateData = selectedBusData.dates.find((d) => d.date === date);
     return (
       selectedDateData && selectedDateData.bookedSeats.includes(seatNumber)
@@ -95,7 +95,7 @@ export default function BusSeat() {
         bus.dates.map((dateObj) =>
           dateObj.date === date ? (
             <div key={dateObj.date}>
-              {selectedBus.id === bus.id && date === dateObj.date && (
+              {selectedBus._id === bus._id && date === dateObj.date && (
                 <div>
                   <p>
                     Total Available Seats:

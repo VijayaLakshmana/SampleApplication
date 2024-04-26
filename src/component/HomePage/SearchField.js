@@ -61,7 +61,6 @@ export default React.memo(function SearchField() {
     }
     usenavigate(`${link}`);
   }
-  console.log(destination1);
   return (
     <form className="searchform" onSubmit={(e) => handleClick(e)} autoComplete="off">
       <InputField
