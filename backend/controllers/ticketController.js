@@ -10,10 +10,10 @@ const getAllTickets = async (req, res) => {
 };
 
 const updateTicketDetails = async (req, res) => {
-  const bookingId  = req.params.id; 
-  const updatedTicket = req.body; 
+  const bookingId = req.params.id;
+  const updatedTicket = req.body;
   try {
-    const ticket = await Ticket.findByIdAndUpdate(bookingId, updatedTicket, { new: true });
+    const ticket = await Ticket.findByIdAndUpdate(bookingId, updatedTicket);
     if (!ticket) {
       return res.status(404).json({ error: "Ticket not found" });
     }
@@ -24,10 +24,11 @@ const updateTicketDetails = async (req, res) => {
   }
 };
 
-const updateBookingStatus=async(req,res)=>{
-  const bookingId=req.params.id;
+const updateBookingStatus = async (req, res) => {
+  const bookingId = req.params.id;
   try {
-    const ticket=await Ticket.findByIdAndUpdate(bookingId, { bookingStatus: "Completed" });
+    const ticket = await Ticket.findByIdAndUpdate(bookingId, {
+      bookingStatus: "Completed",});
     if (!ticket) {
       return res.status(404).json({ error: "Ticket not found" });
     }
@@ -40,48 +41,7 @@ const updateBookingStatus=async(req,res)=>{
 
 const createTicket = async (req, res) => {
   try {
-    const {
-      _id,
-      username,
-      busName,
-      date,
-      from,
-      boardingPoint,
-      fromTime,
-      to,
-      dropingPoint,
-      toTime,
-      price,
-      email,
-      phone,
-      connection,
-      hrs,
-      bookingStatus,
-      seats,
-    } = req.body;
-    const ticket = new Ticket({
-      _id,
-      username,
-      busName,
-      date,
-      from,
-      boardingPoint,
-      fromTime,
-      to,
-      dropingPoint,
-      toTime,
-      price,
-      email,
-      phone,
-      connection,
-      hrs,
-      bookingStatus,
-      seats, 
-    });
-
-  
-    await ticket.save();
-
+    const ticket = await Ticket.create(req.body);
     res.status(201).json({ message: "Ticket created successfully", ticket });
   } catch (error) {
     console.error("Error creating ticket:", error);

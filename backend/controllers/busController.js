@@ -66,7 +66,7 @@ const updateBusSeat=async(req,res)=>{
   const busId  = req.params.id; 
   const updatedBus= req.body; 
   try {
-    const ticket = await Bus.findByIdAndUpdate(busId, updatedBus, { new: true });
+    const ticket = await Bus.findByIdAndUpdate(busId, updatedBus);
     if (!ticket) {
       return res.status(404).json({ error: "Bus Not Found" });
     }
