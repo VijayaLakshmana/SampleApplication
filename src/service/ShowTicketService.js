@@ -27,10 +27,7 @@ class TicketService {
           !isToday(ticketDate) &&
           booking.bookingStatus === "booked"
         ) {
-          await this.api.put(`${this.bookingUrl}/${booking.id}`, {
-            ...booking,
-            bookingStatus: "Completed",
-          });
+          await this.api.put(`${this.bookingUrl}/status/${booking._id}`);
           updatedBookings.push({
             ...booking,
             bookingStatus: "Completed",

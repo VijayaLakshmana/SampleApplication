@@ -6,9 +6,8 @@ class CancelDataService {
     this.bookingUrl = process.env.REACT_APP_BOOKING_URL;
   }
   async updateSeatCancelled(busId, updatedBusDetails) {
-    await this.api.put(`${this.busUrl}/${busId}`, {
-      ...updatedBusDetails.find((bus) => bus.id === busId),
-    });
+    const data=updatedBusDetails.find((bus) => bus._id === busId);
+    await this.api.put(`${this.busUrl}/seat/delete/${busId}`,data);
   }
   async fetchBookingDetails(setTicketDetails) {
     try {

@@ -1,7 +1,6 @@
 const Ticket = require("../models/ticketModel");
 
 const getAllTickets = async (req, res) => {
-  console.log(2);
   try {
     const users = await Ticket.find();
     res.json(users);
@@ -9,55 +8,35 @@ const getAllTickets = async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 };
-// const createTicket = async (req, res) => {
-//   console.log("1");
-//   const {
-//     _id,
-//     username,
-//     busName,
-//     date,
-//     from,
-//     boardingPoint,
-//     fromTime,
-//     to,
-//     dropingPoint,
-//     toTime,
-//     price,
-//     email,
-//     phone,
-//     connection,
-//     hrs,
-//     bookingStatus,
-//     seats,
-//   } = req.body;
-//   try {
-//     console.log("hello");
-//     console.log(req.body);
-//     const newUser = await Ticket.create({
-//       _id,
-//       username,
-//       busName,
-//       date,
-//       from,
-//       boardingPoint,
-//       fromTime,
-//       to,
-//       dropingPoint,
-//       toTime,
-//       price,
-//       email,
-//       phone,
-//       connection,
-//       hrs,
-//       bookingStatus,
-//       seats,
-//     });
-//     console.log(newUser);
-//     res.status(201).json(newUser);
-//   } catch (error) {
-//     res.status(400).json({ error: "Invalid data" });
-//   }
-// };
+
+const updateTicketDetails = async (req, res) => {
+  const bookingId  = req.params.id; 
+  const updatedTicket = req.body; 
+  try {
+    const ticket = await Ticket.findByIdAndUpdate(bookingId, updatedTicket, { new: true });
+    if (!ticket) {
+      return res.status(404).json({ error: "Ticket not found" });
+    }
+    res.json(ticket);
+  } catch (error) {
+    console.error("Error updating ticket details:", error);
+    res.status(500).json({ error: "Failed to update ticket details" });
+  }
+};
+
+const updateBookingStatus=async(req,res)=>{
+  const bookingId=req.params.id;
+  try {
+    const ticket=await Ticket.findByIdAndUpdate(bookingId, { bookingStatus: "Completed" });
+    if (!ticket) {
+      return res.status(404).json({ error: "Ticket not found" });
+    }
+    res.json(ticket);
+  } catch (error) {
+    console.error("Error updating ticket details:", error);
+    res.status(500).json({ error: "Failed to update ticket details" });
+  }
+};
 
 const createTicket = async (req, res) => {
   try {
@@ -80,8 +59,6 @@ const createTicket = async (req, res) => {
       bookingStatus,
       seats,
     } = req.body;
-
-
     const ticket = new Ticket({
       _id,
       username,
@@ -115,4 +92,6 @@ const createTicket = async (req, res) => {
 module.exports = {
   getAllTickets,
   createTicket,
+  updateTicketDetails,
+  updateBookingStatus,
 };

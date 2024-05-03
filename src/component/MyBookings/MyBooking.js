@@ -4,6 +4,7 @@ import "./MyBooking.css";
 import ShowTicket from "./ShowTickets";
 import { useSelector } from "react-redux";
 import { useState } from "react";
+import "react-toastify/dist/ReactToastify.css";
 export default function MyBookings() {
   const { ticketDetails } = useSelector((state) => state.bus);
   const [userName, setUserName] = useState("");

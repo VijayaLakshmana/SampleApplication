@@ -35,7 +35,7 @@ export default function CancelTicket() {
         return;
       }
       const updatedTicketDetails = ticketDetails.map((booking) => {
-        if (booking.id === bookingId) {
+        if (booking._id === bookingId) {
           const updatedSeats = booking.seats.map((seat) => {
             if (seat.seat === seatNumber) {
               return {
@@ -61,9 +61,9 @@ export default function CancelTicket() {
         return booking;
       });
       setTicketDetails(updatedTicketDetails);
-      cancelDataService.updateTicketDetails(bookingId, updatedTicketDetails.find((booking) => booking.id === bookingId), toast);
+      cancelDataService.updateTicketDetails(bookingId, updatedTicketDetails.find((booking) => booking._id === bookingId), toast);
       const updatedBusDetails = busDetails.map((prevBusDetails) => {
-        if (busId === prevBusDetails.id) {
+        if (busId === prevBusDetails._id) {
           console.log(prevBusDetails.dates);
           const updatedDates = prevBusDetails.dates.map((date) => {
             if (busDate === date.date) {
@@ -96,9 +96,9 @@ export default function CancelTicket() {
               ticket.bookingStatus === "booked" && ticket.username === userName
           )
           .map((booking) => (
-            <div key={booking.id} className="busBook">
+            <div key={booking._id} className="busBook">
               <div className="ticketId">
-                Ticket No: {booking.id}
+                Ticket No: {booking._id}
                 <br></br>
                 <br></br>
                 <div>Date:{booking.date}</div>
@@ -136,7 +136,7 @@ export default function CancelTicket() {
                         <button
                           onClick={() =>
                             handleCancelBooking(
-                              booking.id,
+                              booking._id,
                               seat.seat,
                               booking.connection,
                               booking.date,

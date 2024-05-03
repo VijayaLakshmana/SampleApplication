@@ -61,9 +61,27 @@ const updateBusDetails = async (req, res) => {
   }
 };
 
+
+const updateBusSeat=async(req,res)=>{
+  const busId  = req.params.id; 
+  const updatedBus= req.body; 
+  try {
+    const ticket = await Bus.findByIdAndUpdate(busId, updatedBus, { new: true });
+    if (!ticket) {
+      return res.status(404).json({ error: "Bus Not Found" });
+    }
+    res.json(ticket);
+  } catch (error) {
+    console.error("Error updating ticket details:", error);
+    res.status(500).json({ error: "Failed to update ticket details" });
+  }
+
+};
+
 module.exports = {
   getAllBus,
   getBusById,
   updateBus,
   updateBusDetails,
+  updateBusSeat,
 };

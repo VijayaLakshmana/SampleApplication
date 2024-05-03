@@ -9,6 +9,8 @@ const ticket=require("./routes/ticket");
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+// const Url = process.env.REACT_APP_FRONT_URL;
+
 app.use(cors({origin:"http://localhost:3000"}));
 app.use(bodyParser.json());
 app.use("/user",user);
