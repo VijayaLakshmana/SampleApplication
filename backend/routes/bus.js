@@ -1,19 +1,14 @@
 const express=require("express");
-const {
-  getAllBus,
-  getBusById,
-  updateBus,
-  updateBusDetails,
-  updateBusSeat
-} =require("../controllers/busController");
+
+const busController=require("../controllers/busController");
 
 const router = express.Router();
 
-router.get("/", getAllBus);
-router.get("/:id", getBusById);
-router.put("/:id", updateBus);
-router.put("/seat/:id",updateBusDetails);
-router.put("/seat/delete/:id",updateBusSeat);
+router.get("/", busController.getAllBus);
+router.get("/:id", busController.getBusById);
+router.put("/:id", busController.updateBus);
+router.put("/seat/:id",busController.updateBusDetails);
+router.put("/seat/delete/:id",busController.updateBusSeat);
 
 
 

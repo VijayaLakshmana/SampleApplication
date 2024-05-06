@@ -1,57 +1,54 @@
-const Ticket = require("../models/ticketModel");
+const ticketService = require("../service/ticketService");
 
-const getAllTickets = async (req, res) => {
-  try {
-    const users = await Ticket.find();
-    res.json(users);
-  } catch (error) {
-    res.status(500).json({ error: "Internal server error" });
-  }
-};
-
-const updateTicketDetails = async (req, res) => {
-  const bookingId = req.params.id;
-  const updatedTicket = req.body;
-  try {
-    const ticket = await Ticket.findByIdAndUpdate(bookingId, updatedTicket);
-    if (!ticket) {
-      return res.status(404).json({ error: "Ticket not found" });
+class TicketController {
+  async getAllTickets(req, res) {
+    try {
+      const tickets = await ticketService.getAllTickets();
+      res.json(tickets);
+    } catch (error) {
+      res.status(500).json({ error: "Internal server error" });
     }
-    res.json(ticket);
-  } catch (error) {
-    console.error("Error updating ticket details:", error);
-    res.status(500).json({ error: "Failed to update ticket details" });
   }
-};
 
-const updateBookingStatus = async (req, res) => {
-  const bookingId = req.params.id;
-  try {
-    const ticket = await Ticket.findByIdAndUpdate(bookingId, {
-      bookingStatus: "Completed",});
-    if (!ticket) {
-      return res.status(404).json({ error: "Ticket not found" });
+  async updateTicketDetails(req, res) {
+    const bookingId = req.params.id;
+    const updatedTicket = req.body;
+    try {
+      const ticket = await ticketService.updateTicketDetails(bookingId, updatedTicket);
+      if (!ticket) {
+        return res.status(404).json({ error: "Ticket not found" });
+      }
+      res.json(ticket);
+    } catch (error) {
+      console.error("Error updating ticket details:", error);
+      res.status(500).json({ error: "Failed to update ticket details" });
     }
-    res.json(ticket);
-  } catch (error) {
-    console.error("Error updating ticket details:", error);
-    res.status(500).json({ error: "Failed to update ticket details" });
   }
-};
 
-const createTicket = async (req, res) => {
-  try {
-    const ticket = await Ticket.create(req.body);
-    res.status(201).json({ message: "Ticket created successfully", ticket });
-  } catch (error) {
-    console.error("Error creating ticket:", error);
-    res.status(500).json({ error: "Internal server error" });
+  async updateBookingStatus(req, res) {
+    const bookingId = req.params.id;
+    try {
+      const ticket = await ticketService.updateBookingStatus(bookingId);
+      if (!ticket) {
+        return res.status(404).json({ error: "Ticket not found" });
+      }
+      res.json(ticket);
+    } catch (error) {
+      console.error("Error updating booking status:", error);
+      res.status(500).json({ error: "Failed to update booking status" });
+    }
   }
-};
 
-module.exports = {
-  getAllTickets,
-  createTicket,
-  updateTicketDetails,
-  updateBookingStatus,
-};
+  async createTicket(req, res) {
+    try {
+      const ticket = await ticketService.createTicket(req.body);
+      res.status(201).json({ message: "Ticket created successfully", ticket });
+    } catch (error) {
+      console.error("Error creating ticket:", error);
+      res.status(500).json({ error: "Internal server error" });
+    }
+  }
+}
+
+module.exports = new TicketController();
+

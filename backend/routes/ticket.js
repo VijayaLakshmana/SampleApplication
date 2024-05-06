@@ -1,14 +1,9 @@
 const express=require("express");
-const {
-  getAllTickets,
-  createTicket,
-  updateTicketDetails,
-  updateBookingStatus,
-} =require("../controllers/ticketController");
+const ticketController=require("../controllers/ticketController");
 const router = express.Router();
-router.get("/",getAllTickets );
-router.post("/", createTicket);
-router.put("/:id",updateTicketDetails);
-router.put("/status/:id",updateBookingStatus);
+router.get("/",ticketController.getAllTickets );
+router.post("/", ticketController.createTicket);
+router.put("/:id",ticketController.updateTicketDetails);
+router.put("/status/:id",ticketController.updateBookingStatus);
 
 module.exports=router;
